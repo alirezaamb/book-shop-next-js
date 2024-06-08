@@ -1,0 +1,80 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "name": "قدرت شروع ناقص ",
+      "author": "جیمز کلییر",
+      "desc": "انتشارات میلکان",
+      "translator": "سید ایوب کوکبی، فرزانه حاج خلیلی",
+      "price": 136500,
+      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/44fe1e4cbebc8fd7411ad668466d24c8fcb2eee5_1658554311.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "id": "2",
+      "name": "هنر ظریف رهایی از دغدغه ها ",
+      "translator": "میلاد بشیری",
+      "author": "مارک منسن",
+      "desc": "انتشارات میلکان",
+      "price": 126000,
+      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/19e45017cecc25e52d787650e497e56b2cc79d44_1610033131.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "id": "3",
+      "name": "بی حد و مرز",
+      "translator": "پگاه فرهنگ مهر",
+      "author": "جیم کوییک",
+      "desc": "انتشارات میلکان",
+      "price": 145000,
+      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/9aea395b9042a495d513528ab61d406d7acd5faf_1658549418.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "id": "4",
+      "name": "برتری خفیف",
+      "author": "جف اولسن",
+      "desc": "انتشارات میلکان",
+      "translator": "سعید کلایی راد",
+      "price": 142000,
+      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/5e9b307c72b11252bb6d35acb036f4062c1051a3_1646657271.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "id": "5",
+      "name": "خرده عادت ها",
+      "author": "جیمز کلییر",
+      "translator": "زهرا صادقی",
+      "desc": "انتشارات میلکان",
+      "price": 133700,
+      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/e5a4b93d44eae96a54ae68dae7ffaf43960b6766_1658548854.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "id": "6",
+      "name": "اوضاع خیلی خراب است",
+      "author": "مارک منسن",
+      "translator": "سمانه پرهیزکاری",
+      "desc": "انتشارات میلکان",
+      "price": 139800,
+      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/462005c7394244bbc6951fc22285cdc34b0d118f_1658548899.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "1",
+      "email": "admin@gmail.com",
+      "password": "1234",
+      "role": "admin"
+    },
+    {
+      "id": "1da8",
+      "email": "ababaei78@gmail.com",
+      "password": "1234",
+      "role": "user"
+    },
+    {
+      "id": "09f7",
+      "firstName": "dsdsd",
+      "lastName": "dsdsd",
+      "email": "dsdsd",
+      "password": "sdsdsdsd",
+      "role": "user"
+    }
+  ]
+}
