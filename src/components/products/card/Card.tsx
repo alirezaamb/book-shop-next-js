@@ -6,8 +6,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { BooksEntity } from '@/types/types';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import BasicModal from '@/components/shared/modal/Modal';
 
 export default function CardOfBook({ data }: { data: BooksEntity }) {
+  const [modal, setModal] = useState({
+    isOpen: false,
+    message: 'محصول با موفقیت به سبد خرید افزوده شد',
+  });
   const { name, price, imgURL, desc, id } = data;
   const router = useRouter();
 
@@ -40,6 +46,7 @@ export default function CardOfBook({ data }: { data: BooksEntity }) {
             color: 'white',
             fontSize: '16px',
           }}
+          onClick={() => setModal((prev) => ({ ...prev, isOpen: true }))}
         >
           خرید
         </Button>
@@ -47,6 +54,7 @@ export default function CardOfBook({ data }: { data: BooksEntity }) {
           {price.toLocaleString('FA')} تومان
         </Typography>
       </CardActions>
+      <BasicModal setModal={setModal} modal={modal} />
     </Card>
   );
 }

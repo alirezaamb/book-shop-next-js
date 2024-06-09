@@ -11,7 +11,9 @@ export const localization = {
 export const pageLevelLocalization = {
   homePage: {},
   aboutUs: {},
-  products: {},
+  products: {
+    succesfullAdd: 'محصول با موفقیت به سبد خرید افزوده شد.',
+  },
   singleProduct: {
     publisher: 'انتشارات',
     writer: 'نویسنده',

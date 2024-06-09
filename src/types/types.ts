@@ -25,3 +25,7 @@ export interface UserType {
   password: FormDataEntryValue | null;
   role: string;
 }
+export interface BasicModaltype {
+  modal: { isOpen: boolean; message: string };
+  setModal: (modal: { isOpen: boolean; message: string }) => void;
+}
