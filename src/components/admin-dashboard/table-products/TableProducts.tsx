@@ -18,6 +18,7 @@ const columns: GridColDef[] = [
     headerName: 'عکس محصول',
     width: 100,
     renderCell: (params) => (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={params.row.imgURL}
         alt={params.row.name}

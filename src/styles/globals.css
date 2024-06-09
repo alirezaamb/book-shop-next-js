@@ -4,12 +4,13 @@
 
 @font-face {
   font-family: 'iransans';
-  src: url('../assets/fonts/IRANSans\(FaNum\).ttf');
+  src: url('../assets/fonts/IRANSans(FaNum).ttf');
 }
 
-html {
-  font-family: 'iransans';
+body {
+  font-family: 'iransans, sans-serif';
 }
+
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;

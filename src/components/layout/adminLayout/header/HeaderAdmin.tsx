@@ -11,25 +11,29 @@ import { useRouter } from 'next/router';
 export default function HeaderAdmin() {
   const router = useRouter();
   const handleAddProducts = () => {
-    router.push('add-product');
+    router.push('admin-dashboard/add-product');
+  };
+
+  const handleToDashboard = () => {
+    router.push('/admin-dashboard');
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        sx={{ bgcolor: '#FFC14D', color: 'black', fontFamily: 'iransans' }}
+        sx={{
+          bgcolor: '#FFC14D',
+          color: 'black',
+          fontFamily: 'iransans, sans-serif',
+        }}
       >
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
+          <Typography
+            onClick={handleToDashboard}
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, cursor: 'pointer' }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             داشبورد
           </Typography>
           <Button onClick={handleAddProducts} color="inherit">
