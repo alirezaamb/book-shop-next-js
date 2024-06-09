@@ -2,6 +2,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
 import { BooksEntity } from '../../../types/types';
 import { getBooks } from '@/api/get/get';
+import { Directions } from '@mui/icons-material';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },

@@ -8,30 +8,28 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { localization } from '../../../../constants/localization';
-// import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { localStorageSetter } from '@/utils/localStorage';
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
+// const Search = styled('div')(({ theme }) => ({
+//   position: 'relative',
+//   borderRadius: theme.shape.borderRadius,
+//   backgroundColor: alpha(theme.palette.common.white, 0.15),
+//   '&:hover': {
+//     backgroundColor: alpha(theme.palette.common.white, 0.25),
+//   },
+//   marginRight: theme.spacing(2),
+//   marginLeft: 0,
+//   width: '100%',
+//   [theme.breakpoints.up('sm')]: {
+//     marginLeft: theme.spacing(3),
+//     width: 'auto',
+//   },
+// }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -57,13 +55,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 //we should fix it the type
-const signOutHandler = (navigate: any) => {
+const signOutHandler = (router: any) => {
   localStorageSetter('Auth', '');
-  navigate('/signin');
+  router.push('/auth');
 };
 
 export default function Header() {
-  const navigate = useRouter();
+  const router = useRouter();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
@@ -142,7 +140,7 @@ export default function Header() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-            onClick={() => signOutHandler(navigate)}
+            onClick={() => signOutHandler(router)}
           >
             <ExitToAppIcon />
           </IconButton>
@@ -156,7 +154,7 @@ export default function Header() {
               فروشگاه کتاب
             </Typography>
           </Link>
-          <Search>
+          {/* <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -164,7 +162,7 @@ export default function Header() {
               placeholder={localization.search}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search>
+          </Search> */}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton

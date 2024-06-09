@@ -4,9 +4,8 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
+import HomeIcon from '@mui/icons-material/Home';
 
 export default function HeaderAdmin() {
   const router = useRouter();
@@ -16,6 +15,9 @@ export default function HeaderAdmin() {
 
   const handleToDashboard = () => {
     router.push('/admin-dashboard');
+  };
+  const handleToHomePage = () => {
+    router.push('/');
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -35,6 +37,14 @@ export default function HeaderAdmin() {
             sx={{ flexGrow: 1, cursor: 'pointer' }}
           >
             داشبورد
+          </Typography>
+          <Typography
+            onClick={handleToHomePage}
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, cursor: 'pointer' }}
+          >
+            <HomeIcon />
           </Typography>
           <Button onClick={handleAddProducts} color="inherit">
             اضافه کردن
