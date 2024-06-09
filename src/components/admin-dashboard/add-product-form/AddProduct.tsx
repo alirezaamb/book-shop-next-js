@@ -33,7 +33,8 @@ export default function AddProduct() {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    newProduct({ ...data, imgURL: img, id: Date.now() });
+    const price = Number(data.price);
+    newProduct({ ...data, imgURL: img, id: Date.now(), price });
     reset();
   };
 
