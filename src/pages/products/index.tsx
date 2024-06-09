@@ -1,5 +1,5 @@
 import MainHome from '@/components/home/Home';
-import MainLayout from '@/components/layout/MainLayout/layout';
+import MainLayout from '@/components/layout/MainLayout/MainLayout';
 import Products from '@/components/products/Products';
 import { ReactElement } from 'react';
 

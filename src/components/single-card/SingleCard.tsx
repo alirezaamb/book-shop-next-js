@@ -5,8 +5,8 @@ import {
   pageLevelLocalization,
 } from '../../constants/localization';
 import { getBookById } from '@/api/get/get';
-import { useParams } from 'next/navigation';
 import { useRouter } from 'next/router';
+import LoadingPage from '../shared/loading/Loading';
 
 const SingleCard = () => {
   const [book, setBook] = useState<BooksEntity>();
@@ -66,7 +66,7 @@ const SingleCard = () => {
       </div>
     </div>
   ) : (
-    'loading...'
+    <LoadingPage />
   );
 };
 

@@ -1,4 +1,4 @@
-import MainLayout from '@/components/layout/MainLayout/layout';
+import MainLayout from '@/components/layout/MainLayout/MainLayout';
 import Products from '@/components/products/Products';
 import SingleCard from '@/components/single-card/SingleCard';
 import { ReactElement } from 'react';
