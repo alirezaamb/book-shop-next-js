@@ -67,12 +67,16 @@
   "profiles": [
     {
       "id": "1",
+      "firstName": "admin",
+      "lastName": "admin",
       "email": "admin@gmail.com",
       "password": "1234",
       "role": "admin"
     },
     {
       "id": "1da8",
+      "firstName": "alireza",
+      "lastName": "babaei",
       "email": "ababaei78@gmail.com",
       "password": "1234",
       "role": "user"

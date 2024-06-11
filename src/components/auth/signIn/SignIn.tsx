@@ -14,7 +14,8 @@ import Container from '@mui/material/Container';
 import { SingInType, UserType } from '@/types/types';
 import { getAllProfiles } from '@/api/get/get';
 import { useRouter } from 'next/router';
-import { setCookie } from '@/utils/cookie';
+import { setCookie } from 'cookies-next';
+import { localStorageSetter } from '@/utils/localStorage';
 
 export default function SignIn({ setSearchParams }: SingInType) {
   const router = useRouter();
@@ -32,9 +33,11 @@ export default function SignIn({ setSearchParams }: SingInType) {
           user.password === data.get('password')
       );
       setIsLoading(false);
+      console.log(foundedUser);
       if (foundedUser) {
-        setCookie('access', true, 'session');
-        setCookie('role', foundedUser.role, 'session');
+        setCookie('access', true);
+        setCookie('role', foundedUser.role);
+        localStorageSetter('name', JSON.stringify(foundedUser.firstName));
         if (foundedUser.role === 'admin') {
           router.push('admin-dashboard');
         } else {

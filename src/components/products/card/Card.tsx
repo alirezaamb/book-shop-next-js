@@ -23,7 +23,7 @@ export default function CardOfBook({ data }: { data: BooksEntity }) {
 
   return (
     <Card
-      sx={{ maxWidth: 345, minWidth: 330 }}
+      sx={{ maxWidth: 345, minWidth: 345 }}
       className="flex flex-col justify-between"
     >
       <CardMedia
