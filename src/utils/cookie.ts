@@ -1,51 +1,37 @@
-export function setCookie(
-  cname: string,
-  cvalue: string,
-  exdays: string | number = 'session'
-) {
-  let expires = 'expires=';
+import { parse, serialize } from 'cookie';
+
+// Client-side cookie setting function
+export function setCookie(cname, cvalue, exdays = 'session') {
+  let expires = '';
   if (exdays !== 'session') {
     const d = new Date();
     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-    expires = expires + d.toUTCString();
-  } else {
-    expires = expires + exdays;
+    expires = `expires=${d.toUTCString()};`;
   }
-  document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+  document.cookie = `${cname}=${cvalue};${expires}path=/`;
 }
 
-export function getCookie(cname: string) {
-  let name = cname + '=';
-  let ca = document.cookie.split(';');
+// Client-side cookie getting function
+export function getCookie(cname) {
+  const name = `${cname}=`;
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const ca = decodedCookie.split(';');
   for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
+    let c = ca[i].trim();
+    if (c.indexOf(name) === 0) {
       return c.substring(name.length, c.length);
     }
   }
   return '';
 }
 
-// import { parse, serialize } from 'cookie';
+// Server-side cookie parsing function
+export function getServerCookie(req, cname) {
+  if (!req || !req.headers.cookie) return null;
+  const cookies = parse(req.headers.cookie);
+  return cookies[cname] || null;
+}
 
-// export function setCookie(name, value, options = {}) {
-//   if (typeof window !== 'undefined') {
-//     document.cookie = serialize(name, value, options);
-//   }
-// }
-
-// export function getCookie(name, req) {
-//   let cookies = '';
-
-//   if (req) {
-//     cookies = req.headers.cookie || '';
-//   } else if (typeof window !== 'undefined') {
-//     cookies = document.cookie || '';
-//   }
-
-//   const parsedCookies = parse(cookies);
-//   return parsedCookies[name] || null;
-// }
+export function deleteCookie(name: string) {
+  document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+}

@@ -14,6 +14,8 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { localStorageSetter } from '@/utils/localStorage';
+import { cookies } from 'next/headers';
+import { deleteCookie } from '@/utils/cookie';
 
 // const Search = styled('div')(({ theme }) => ({
 //   position: 'relative',
@@ -56,7 +58,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 //we should fix it the type
 const signOutHandler = (router: any) => {
-  localStorageSetter('Auth', '');
+  // deleteCookie('access');
+  // deleteCookie('role');
+
   router.push('/auth');
 };
 

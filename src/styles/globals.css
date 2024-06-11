@@ -9,6 +9,7 @@
 
 body {
   font-family: 'iransans, sans-serif';
+  background-color: #fffbf7;
 }
 
 input[type='number']::-webkit-inner-spin-button,

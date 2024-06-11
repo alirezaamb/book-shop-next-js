@@ -13,14 +13,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { SingInType, UserType } from '@/types/types';
 import { getAllProfiles } from '@/api/get/get';
-import { localStorageSetter } from '@/utils/localStorage';
 import { useRouter } from 'next/router';
 import { setCookie } from '@/utils/cookie';
 
 export default function SignIn({ setSearchParams }: SingInType) {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
-  //submit handler
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     setIsLoading(true);
     event.preventDefault();
@@ -34,13 +33,19 @@ export default function SignIn({ setSearchParams }: SingInType) {
       );
       setIsLoading(false);
       if (foundedUser) {
-        router.push('/');
-        setCookie('auth', foundedUser.role, 'session');
+        setCookie('access', true, 'session');
+        setCookie('role', foundedUser.role, 'session');
+        if (foundedUser.role === 'admin') {
+          router.push('admin-dashboard');
+        } else {
+          router.push('/');
+        }
       } else {
-        console.log('your email or password is incorrect');
+        console.log('Your email or password is incorrect');
       }
     }
   };
+
   const handleSignUpLinkClick = () => {
     setSearchParams({ action: 'signup' });
   };
@@ -108,36 +113,3 @@ export default function SignIn({ setSearchParams }: SingInType) {
     </Container>
   );
 }
-
-// const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-//   setIsLoading(true);
-//   event.preventDefault();
-//   const data = new FormData(event.currentTarget);
-//   const allusers = await getAllProfiles();
-//   if (allusers) {
-//     const foundedUser = allusers.find(
-//       (user: UserType) =>
-//         user.email === data.get('email') &&
-//         user.password === data.get('password')
-//     );
-//     setIsLoading(false);
-//     if (foundedUser && foundedUser.role === 'admin') {
-//       localStorageSetter(
-//         'Auth',
-//         JSON.stringify({ isLogin: true, role: 'admin' })
-//       );
-//       router.push('/dashboard');
-//     } else {
-//       localStorageSetter(
-//         'Auth',
-//         JSON.stringify({ isLogin: true, role: 'user' })
-//       );
-
-//       router.push('/');
-//     }
-//   }
-//   console.log({
-//     email: data.get('email'),
-//     password: data.get('password'),
-//   });
-// };
