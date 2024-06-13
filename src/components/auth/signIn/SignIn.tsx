@@ -33,7 +33,6 @@ export default function SignIn({ setSearchParams }: SingInType) {
           user.password === data.get('password')
       );
       setIsLoading(false);
-      console.log(foundedUser);
       if (foundedUser) {
         setCookie('access', true);
         setCookie('role', foundedUser.role);

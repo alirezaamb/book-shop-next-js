@@ -22,10 +22,7 @@ export default function CardOfBook({ data }: { data: BooksEntity }) {
   };
 
   return (
-    <Card
-      sx={{ maxWidth: 345, minWidth: 345 }}
-      className="flex flex-col justify-between"
-    >
+    <Card sx={{ maxWidth: 345 }} className="flex flex-col justify-between">
       <CardMedia
         component="img"
         alt="book"
@@ -42,7 +39,7 @@ export default function CardOfBook({ data }: { data: BooksEntity }) {
           {desc}
         </Typography>
       </CardContent>
-      <CardActions className="flex justify-between px-1">
+      <CardActions className="flex justify-between px-5 ">
         <Button
           style={{
             backgroundColor: '#3b82f6',

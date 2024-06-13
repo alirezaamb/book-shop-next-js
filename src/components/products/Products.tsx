@@ -21,7 +21,7 @@ const Products = () => {
   }
 
   return (
-    <div className="grid grid-cols-3 mt-6 gap-4 text-center justify-items-center">
+    <div className="grid md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-2 mt-6 gap-3 text-center justify-items-center">
       {books?.map((book: BooksEntity) => {
         return <CardOfBook key={book.id} data={book} />;
       })}

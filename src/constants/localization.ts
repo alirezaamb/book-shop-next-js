@@ -9,7 +9,9 @@ export const localization = {
 };
 
 export const pageLevelLocalization = {
-  homePage: {},
+  homePage: {
+    bestSellers: 'پر فروش ترین ها',
+  },
   aboutUs: {},
   products: {
     succesfullAdd: 'محصول با موفقیت به سبد خرید افزوده شد.',

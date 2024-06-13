@@ -27,6 +27,7 @@ const signOutHandler = (router: any) => {
 
 export default function Header() {
   const router = useRouter();
+  const [name, setName] = React.useState('');
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -54,7 +55,10 @@ export default function Header() {
     router.push('admin-dashboard');
   };
 
-  const name = localStorageGetter('name') ? localStorageGetter('name') : '';
+  React.useEffect(
+    () => localStorageGetter('name') && setName(localStorageGetter('name')),
+    []
+  );
 
   const menuId = 'primary-search-account-menu';
 
@@ -113,12 +117,12 @@ export default function Header() {
       sx: {
         bgcolor: 'gray',
       },
-      children: `${name.split(' ')[0][0]}`,
+      children: `${name?.split(' ')[0][0]}`,
     };
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, mb: 2 }}>
       <AppBar
         sx={{ bgcolor: '#FFC14D', color: 'black', fontFamily: 'iransans' }}
         position="static"
@@ -135,10 +139,18 @@ export default function Header() {
             >
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar {...stringAvatar(name)} />
+                  <Box>
+                    <Avatar {...stringAvatar(name)} />
+                  </Box>
                 </IconButton>
               </Tooltip>
-              <Typography sx={{ textWrap: 'nowrap', fontFamily: 'iransans' }}>
+              <Typography
+                sx={{
+                  textWrap: 'nowrap',
+                  fontFamily: 'iransans',
+                  display: { xs: 'none', sm: 'block' },
+                }}
+              >
                 {name !== '' ? `${name},خوش آمدید` : ''}
               </Typography>
             </Box>
@@ -190,7 +202,7 @@ export default function Header() {
                 noWrap
                 component="div"
                 sx={{
-                  display: { xs: 'none', sm: 'block' },
+                  display: { xs: 'none', sm: 'none', lg: 'block' },
                   fontSize: '25px',
                   fontWeight: '500',
                   pl: '50px',

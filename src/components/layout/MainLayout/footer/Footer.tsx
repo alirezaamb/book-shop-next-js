@@ -1,80 +1,155 @@
+import React from 'react';
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  IconButton,
+  Divider,
+} from '@mui/material';
+import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
+
 const Footer = () => {
   return (
-    <footer dir="rtl" className="bg-[#FFC14D] black mt-10">
-      <div className="container mx-auto py-12 px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-8 md:gap-0">
-          <div className="md:col-span-2 flex flex-col justify-between">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl font-bold">درباره ما</h2>
-              <div className="flex space-x-4">
-                <a
+    <Box
+      component="footer"
+      dir="rtl"
+      sx={{
+        bgcolor: '#FFC14D',
+        color: 'black',
+        mt: 10,
+        py: 6,
+        px: 4,
+      }}
+    >
+      <Container maxWidth="lg">
+        <Grid container spacing={4}>
+          <Grid
+            item
+            xs={12}
+            md={8}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                mb: 4,
+              }}
+            >
+              <Typography
+                variant="h5"
+                component="h2"
+                sx={{ fontWeight: 'bold' }}
+              >
+                درباره ما
+              </Typography>
+              <Box sx={{ display: 'flex', gap: 2 }}>
+                <IconButton
                   href="https://facebook.com"
-                  className="text-gray-300 hover:text-blue-500 transition duration-300 ease-in-out"
+                  sx={{ color: 'gray.300', '&:hover': { color: '#1877F2' } }}
                 >
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a
+                  <Facebook />
+                </IconButton>
+                <IconButton
                   href="https://twitter.com"
-                  className="text-gray-300 hover:text-blue-400 transition duration-300 ease-in-out"
+                  sx={{ color: 'gray.300', '&:hover': { color: '#1DA1F2' } }}
                 >
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a
+                  <Twitter />
+                </IconButton>
+                <IconButton
                   href="https://instagram.com"
-                  className="text-gray-300 hover:text-pink-500 transition duration-300 ease-in-out"
+                  sx={{ color: 'gray.300', '&:hover': { color: '#E1306C' } }}
                 >
-                  <i className="fab fa-instagram"></i>
-                </a>
-                <a
+                  <Instagram />
+                </IconButton>
+                <IconButton
                   href="https://linkedin.com"
-                  className="text-gray-300 hover:text-blue-700 transition duration-300 ease-in-out"
+                  sx={{ color: 'gray.300', '&:hover': { color: '#0A66C2' } }}
                 >
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
-              </div>
-            </div>
-            <p className="text-sm leading-relaxed">
+                  <LinkedIn />
+                </IconButton>
+              </Box>
+            </Box>
+            <Typography variant="body2" sx={{ lineHeight: 1.75 }}>
               خوش آمدید به فروشگاه کتاب ما، جایی که ما با افتخار به شما ارائه
               می‌دهیم انواع گسترده‌ای از کتاب‌ها در انواع ژانرها. هدف ما ارائه
               بهترین تجربه خواندن برای شماست.
-            </p>
-          </div>
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold">لینک‌های سریع</h2>
-            <ul className="text-sm">
-              <li>
-                <p className="text-gray-300 hover:text-white transition duration-300 ease-in-out">
-                  صفحه اصلی
-                </p>
-              </li>
-              <li>
-                <p className="text-gray-300 hover:text-white transition duration-300 ease-in-out">
-                  فروشگاه
-                </p>
-              </li>
-              <li>
-                <p className="text-gray-300 hover:text-white transition duration-300 ease-in-out">
-                  درباره
-                </p>
-              </li>
-              <li>
-                <p className="text-gray-300 hover:text-white transition duration-300 ease-in-out">
-                  تماس
-                </p>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-gray-700 mt-8 pt-8 flex justify-between items-center">
-          <p className="text-sm">
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold' }}>
+              لینک‌های سریع
+            </Typography>
+            <Box sx={{ mt: 2 }}>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: 'gray.300',
+                  '&:hover': { color: 'white' },
+                  cursor: 'pointer',
+                }}
+              >
+                صفحه اصلی
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: 'gray.300',
+                  '&:hover': { color: 'white' },
+                  cursor: 'pointer',
+                  mt: 1,
+                }}
+              >
+                فروشگاه
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: 'gray.300',
+                  '&:hover': { color: 'white' },
+                  cursor: 'pointer',
+                  mt: 1,
+                }}
+              >
+                درباره
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: 'gray.300',
+                  '&:hover': { color: 'white' },
+                  cursor: 'pointer',
+                  mt: 1,
+                }}
+              >
+                تماس
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+        <Divider sx={{ my: 4, borderColor: 'gray.700' }} />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="body2">
             &copy; 2024 فروشگاه کتاب. تمامی حقوق محفوظ است.
-          </p>
-          <p className="text-sm">
+          </Typography>
+          <Typography variant="body2">
             خیابان کتاب 123، شهر خواندن | info@bookshop.com | (123) 456-7890
-          </p>
-        </div>
-      </div>
-    </footer>
+          </Typography>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

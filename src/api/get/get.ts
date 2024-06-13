@@ -15,3 +15,8 @@ export const getAllProfiles = async () => {
   const res = await axios.get(`${BASE_URL}/profiles`);
   return res.data;
 };
+
+export const getBooksPhotoSlider = async () => {
+  const response = await axios.get(`${BASE_URL}/booksPhoto`);
+  return response.data;
+};
