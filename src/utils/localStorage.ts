@@ -12,5 +12,5 @@ export const localStorageGetter = (key: string) => {
     const rawData = localStorage.getItem(key);
     return rawData ? JSON.parse(rawData) : '';
   }
-  return null; // Or a default value appropriate for your application
+  return null;
 };

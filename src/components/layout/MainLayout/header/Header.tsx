@@ -55,10 +55,12 @@ export default function Header() {
     router.push('admin-dashboard');
   };
 
-  React.useEffect(
-    () => localStorageGetter('name') && setName(localStorageGetter('name')),
-    []
-  );
+  React.useEffect(() => {
+    const username = localStorageGetter('name');
+    if (username) {
+      setName(username);
+    }
+  }, []);
 
   const menuId = 'primary-search-account-menu';
 
@@ -117,7 +119,7 @@ export default function Header() {
       sx: {
         bgcolor: 'gray',
       },
-      children: `${name?.split(' ')[0][0]}`,
+      children: `${name ? name[0] : ''}`,
     };
   }
 
@@ -151,7 +153,7 @@ export default function Header() {
                   display: { xs: 'none', sm: 'block' },
                 }}
               >
-                {name !== '' ? `${name},خوش آمدید` : ''}
+                {name !== '' ? `${name},خوش آمدید` : 'لطفا وارد شوید'}
               </Typography>
             </Box>
             <Menu
