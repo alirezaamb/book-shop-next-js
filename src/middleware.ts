@@ -10,38 +10,16 @@ export async function middleware(req: NextRequest) {
     }
   }
 
+  // if (pathname.startsWith('/')) {
+  //   const isLoginCookie = req.cookies.get('access')?.value;
+  //   if (isLoginCookie !== 'true') {
+  //     return NextResponse.redirect(new URL('/auth', req.url));
+  //   }
+  // }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/admin-dashboard/:path*'],
+  matcher: ['/admin-dashboard/:path*', '//:path*'],
 };
-
-// Specify the routes to apply the middleware
-// export const config = {
-//   matcher: ['/admin-dashboard/:path*', '/products/:path*', '/'], // Adjust as needed
-// };
-
-// export async function middleware(req:NextRequest) {
-//     const { pathname } = req.nextUrl;
-
-//     // Check if the user is authenticated
-//     const authCookie = getServerCookie(req, 'auth');
-
-//     // List of protected routes
-//     const protectedRoutes = ['/admin-dashboard', '/products', '/'];
-
-//     if (protectedRoutes.some((route) => pathname.startsWith(route))) {
-//       if (!authCookie) {
-//         // If not authenticated, redirect to login
-//         return NextResponse.redirect(new URL('/login', req.url));
-//       }
-//     }
-
-//     return NextResponse.next();
-//   }
-
-//   // Specify the routes to apply the middleware
-//   export const config = {
-//     matcher: ['/admin-dashboard/:path*', '/products/:path*', '/'], // Adjust as needed
-//   };
