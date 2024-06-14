@@ -46,6 +46,7 @@ const Footer = () => {
                 variant="h5"
                 component="h2"
                 sx={{ fontWeight: 'bold' }}
+                fontFamily="iransans"
               >
                 درباره ما
               </Typography>
@@ -76,7 +77,11 @@ const Footer = () => {
                 </IconButton>
               </Box>
             </Box>
-            <Typography variant="body2" sx={{ lineHeight: 1.75 }}>
+            <Typography
+              variant="body2"
+              sx={{ lineHeight: 1.75 }}
+              fontFamily="iransans"
+            >
               خوش آمدید به فروشگاه کتاب ما، جایی که ما با افتخار به شما ارائه
               می‌دهیم انواع گسترده‌ای از کتاب‌ها در انواع ژانرها. هدف ما ارائه
               بهترین تجربه خواندن برای شماست.
@@ -88,6 +93,7 @@ const Footer = () => {
             </Typography>
             <Box sx={{ mt: 2 }}>
               <Typography
+                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -98,6 +104,7 @@ const Footer = () => {
                 صفحه اصلی
               </Typography>
               <Typography
+                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -109,6 +116,7 @@ const Footer = () => {
                 فروشگاه
               </Typography>
               <Typography
+                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -120,6 +128,7 @@ const Footer = () => {
                 درباره
               </Typography>
               <Typography
+                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -141,10 +150,10 @@ const Footer = () => {
             alignItems: 'center',
           }}
         >
-          <Typography variant="body2">
+          <Typography variant="body2" fontFamily="iransans">
             &copy; 2024 فروشگاه کتاب. تمامی حقوق محفوظ است.
           </Typography>
-          <Typography variant="body2">
+          <Typography variant="body2" fontFamily="iransans">
             خیابان کتاب 123، شهر خواندن | info@bookshop.com | (123) 456-7890
           </Typography>
         </Box>

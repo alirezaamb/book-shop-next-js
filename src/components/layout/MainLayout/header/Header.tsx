@@ -181,6 +181,7 @@ export default function Header() {
                   <Typography
                     textAlign="right"
                     onClick={handleToAdminDashboard}
+                    fontFamily="iransans"
                   >
                     داشبورد ادمین
                   </Typography>
@@ -188,7 +189,7 @@ export default function Header() {
               )}
 
               <MenuItem onClick={() => signOutHandler(router)}>
-                <Typography textAlign="right">
+                <Typography fontFamily="iransans">
                   {hasCookie('access') ? 'خروج' : 'وارد شوید'}
                 </Typography>
               </MenuItem>
