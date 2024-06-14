@@ -101,16 +101,16 @@ export default function Header() {
           <p>{localization.products}</p>
         </MenuItem>
       </Link>
-      <Link href="about-us">
-        <MenuItem>
+      <MenuItem>
+        <Link href="about-us">
           <IconButton
             size="large"
             aria-label="show 17 new notifications"
             color="inherit"
           ></IconButton>
           <p>{localization.aboutUs}</p>
-        </MenuItem>
-      </Link>
+        </Link>
+      </MenuItem>
     </Menu>
   );
 
@@ -126,10 +126,14 @@ export default function Header() {
   return (
     <Box sx={{ flexGrow: 1, mb: 2 }}>
       <AppBar
-        sx={{ bgcolor: '#FFC14D', color: 'black', fontFamily: 'iransans' }}
+        sx={{
+          bgcolor: '#FFC14D',
+          color: 'black',
+          fontFamily: 'iransans',
+        }}
         position="static"
       >
-        <Toolbar>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box sx={{ flexGrow: 0 }}>
             <Box
               sx={{
@@ -195,7 +199,7 @@ export default function Header() {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              width: '100%',
+              // width: '100%',
             }}
           >
             <Link href="/">
@@ -207,7 +211,6 @@ export default function Header() {
                   display: { xs: 'none', sm: 'none', lg: 'block' },
                   fontSize: '25px',
                   fontWeight: '500',
-                  pl: '50px',
                   fontFamily: 'iraniransans',
                 }}
               >
@@ -215,23 +218,24 @@ export default function Header() {
               </Typography>
             </Link>
           </Box>
-          <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Typography
-                sx={{
-                  fontFamily: 'iraniransans',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                }}
+            <Link href="about-us">
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
               >
-                {localization.aboutUs}
-              </Typography>
-            </IconButton>
+                <Typography
+                  sx={{
+                    fontFamily: 'iraniransans',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                  }}
+                >
+                  {localization.aboutUs}
+                </Typography>
+              </IconButton>
+            </Link>
 
             <Link href="/products">
               <IconButton

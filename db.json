@@ -26,6 +26,33 @@
       "desc": "انتشارات میلکان",
       "price": 145000,
       "imgURL": "https://dkstatics-public.digikala.com/digikala-products/9aea395b9042a495d513528ab61d406d7acd5faf_1658549418.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "id": "4",
+      "name": "برتری خفیف",
+      "author": "جف اولسن",
+      "desc": "انتشارات میلکان",
+      "translator": "سعید کلایی راد",
+      "price": 142000,
+      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/5e9b307c72b11252bb6d35acb036f4062c1051a3_1646657271.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "id": "5",
+      "name": "خرده عادت ها",
+      "author": "جیمز کلییر",
+      "translator": "زهرا صادقی",
+      "desc": "انتشارات میلکان",
+      "price": 133700,
+      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/e5a4b93d44eae96a54ae68dae7ffaf43960b6766_1658548854.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+    },
+    {
+      "id": "6",
+      "name": "اوضاع خیلی خراب است",
+      "author": "مارک منسن",
+      "translator": "سمانه پرهیزکاری",
+      "desc": "انتشارات میلکان",
+      "price": 139800,
+      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/9aea395b9042a495d513528ab61d406d7acd5faf_1658549418.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
     }
   ],
   "booksPhoto": [
