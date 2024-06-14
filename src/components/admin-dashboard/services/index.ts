@@ -5,3 +5,8 @@ export const getBooks = async () => {
   const response = await axios.get(`${BASE_URL}/books`);
   return response.data;
 };
+
+export const deleteRow = (id: number) => {
+  const res = axios.delete(`${BASE_URL}/books/${id}`);
+  return res;
+};
