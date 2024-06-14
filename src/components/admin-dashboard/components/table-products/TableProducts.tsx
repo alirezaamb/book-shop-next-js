@@ -1,13 +1,11 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useEffect, useState } from 'react';
-import { BooksEntity } from '../../../types/types';
-import { getBooks } from '@/api/get/get';
-import { Directions } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { deleteRow } from '@/api/delete/delete';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { blue } from '@mui/material/colors';
+import { useGetBooks } from '@/components/products/hooks';
+
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'name', headerName: 'نام محصول', width: 250 },
@@ -54,20 +52,23 @@ const columns: GridColDef[] = [
 ];
 
 export default function TableProducts() {
-  const [bookRows, setBookRows] = useState<BooksEntity[]>([]);
+  // const [bookRows, setBookRows] = useState<BooksEntity[]>([]);
 
-  const fetchData = async () => {
-    await getBooks().then((books) => setBookRows(books));
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // const fetchData = async () => {
+  //   await getBooks().then((books) => setBookRows(books));
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  const {data:bookRows} = useGetBooks()
 
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         autoPageSize
-        rows={bookRows}
+        rows={bookRows?bookRows:[]}
         columns={columns}
         initialState={{
           pagination: {

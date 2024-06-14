@@ -19,7 +19,7 @@ export const BookSlider = () => {
 
   useEffect(() => {
     getBooks().then((res) => {
-      const books = res.map((item: { imgURL: string }) => item.imgURL);
+      const books = res?.map((item: { imgURL: string }) => item?.imgURL);
       setBooksPhoto(books);
     });
   }, []);
@@ -34,8 +34,8 @@ export const BookSlider = () => {
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
     >
-      {booksPhoto.length > 0 ? (
-        booksPhoto.map((bookPhoto: string, index: number) => (
+      {!!booksPhoto && booksPhoto?.length > 0 ? (
+        booksPhoto?.map((bookPhoto: string, index: number) => (
           <SwiperSlide key={index}>
             <img src={bookPhoto} alt="photo of book" />
           </SwiperSlide>

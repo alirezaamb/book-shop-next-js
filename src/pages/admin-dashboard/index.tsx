@@ -1,4 +1,5 @@
-import TableProducts from '@/components/admin-dashboard/table-products/TableProducts';
+
+import TableProducts from '@/components/admin-dashboard/components/table-products/TableProducts';
 import AdminLayout from '@/components/layout/adminLayout/AdminLayout';
 import { ReactElement } from 'react';
 
