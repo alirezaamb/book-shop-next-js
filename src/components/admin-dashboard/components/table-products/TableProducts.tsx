@@ -7,8 +7,14 @@ import { useGetBooks } from '@/components/products/hooks';
 import { deleteRow } from '../../services';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import LoadingPage from '@/components/shared/loading/Loading';
+import EditFormModal from '../edit-product-form';
+import { useState } from 'react';
 
 export default function TableProducts() {
+  const [editModal, setEditModal] = useState({
+    isOpen: false,
+    id: 0,
+  });
   const queryClient = useQueryClient();
 
   const { mutate: deleteHandler } = useMutation({
@@ -18,6 +24,10 @@ export default function TableProducts() {
       queryClient.invalidateQueries({ queryKey: ['Books'] });
     },
   });
+
+  const editHandler = (id: number) => {
+    setEditModal({ id, isOpen: true });
+  };
 
   const { data: bookRows, isLoading } = useGetBooks();
   const columns: GridColDef[] = [
@@ -57,7 +67,7 @@ export default function TableProducts() {
             <Button onClick={() => deleteHandler(params.row.id)}>
               <DeleteIcon sx={{ color: 'red' }} />
             </Button>
-            <Button>
+            <Button onClick={() => editHandler(params.row.id)}>
               <EditIcon sx={{ color: blue[400] }} />
             </Button>
           </div>
@@ -84,6 +94,7 @@ export default function TableProducts() {
         pageSizeOptions={[5, 10]}
         checkboxSelection
       />
+      <EditFormModal setEditModal={setEditModal} editModal={editModal} />
     </div>
   );
 }

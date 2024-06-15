@@ -29,3 +29,18 @@ export interface BasicModaltype {
   modal: { isOpen: boolean; message: string };
   setModal: (modal: { isOpen: boolean; message: string }) => void;
 }
+export interface NewProductType {
+  imgURL: string;
+  id: string;
+  price: number;
+  name: string;
+  author: string;
+  translator: string;
+  desc: string;
+  file: File | undefined;
+}
+
+export interface EditModalType {
+  editModal: { isOpen: boolean; id: string };
+  setEditModal: (modal: { isOpen: boolean; id: string }) => void;
+}
