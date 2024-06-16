@@ -18,8 +18,11 @@ import {
 } from '@tanstack/react-query';
 import { editedProduct, newProduct } from '../../services';
 import { AxiosResponse } from 'axios';
-import { NewProductType } from '@/types/types';
-import { useGetBookById } from '@/components/admin-dashboard/hooks';
+import { BooksEntity, NewProductType } from '@/types/types';
+import {
+  useGetBookById,
+  useGetBooks,
+} from '@/components/admin-dashboard/hooks';
 
 interface Inputs {
   name: string;
@@ -43,20 +46,9 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
     handleSubmit,
     formState: { errors },
     reset,
-    setValue,
-  } = useForm<Inputs>({
-    defaultValues: {
-      name: '',
-      author: '',
-      translator: '',
-      desc: '',
-      price: 0,
-      imgURL: '',
-      file: undefined,
-    },
-  });
+  } = useForm<Inputs>({});
 
-  //mutate the new data
+  // Mutate the new data
   const mutation: UseMutationResult<
     AxiosResponse<any>,
     Error,
@@ -65,11 +57,29 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
     mutationFn: newProduct,
     mutationKey: ['addBook'],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['Books'] });
+      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
+      console.log('Queries invalidated');
+      reset();
+      setImg('');
     },
   });
 
-  //mutate the edit data
+  // Mutate the edit data
+
+  //   const editMutation: UseMutationResult<
+  //   AxiosResponse<any>,
+  //   Error,
+  //   NewProductType
+  // > = useMutation({
+  //   mutationFn: editedProduct,
+  //   mutationKey: ['editedBook', editId],
+  //   onSuccess: () => {
+  //     console.log('edit succesfully');
+  //     queryClient.invalidateQueries({ queryKey: ['allBooks'] });
+  //     reset();
+  //     setImg('');
+  //   },
+  // });
   const editMutation: UseMutationResult<
     AxiosResponse<any>,
     Error,
@@ -77,24 +87,46 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
   > = useMutation({
     mutationFn: editedProduct,
     mutationKey: ['editedBook', editId],
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['Books'] });
+    onSuccess: (data) => {
+      // const updatedData = response.data;
+      console.log(data.data.id);
+      // Invalidate the 'allBooks' query to refetch the books list
+      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
+      // queryClient.invalidateQueries({ queryKey: ['editedBook', data.data.id] });
+
+      // Set the data for the edited book
+
+      // queryClient.setQueryData(
+      //   ['allBooks'],
+      //   (oldData: BooksEntity[] | undefined) => {
+      //     if (!oldData) return [];
+      //     return oldData.map((item) =>
+      //       item.id === updatedData.id ? updatedData : item
+      //     );
+      //   }
+      // );
     },
   });
 
-  //get data for edit
-  const { data } = useGetBookById(editId);
+  // Get data for edit if editId is provided
+  const { data } = useGetBookById(editId || '');
+
   useEffect(() => {
-    if (data) {
-      setValue('name', data.name);
-      setValue('author', data.author);
-      setValue('translator', data.translator);
-      setValue('desc', data.desc);
-      setValue('price', data.price);
+    if (editId && data) {
+      reset({
+        name: data.name,
+        author: data.author,
+        translator: data.translator,
+        desc: data.desc,
+        price: data.price,
+        imgURL: data.imgURL,
+        file: undefined,
+      });
       setImg(data.imgURL);
     }
-  }, [data, setValue]);
-  //submit handler
+  }, [editId, data, reset]);
+
+  // Submit handler
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const price = Number(data.price);
     if (editId) {
@@ -112,10 +144,12 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
         price,
       });
     }
-    reset();
+    if (setEditModal) {
+      setEditModal({ id: '', isOpen: false });
+    }
   };
 
-  //handle the button upload file
+  // Handle the button upload file
   function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]!;
     const reader = new FileReader();
@@ -127,139 +161,127 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
   }
 
   return (
-    <Box sx={{ direction: 'rtl' }}>
-      <Card>
-        <CardContent sx={{ width: '80%', mx: 'auto' }}>
-          <form dir="rtl" onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <InputLabel
-                  sx={{ fontSize: '16px', fontWeight: '600' }}
-                  htmlFor={pageLevelLocalization.addProduct.name}
-                >
-                  {pageLevelLocalization.addProduct.name}
-                </InputLabel>
-                <TextField
-                  size="small"
-                  fullWidth
-                  id={pageLevelLocalization.addProduct.name}
-                  aria-describedby={pageLevelLocalization.addProduct.name}
-                  {...register('name', { required: true })}
-                  error={!!errors.name}
-                  helperText={
-                    errors.name
-                      ? `${pageLevelLocalization.addProduct.name} ${pageLevelLocalization.addProduct.error}`
-                      : ''
-                  }
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <InputLabel
-                  sx={{ fontSize: '16px', fontWeight: '600' }}
-                  htmlFor={pageLevelLocalization.addProduct.author}
-                >
-                  {pageLevelLocalization.addProduct.author}
-                </InputLabel>
-                <TextField
-                  size="small"
-                  fullWidth
-                  id={pageLevelLocalization.addProduct.author}
-                  aria-describedby={pageLevelLocalization.addProduct.author}
-                  {...register('author', { required: true })}
-                  error={!!errors.author}
-                  helperText={
-                    errors.author
-                      ? `${pageLevelLocalization.addProduct.author} ${pageLevelLocalization.addProduct.error}`
-                      : ''
-                  }
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <InputLabel
-                  sx={{ fontSize: '16px', fontWeight: '600' }}
-                  htmlFor={pageLevelLocalization.addProduct.desc}
-                >
-                  {pageLevelLocalization.addProduct.desc}
-                </InputLabel>
-                <TextField
-                  size="small"
-                  fullWidth
-                  id={pageLevelLocalization.addProduct.desc}
-                  aria-describedby={pageLevelLocalization.addProduct.desc}
-                  {...register('desc', { required: true })}
-                  error={!!errors.desc}
-                  helperText={
-                    errors.desc
-                      ? `${pageLevelLocalization.addProduct.desc} ${pageLevelLocalization.addProduct.error}`
-                      : ''
-                  }
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <InputLabel
-                  sx={{ fontSize: '16px', fontWeight: '600' }}
-                  htmlFor={pageLevelLocalization.addProduct.translator}
-                >
-                  {pageLevelLocalization.addProduct.translator}
-                </InputLabel>
-                <TextField
-                  size="small"
-                  fullWidth
-                  id={pageLevelLocalization.addProduct.translator}
-                  aria-describedby={pageLevelLocalization.addProduct.translator}
-                  {...register('translator', { required: true })}
-                  error={!!errors.translator}
-                  helperText={
-                    errors.translator
-                      ? `${pageLevelLocalization.addProduct.translator} ${pageLevelLocalization.addProduct.error}`
-                      : ''
-                  }
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <InputLabel
-                  sx={{ fontSize: '16px', fontWeight: '600' }}
-                  htmlFor={pageLevelLocalization.addProduct.price}
-                >
-                  {pageLevelLocalization.addProduct.price}
-                </InputLabel>
-                <TextField
-                  size="small"
-                  fullWidth
-                  id={pageLevelLocalization.addProduct.price}
-                  aria-describedby={pageLevelLocalization.addProduct.price}
-                  type="number"
-                  {...register('price', { required: true })}
-                  error={!!errors.price}
-                  helperText={
-                    errors.price
-                      ? `${pageLevelLocalization.addProduct.price} ${pageLevelLocalization.addProduct.error}`
-                      : ''
-                  }
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <UploadFileButton handleFile={handleFile} />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sx={{ display: 'flex', justifyContent: 'end' }}
+    <Card>
+      <CardContent sx={{ width: '80%', mx: 'auto' }}>
+        <form dir="rtl" onSubmit={handleSubmit(onSubmit)}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <InputLabel
+                sx={{ fontSize: '16px', fontWeight: '600' }}
+                htmlFor={pageLevelLocalization.addProduct.name}
               >
-                <Button
-                  variant="contained"
-                  type="submit"
-                  onClick={() => {
-                    setEditModal({ id: '', isOpen: false });
-                  }}
-                >
-                  ثبت
-                </Button>
-              </Grid>
+                {pageLevelLocalization.addProduct.name}
+              </InputLabel>
+              <TextField
+                size="small"
+                fullWidth
+                id={pageLevelLocalization.addProduct.name}
+                aria-describedby={pageLevelLocalization.addProduct.name}
+                {...register('name', { required: true })}
+                error={!!errors.name}
+                helperText={
+                  errors.name
+                    ? `${pageLevelLocalization.addProduct.name} ${pageLevelLocalization.addProduct.error}`
+                    : ''
+                }
+              />
             </Grid>
-          </form>
-        </CardContent>
-      </Card>
-    </Box>
+            <Grid item xs={12}>
+              <InputLabel
+                sx={{ fontSize: '16px', fontWeight: '600' }}
+                htmlFor={pageLevelLocalization.addProduct.author}
+              >
+                {pageLevelLocalization.addProduct.author}
+              </InputLabel>
+              <TextField
+                size="small"
+                fullWidth
+                id={pageLevelLocalization.addProduct.author}
+                aria-describedby={pageLevelLocalization.addProduct.author}
+                {...register('author', { required: true })}
+                error={!!errors.author}
+                helperText={
+                  errors.author
+                    ? `${pageLevelLocalization.addProduct.author} ${pageLevelLocalization.addProduct.error}`
+                    : ''
+                }
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <InputLabel
+                sx={{ fontSize: '16px', fontWeight: '600' }}
+                htmlFor={pageLevelLocalization.addProduct.desc}
+              >
+                {pageLevelLocalization.addProduct.desc}
+              </InputLabel>
+              <TextField
+                size="small"
+                fullWidth
+                id={pageLevelLocalization.addProduct.desc}
+                aria-describedby={pageLevelLocalization.addProduct.desc}
+                {...register('desc', { required: true })}
+                error={!!errors.desc}
+                helperText={
+                  errors.desc
+                    ? `${pageLevelLocalization.addProduct.desc} ${pageLevelLocalization.addProduct.error}`
+                    : ''
+                }
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <InputLabel
+                sx={{ fontSize: '16px', fontWeight: '600' }}
+                htmlFor={pageLevelLocalization.addProduct.translator}
+              >
+                {pageLevelLocalization.addProduct.translator}
+              </InputLabel>
+              <TextField
+                size="small"
+                fullWidth
+                id={pageLevelLocalization.addProduct.translator}
+                aria-describedby={pageLevelLocalization.addProduct.translator}
+                {...register('translator', { required: true })}
+                error={!!errors.translator}
+                helperText={
+                  errors.translator
+                    ? `${pageLevelLocalization.addProduct.translator} ${pageLevelLocalization.addProduct.error}`
+                    : ''
+                }
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <InputLabel
+                sx={{ fontSize: '16px', fontWeight: '600' }}
+                htmlFor={pageLevelLocalization.addProduct.price}
+              >
+                {pageLevelLocalization.addProduct.price}
+              </InputLabel>
+              <TextField
+                size="small"
+                fullWidth
+                id={pageLevelLocalization.addProduct.price}
+                aria-describedby={pageLevelLocalization.addProduct.price}
+                type="number"
+                {...register('price', { required: true })}
+                error={!!errors.price}
+                helperText={
+                  errors.price
+                    ? `${pageLevelLocalization.addProduct.price} ${pageLevelLocalization.addProduct.error}`
+                    : ''
+                }
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <UploadFileButton handleFile={handleFile} />
+            </Grid>
+            <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'end' }}>
+              <Button variant="contained" type="submit">
+                ثبت
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

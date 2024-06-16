@@ -18,10 +18,10 @@ export default function TableProducts() {
   const queryClient = useQueryClient();
 
   const { mutate: deleteHandler } = useMutation({
-    mutationKey: ['deleteProduct'],
+    mutationKey: ['deleteBook'],
     mutationFn: deleteRow,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['Books'] });
+      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
     },
   });
 
