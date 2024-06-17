@@ -10,11 +10,61 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { localization } from '../../../../constants/localization';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Tooltip from '@mui/material/Tooltip';
 import { deleteCookie, getCookie, hasCookie } from 'cookies-next';
 import { localStorageGetter, localStorageSetter } from '@/utils/localStorage';
 import Avatar from '@mui/material/Avatar';
+import { styled, alpha } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
+import { Container } from '@mui/material';
+//ُsearch
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  direction: 'rtl',
+  borderRadius: '50px',
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  // width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(3),
+    width: '35%',
+  },
+  // [theme.breakpoints.up('xl')]: {
+  //   marginRiht: theme.spacing(0),
+  //   marginLeft: 0,
+  // },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  direction: 'rtl',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  direction: 'rtl',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  },
+}));
 
 //we should fix it the type
 const signOutHandler = (router: any) => {
@@ -124,13 +174,71 @@ export default function Header() {
   }
 
   return (
-    <Box sx={{ flexGrow: 1, mb: 2 }}>
+    <Box sx={{ flexGrow: 1, mb: 20 }}>
       <AppBar
-        sx={{ bgcolor: '#FFC14D', color: 'black', fontFamily: 'iransans' }}
-        position="static"
+        sx={{
+          bgcolor: '#FFC14D',
+          color: 'black',
+          fontFamily: 'iransans',
+          position: 'fixed',
+          right: '0',
+        }}
       >
-        <Toolbar>
-          <Box sx={{ flexGrow: 0 }}>
+        <Container maxWidth="lg" sx={{ maxWidth: '1440px' }}>
+          <Toolbar
+            sx={{
+              display: 'flex',
+              flexDirection: 'row-reverse',
+              justifyContent: 'space-around',
+              right: '0',
+              top: '0',
+              zIndex: '10',
+            }}
+          >
+            <Box
+              sx={{
+                width: '20%',
+              }}
+            >
+              <Link href="/">
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{
+                    display: {
+                      xs: 'none',
+                      sm: 'none',
+                      lg: 'block',
+                      md: 'block',
+                    },
+                    fontSize: '25px',
+                    fontWeight: '500',
+                    pl: '50px',
+                    fontFamily: 'iraniransans',
+                    ':hover': {
+                      color: 'yellow',
+                    },
+                    // margin: '0 15%',
+                  }}
+                >
+                  فروشگاه کتاب
+                </Typography>
+              </Link>
+            </Box>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                sx={{
+                  padding: { sx: ' 0% 7%', md: '0 11%' },
+                  fontSize: '18px',
+                }}
+                placeholder="جستجو در فروشگاه کتاب"
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Search>
             <Box
               sx={{
                 display: 'flex',
@@ -150,93 +258,58 @@ export default function Header() {
                 sx={{
                   textWrap: 'nowrap',
                   fontFamily: 'iransans',
-                  display: { xs: 'none', sm: 'block' },
+                  display: {
+                    xs: 'none',
+                    sm: 'block',
+                  },
                 }}
               >
                 {name !== '' ? `${name},خوش آمدید` : 'لطفا وارد شوید'}
               </Typography>
             </Box>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {cookie === 'admin' && (
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography
-                    textAlign="right"
-                    onClick={handleToAdminDashboard}
-                  >
-                    داشبورد ادمین
+          </Toolbar>
+          <Toolbar>
+            <Box sx={{ flexGrow: 0 }}>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {cookie === 'admin' && (
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography
+                      textAlign="right"
+                      onClick={handleToAdminDashboard}
+                    >
+                      داشبورد ادمین
+                    </Typography>
+                  </MenuItem>
+                )}
+
+                <MenuItem onClick={() => signOutHandler(router)}>
+                  <Typography textAlign="right">
+                    {hasCookie('access') ? 'خروج' : 'وارد شوید'}
                   </Typography>
                 </MenuItem>
-              )}
+              </Menu>
+            </Box>
 
-              <MenuItem onClick={() => signOutHandler(router)}>
-                <Typography textAlign="right">
-                  {hasCookie('access') ? 'خروج' : 'وارد شوید'}
-                </Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-            }}
-          >
-            <Link href="/">
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  display: { xs: 'none', sm: 'none', lg: 'block' },
-                  fontSize: '25px',
-                  fontWeight: '500',
-                  pl: '50px',
-                  fontFamily: 'iraniransans',
-                }}
-              >
-                فروشگاه کتاب
-              </Typography>
-            </Link>
-          </Box>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Typography
-                sx={{
-                  fontFamily: 'iraniransans',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                }}
-              >
-                {localization.aboutUs}
-              </Typography>
-            </IconButton>
-
-            <Link href="/products">
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, margin: '0% 9%' }}>
               <IconButton
                 size="large"
-                aria-label="show 17 new notifications"
+                aria-label="show 4 new mails"
                 color="inherit"
               >
                 <Typography
@@ -246,45 +319,63 @@ export default function Header() {
                     fontWeight: '500',
                   }}
                 >
-                  {localization.products}
+                  {localization.aboutUs}
                 </Typography>
               </IconButton>
-            </Link>
-            <Link href="/">
+
+              <Link href="/products">
+                <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: 'iraniransans',
+                      fontSize: '16px',
+                      fontWeight: '500',
+                    }}
+                  >
+                    {localization.products}
+                  </Typography>
+                </IconButton>
+              </Link>
+              <Link href="/">
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  // onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: 'iraniransans',
+                      fontSize: '16px',
+                      fontWeight: '500',
+                    }}
+                  >
+                    {localization.home}
+                  </Typography>
+                </IconButton>
+              </Link>
+            </Box>
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
+                aria-label="show more"
+                aria-controls={mobileMenuId}
                 aria-haspopup="true"
-                // onClick={handleProfileMenuOpen}
+                onClick={handleMobileMenuOpen}
                 color="inherit"
               >
-                <Typography
-                  sx={{
-                    fontFamily: 'iraniransans',
-                    fontSize: '16px',
-                    fontWeight: '500',
-                  }}
-                >
-                  {localization.home}
-                </Typography>
+                <MoreIcon />
               </IconButton>
-            </Link>
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
+            </Box>
+          </Toolbar>
+        </Container>
       </AppBar>
       {renderMobileMenu}
     </Box>
