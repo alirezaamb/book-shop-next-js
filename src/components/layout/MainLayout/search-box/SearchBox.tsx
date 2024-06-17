@@ -48,8 +48,11 @@ function SearchBox() {
   };
 
   return (
-    <Box sx={{ p: 1 }}>
+    <Box sx={{ p: 1, width: '50%' }}>
       <Autocomplete
+        sx={{
+          direction: 'rtl',
+        }}
         {...defaultProps}
         id="disable-close-on-select"
         disableCloseOnSelect
