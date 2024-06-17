@@ -17,6 +17,7 @@ export const useGetBookById = (id: string | undefined) => {
     queryFn: () => {
       return getBookById(id);
     },
+    enabled: !!id,
     refetchOnMount: 'always',
   });
 };

@@ -58,10 +58,6 @@ export default function TableProducts() {
       headerName: 'عملیات ها',
       width: 200,
       renderCell: (params) => {
-        // const deleteHandler = async (id: number) => {
-        //   await deleteRow(id);
-        // };
-
         return (
           <div>
             <Button onClick={() => deleteHandler(params.row.id)}>

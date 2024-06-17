@@ -49,6 +49,7 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
   } = useForm<Inputs>({});
 
   // Mutate the new data
+
   const mutation: UseMutationResult<
     AxiosResponse<any>,
     Error,
@@ -57,8 +58,12 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
     mutationFn: newProduct,
     mutationKey: ['addBook'],
     onSuccess: () => {
+      // queryClient.setQueryData('allBooks', (oldData) => [
+      //   ...oldData,
+      //   data.data,
+      // ]);
       queryClient.invalidateQueries({ queryKey: ['allBooks'] });
-      console.log('Queries invalidated');
+      // console.log('Queries invalidated');
       reset();
       setImg('');
     },
@@ -66,20 +71,6 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
 
   // Mutate the edit data
 
-  //   const editMutation: UseMutationResult<
-  //   AxiosResponse<any>,
-  //   Error,
-  //   NewProductType
-  // > = useMutation({
-  //   mutationFn: editedProduct,
-  //   mutationKey: ['editedBook', editId],
-  //   onSuccess: () => {
-  //     console.log('edit succesfully');
-  //     queryClient.invalidateQueries({ queryKey: ['allBooks'] });
-  //     reset();
-  //     setImg('');
-  //   },
-  // });
   const editMutation: UseMutationResult<
     AxiosResponse<any>,
     Error,
@@ -87,9 +78,36 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
   > = useMutation({
     mutationFn: editedProduct,
     mutationKey: ['editedBook', editId],
-    onSuccess: (data) => {
+    onSuccess: () => {
       // const updatedData = response.data;
-      console.log(data.data.id);
+      // Invalidate the 'allBooks' query to refetch the books list
+      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
+      console.log('Queries invalidated');
+      // queryClient.invalidateQueries({ queryKey: ['editedBook', data.data.id] });
+
+      // Set the data for the edited book
+
+      // queryClient.setQueryData(
+      //   ['allBooks'],
+      //   (oldData: BooksEntity[] | undefined) => {
+      //     if (!oldData) return [];
+      //     return oldData.map((item) =>
+      //       item.id === updatedData.id ? updatedData : item
+      //     );
+      //   }
+      // );
+    },
+  });
+
+  const addMutation: UseMutationResult<
+    AxiosResponse<any>,
+    Error,
+    NewProductType
+  > = useMutation({
+    mutationFn: newProduct,
+    mutationKey: ['addBook'],
+    onSuccess: () => {
+      // const updatedData = response.data;
       // Invalidate the 'allBooks' query to refetch the books list
       queryClient.invalidateQueries({ queryKey: ['allBooks'] });
       // queryClient.invalidateQueries({ queryKey: ['editedBook', data.data.id] });
@@ -109,7 +127,7 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
   });
 
   // Get data for edit if editId is provided
-  const { data } = useGetBookById(editId || '');
+  const { data } = useGetBookById(editId);
 
   useEffect(() => {
     if (editId && data) {
@@ -137,7 +155,7 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
         price,
       });
     } else {
-      mutation.mutate({
+      addMutation.mutate({
         ...data,
         imgURL: img,
         id: Date.now().toString(),
