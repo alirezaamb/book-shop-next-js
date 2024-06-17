@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import {
-  Box,
   Button,
   Card,
   CardContent,
@@ -18,27 +17,14 @@ import {
 } from '@tanstack/react-query';
 import { editedProduct, newProduct } from '../../services';
 import { AxiosResponse } from 'axios';
-import { BooksEntity, NewProductType } from '@/types/types';
-import {
-  useGetBookById,
-  useGetBooks,
-} from '@/components/admin-dashboard/hooks';
+import { AddProductProps, Inputs, NewProductType } from '@/types/types';
+import { useGetBookById } from '@/components/admin-dashboard/hooks';
 
-interface Inputs {
-  name: string;
-  author: string;
-  translator: string;
-  desc: string;
-  price: number;
-  imgURL: string;
-  file: File | undefined;
-}
-interface AddProductProps {
-  editId?: string;
-  setEditModal?: (modal: { isOpen: boolean; id: string }) => void;
-}
-
-export default function AddProduct({ editId, setEditModal }: AddProductProps) {
+export default function AddProduct({
+  editId,
+  setEditModal,
+  setIsOpenForm,
+}: AddProductProps) {
   const queryClient = useQueryClient();
   const [img, setImg] = useState<string>('');
   const {
@@ -50,7 +36,7 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
 
   // Mutate the new data
 
-  const mutation: UseMutationResult<
+  const addMutation: UseMutationResult<
     AxiosResponse<any>,
     Error,
     NewProductType
@@ -58,14 +44,7 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
     mutationFn: newProduct,
     mutationKey: ['addBook'],
     onSuccess: () => {
-      // queryClient.setQueryData('allBooks', (oldData) => [
-      //   ...oldData,
-      //   data.data,
-      // ]);
       queryClient.invalidateQueries({ queryKey: ['allBooks'] });
-      // console.log('Queries invalidated');
-      reset();
-      setImg('');
     },
   });
 
@@ -79,50 +58,7 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
     mutationFn: editedProduct,
     mutationKey: ['editedBook', editId],
     onSuccess: () => {
-      // const updatedData = response.data;
-      // Invalidate the 'allBooks' query to refetch the books list
       queryClient.invalidateQueries({ queryKey: ['allBooks'] });
-      console.log('Queries invalidated');
-      // queryClient.invalidateQueries({ queryKey: ['editedBook', data.data.id] });
-
-      // Set the data for the edited book
-
-      // queryClient.setQueryData(
-      //   ['allBooks'],
-      //   (oldData: BooksEntity[] | undefined) => {
-      //     if (!oldData) return [];
-      //     return oldData.map((item) =>
-      //       item.id === updatedData.id ? updatedData : item
-      //     );
-      //   }
-      // );
-    },
-  });
-
-  const addMutation: UseMutationResult<
-    AxiosResponse<any>,
-    Error,
-    NewProductType
-  > = useMutation({
-    mutationFn: newProduct,
-    mutationKey: ['addBook'],
-    onSuccess: () => {
-      // const updatedData = response.data;
-      // Invalidate the 'allBooks' query to refetch the books list
-      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
-      // queryClient.invalidateQueries({ queryKey: ['editedBook', data.data.id] });
-
-      // Set the data for the edited book
-
-      // queryClient.setQueryData(
-      //   ['allBooks'],
-      //   (oldData: BooksEntity[] | undefined) => {
-      //     if (!oldData) return [];
-      //     return oldData.map((item) =>
-      //       item.id === updatedData.id ? updatedData : item
-      //     );
-      //   }
-      // );
     },
   });
 
@@ -162,9 +98,11 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
         price,
       });
     }
+    reset();
     if (setEditModal) {
       setEditModal({ id: '', isOpen: false });
     }
+    setIsOpenForm(false);
   };
 
   // Handle the button upload file
@@ -177,6 +115,15 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
     };
     reader.readAsDataURL(file);
   }
+
+  const abortHandler = () => {
+    if (setEditModal) {
+      setEditModal({ id: '', isOpen: false });
+    }
+    if (setIsOpenForm) {
+      setIsOpenForm(false);
+    }
+  };
 
   return (
     <Card>
@@ -292,9 +239,25 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
             <Grid item xs={12}>
               <UploadFileButton handleFile={handleFile} />
             </Grid>
-            <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'end' }}>
+            <Grid
+              item
+              xs={12}
+              sx={{ display: 'flex', justifyContent: 'end', gap: 3 }}
+            >
               <Button variant="contained" type="submit">
                 ثبت
+              </Button>
+              <Button
+                onClick={abortHandler}
+                variant="contained"
+                sx={{
+                  bgcolor: 'secondary.main',
+                  '&:hover': {
+                    bgcolor: 'secondary.light',
+                  },
+                }}
+              >
+                لغو
               </Button>
             </Grid>
           </Grid>

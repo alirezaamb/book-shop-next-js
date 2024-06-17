@@ -44,3 +44,18 @@ export interface EditModalType {
   editModal: { isOpen: boolean; id: string };
   setEditModal: (modal: { isOpen: boolean; id: string }) => void;
 }
+
+export interface Inputs {
+  name: string;
+  author: string;
+  translator: string;
+  desc: string;
+  price: number;
+  imgURL: string;
+  file: File | undefined;
+}
+export interface AddProductProps {
+  editId?: string;
+  setEditModal?: (modal: { isOpen: boolean; id: string }) => void;
+  setIsOpenForm?: (a: boolean | undefined) => void | undefined;
+}

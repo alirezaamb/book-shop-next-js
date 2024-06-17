@@ -10,18 +10,20 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import MenuIcon from '@mui/icons-material/Menu';
 import { deleteCookie } from 'cookies-next';
+import Link from 'next/link';
 
 export default function HeaderAdmin() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
   const router = useRouter();
-  const handleAddProducts = () => {
-    router.push('/admin-dashboard/add-product');
-  };
+  // const handleAddProducts = () => {
+  //   router.push('/admin-dashboard/add-product');
+  // };
 
   const handleToDashboard = () => {
-    router.push('/admin-dashboard');
+    // router.push('/admin-dashboard');
+    location.href = '/admin-dashboard';
   };
   const handleToHomePage = () => {
     router.push('/');
@@ -72,11 +74,11 @@ export default function HeaderAdmin() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleCloseUserMenu}>
+              {/* <MenuItem onClick={handleCloseUserMenu}>
                 <Typography textAlign="right" onClick={handleAddProducts}>
                   ثبت محصول جدید
                 </Typography>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem onClick={handleCloseUserMenu}>
                 <Typography textAlign="right" onClick={handleToHomePage}>
                   خانه
@@ -89,6 +91,7 @@ export default function HeaderAdmin() {
               </MenuItem>
             </Menu>
           </Box>
+
           <Typography
             onClick={handleToDashboard}
             variant="h6"
