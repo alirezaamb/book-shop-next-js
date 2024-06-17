@@ -223,8 +223,8 @@ export default function Header() {
                 </Typography>
               </Link>
             </Box>
-            <Search>
-              {/* <SearchIconWrapper>
+            {/* <Search> */}
+            {/* <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
@@ -235,8 +235,8 @@ export default function Header() {
                 placeholder="جستجو در فروشگاه کتاب"
                 inputProps={{ 'aria-label': 'search' }}
               /> */}
-              <SearchBox />
-            </Search>
+            <SearchBox />
+            {/* </Search> */}
             <Box
               sx={{
                 display: 'flex',

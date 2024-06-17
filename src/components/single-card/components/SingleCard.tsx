@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react";
-import { BooksEntity } from "../../../types/types";
+import { useEffect, useState } from 'react';
+import { BooksEntity } from '../../../types/types';
 import {
   localization,
   pageLevelLocalization,
-} from "../../../constants/localization";
-import { getBookById } from "@/api/get/get";
-import { useRouter } from "next/router";
-import LoadingPage from "../../shared/loading/Loading";
-import { useGetBookById } from "../hooks";
+} from '../../../constants/localization';
+import { useRouter } from 'next/router';
+import LoadingPage from '../../shared/loading/Loading';
+import { useGetBookById } from '../hooks';
 
 const SingleCard = () => {
-/*   const [book, setBook] = useState<BooksEntity>(); */
+  /*   const [book, setBook] = useState<BooksEntity>(); */
   const router = useRouter();
 
-  const {data:book,isLoading}= useGetBookById(router.query.bookId);
-  if(isLoading){
-    return <LoadingPage/>
+  const { data: book, isLoading } = useGetBookById(router.query.bookId);
+  if (isLoading) {
+    return <LoadingPage />;
   }
 
- /*  useEffect(() => {
+  /*  useEffect(() => {
     router.query &&
       getBookById(router.query.bookId!).then((data) => setBook(data));
   }, []); */
