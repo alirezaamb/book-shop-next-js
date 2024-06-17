@@ -1,109 +1,149 @@
-import { useEffect, useState } from "react";
-import { BooksEntity } from "../../../types/types";
+import React from 'react';
+import { useRouter } from 'next/router';
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Typography,
+  Avatar,
+  Paper,
+} from '@mui/material';
+import { useGetBookById } from '../hooks';
+import LoadingPage from '../../shared/loading/Loading';
 import {
   localization,
   pageLevelLocalization,
-} from "../../../constants/localization";
-import { getBookById } from "@/api/get/get";
-import { useRouter } from "next/router";
-import LoadingPage from "../../shared/loading/Loading";
-import { useGetBookById } from "../hooks";
+} from '../../../constants/localization';
 
 const SingleCard = () => {
-/*   const [book, setBook] = useState<BooksEntity>(); */
   const router = useRouter();
+  const { data: book, isLoading } = useGetBookById(router.query.bookId);
 
-  const {data:book,isLoading}= useGetBookById(router.query.bookId);
-  if(isLoading){
-    return <LoadingPage/>
+  if (isLoading) {
+    return <LoadingPage />;
   }
 
- /*  useEffect(() => {
-    router.query &&
-      getBookById(router.query.bookId!).then((data) => setBook(data));
-  }, []); */
-
   return book ? (
-    <div dir="rtl" className="flex rtl h-fit mx-14">
-      <img className="w-1/3" src={book?.imgURL} />
-      <div className="flex flex-col gap-10 mx-5">
-        <h2 className="font-bold text-2xl mt-5">{book?.name}</h2>
-        <div className="h-full flex flex-col">
-          <div className="flex flex-col gap-3">
-            <div className="flex gap-2">
-              <span className="text-gray-500 text-lg">
-                {pageLevelLocalization.singleProduct.publisher}:
-              </span>
-              <span className="text-gray-700 text-lg">{book?.desc}</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="text-gray-500 text-lg">
-                {pageLevelLocalization.singleProduct.writer}:
-              </span>
-              <span className="text-gray-700 text-lg">{book?.author}</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="text-gray-500 text-lg">
-                {pageLevelLocalization.singleProduct.translator}:
-              </span>
-              <span className="text-gray-700 text-lg">{book?.translator}</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="text-gray-500 text-lg">
-                {pageLevelLocalization.singleProduct.score}:
-              </span>
-              <p className="text-gray-700 text-lg">
-                <span className="text-white bg-green-600 rounded-md px-3 text-lg mx-1">
-                  2.6
-                </span>
+    <Container dir="rtl" sx={{ mt: 5, display: 'flex', gap: 4 }}>
+      <Box
+        component="img"
+        sx={{ width: '30%' }}
+        src={book.imgURL}
+        alt={book.name}
+      />
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <Typography variant="h4" component="h2" fontWeight="bold" mt={5}>
+          {book.name}
+        </Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Typography variant="h6" color="text.secondary">
+              {pageLevelLocalization.singleProduct.publisher}:
+            </Typography>
+            <Typography variant="h6" color="text.primary">
+              {book.desc}
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Typography variant="h6" color="text.secondary">
+              {pageLevelLocalization.singleProduct.writer}:
+            </Typography>
+            <Typography variant="h6" color="text.primary">
+              {book.author}
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Typography variant="h6" color="text.secondary">
+              {pageLevelLocalization.singleProduct.translator}:
+            </Typography>
+            <Typography variant="h6" color="text.primary">
+              {book.translator}
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'nowrap' }}>
+            <Typography variant="h6" color="text.secondary">
+              {pageLevelLocalization.singleProduct.score}:
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Avatar
+                sx={{
+                  bgcolor: 'green',
+                  mx: 1,
+                  fontSize: '18px',
+                }}
+              >
+                2.6
+              </Avatar>
+              <Typography variant="h6" color="text.primary">
                 {pageLevelLocalization.singleProduct.scoreDescription}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-[35%] bg-white rounded-lg mx-auto shadow-lg">
-        <div className="flex flex-col">
-          <h2 className="text-xl mx-auto pt-2 font-bold text-[#00a2a4]">
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+      <Paper sx={{ width: '35%', p: 3, mx: 'auto', boxShadow: 3 }}>
+        <Box sx={{ textAlign: 'center', mb: 2 }}>
+          <Typography
+            variant="h5"
+            color="primary"
+            fontWeight="bold"
+            fontSize={20}
+          >
             الکترونیکی
-          </h2>
-          <hr className="my-2 border-[#00a1a4] border-2" />
-          <div className="flex flex-row mx-auto my-5 items-center">
-            <div className="flex flex-col items-center">
-              <p className="my-1 text-gray-400">حجم</p>
-              <p className="text-black">340/8 مگابایت</p>
-            </div>
-            <div className="bg-gray-200 mx-5 h-12 w-1"></div>
-            <div className="flex flex-col items-center">
-              <p className="my-1 text-gray-400">قابلیت انتقال</p>
-              <p>دارد</p>
-            </div>
-          </div>
-          <hr className="w-[90%] mx-auto my-5" />
-          <div className="flex gap-3 mt-16 mx-5">
-            <div className="flex justify-between w-full items-center">
-              <span className="text-2xl text-[#00a1a4]">
-                {localization.price}:
-              </span>
-              <div className=" text-[#00a1a4]">
-                <span className="text-3xl font-extrabold">
-                  {book?.price?.toLocaleString()}
-                </span>
-                <span className="mx-2"> {localization.toman}</span>
-              </div>
-            </div>
-          </div>
-          <div className="my-5 mx-auto">
-            <button className="bg-gray-200 px-4 py-2 rounded-full ml-3">
+          </Typography>
+          <Divider sx={{ my: 2, borderColor: '#00a1a4' }} />
+          <Box sx={{ display: 'flex', justifyContent: 'space-around', my: 3 }}>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="body2" color="text.secondary">
+                حجم
+              </Typography>
+              <Typography variant="body1">340/8 مگابایت</Typography>
+            </Box>
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{ bgcolor: 'gray.200' }}
+            />
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="body2" color="text.secondary">
+                قابلیت انتقال
+              </Typography>
+              <Typography variant="body1">دارد</Typography>
+            </Box>
+          </Box>
+          <Divider sx={{ my: 2 }} />
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
+            <Typography variant="h6" color="primary">
+              {localization.price}:
+            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row-reverse',
+                gap: 1,
+                alignItems: 'center',
+              }}
+            >
+              <Typography variant="h4" fontWeight="bold" color="primary">
+                {book.price.toLocaleString('fa')}
+              </Typography>
+              <Typography variant="body1" color="primary" fontWeight={600}>
+                {localization.toman}
+              </Typography>
+            </Box>
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
+            <Button variant="outlined" sx={{ mr: 2 }}>
               هدیه به دیگری
-            </button>
-            <button className="bg-[#00a1a4] text-white py-2 px-9 rounded-full">
+            </Button>
+            <Button variant="contained" color="primary">
               {localization.addToCart}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Button>
+          </Box>
+        </Box>
+      </Paper>
+    </Container>
   ) : (
     <LoadingPage />
   );
