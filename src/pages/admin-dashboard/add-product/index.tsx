@@ -1,4 +1,5 @@
-import AddProduct from '@/components/admin-dashboard/add-product-form/AddProduct';
+
+import AddProduct from '@/components/admin-dashboard/components/add-product-form/AddProduct';
 import AdminLayout from '@/components/layout/adminLayout/AdminLayout';
 import { ReactElement } from 'react';
 

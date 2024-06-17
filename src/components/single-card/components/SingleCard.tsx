@@ -1,20 +1,28 @@
-import { useEffect, useState } from 'react';
-import { BooksEntity } from '../../types/types';
+import { useEffect, useState } from "react";
+import { BooksEntity } from "../../../types/types";
 import {
   localization,
   pageLevelLocalization,
-} from '../../constants/localization';
-import { getBookById } from '@/api/get/get';
-import { useRouter } from 'next/router';
-import LoadingPage from '../shared/loading/Loading';
+} from "../../../constants/localization";
+import { getBookById } from "@/api/get/get";
+import { useRouter } from "next/router";
+import LoadingPage from "../../shared/loading/Loading";
+import { useGetBookById } from "../hooks";
 
 const SingleCard = () => {
-  const [book, setBook] = useState<BooksEntity>();
+/*   const [book, setBook] = useState<BooksEntity>(); */
   const router = useRouter();
-  useEffect(() => {
+
+  const {data:book,isLoading}= useGetBookById(router.query.bookId);
+  if(isLoading){
+    return <LoadingPage/>
+  }
+
+ /*  useEffect(() => {
     router.query &&
       getBookById(router.query.bookId!).then((data) => setBook(data));
-  }, []);
+  }, []); */
+
   return book ? (
     <div dir="rtl" className="flex rtl h-fit mx-14">
       <img className="w-1/3" src={book?.imgURL} />

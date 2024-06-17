@@ -104,7 +104,10 @@ const Footer = () => {
               فروشگاه اینترنتی فروشگاه کتاب جایی برای خرید آنلاین در کتاب‌ فروشی
               آنلاین هزاران کتاب الکترونیکی در دسترس است که در میان آن‌ها کتاب
               رایگان هم وجود دارد. شما می‌توانید کتاب‌ها را خریداری کرده یا
-              امانت بگیرید و در موبایل، تبلت، رایانه یا سایت بخوانید
+              امانت بگیرید و در موبایل، تبلت، رایانه یا سایت بخوانید خوش آمدید
+              به فروشگاه کتاب ما، جایی که ما با افتخار به شما ارائه می‌دهیم
+              انواع گسترده‌ای از کتاب‌ها در انواع ژانرها. هدف ما ارائه بهترین
+              تجربه خواندن برای شماست.
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
@@ -113,6 +116,7 @@ const Footer = () => {
             </Typography>
             <Box sx={{ mt: 2 }}>
               <Typography
+                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -123,6 +127,7 @@ const Footer = () => {
                 صفحه اصلی
               </Typography>
               <Typography
+                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -134,6 +139,7 @@ const Footer = () => {
                 فروشگاه
               </Typography>
               <Typography
+                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -145,6 +151,7 @@ const Footer = () => {
                 درباره
               </Typography>
               <Typography
+                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -166,10 +173,10 @@ const Footer = () => {
             alignItems: 'center',
           }}
         >
-          <Typography variant="body2">
+          <Typography variant="body2" fontFamily="iransans">
             &copy; 2024 فروشگاه کتاب. تمامی حقوق محفوظ است.
           </Typography>
-          <Typography variant="body2">
+          <Typography variant="body2" fontFamily="iransans">
             خیابان کتاب 123، شهر خواندن | info@bookshop.com | (123) 456-7890
           </Typography>
         </Box>

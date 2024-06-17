@@ -17,7 +17,7 @@ export default function HeaderAdmin() {
   );
   const router = useRouter();
   const handleAddProducts = () => {
-    router.push('admin-dashboard/add-product');
+    router.push('/admin-dashboard/add-product');
   };
 
   const handleToDashboard = () => {

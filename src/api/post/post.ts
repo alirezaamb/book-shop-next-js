@@ -6,6 +6,6 @@ export const newUser = async (data: UserType) => {
   return await axios.post(`${BASE_URL}/profiles`, data);
 };
 
-export const newProduct = async (data) => {
-  return await axios.post(`${BASE_URL}/books`, data);
-};
+// export const newProduct = async (data) => {
+//   return await axios.post(`${BASE_URL}/books`, data);
+// };

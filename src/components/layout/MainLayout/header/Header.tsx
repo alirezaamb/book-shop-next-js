@@ -35,8 +35,8 @@ const Search = styled('div')(({ theme }) => ({
     width: '35%',
   },
   // [theme.breakpoints.up('xl')]: {
-  //   marginRiht: theme.spacing(0),
-  //   marginLeft: 0,
+  // marginRiht: theme.spacing(0),
+  // marginLeft: 0,
   // },
 }));
 
@@ -50,7 +50,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
 }));
-
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   direction: 'rtl',
@@ -89,7 +88,6 @@ export default function Header() {
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
-
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
@@ -163,7 +161,6 @@ export default function Header() {
       </Link>
     </Menu>
   );
-
   function stringAvatar(name: string) {
     return {
       sx: {
