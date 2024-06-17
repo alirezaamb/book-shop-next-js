@@ -18,6 +18,7 @@ import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { Container } from '@mui/material';
+import SearchBox from '../search-box/SearchBox';
 //ُsearch
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -176,26 +177,25 @@ export default function Header() {
         sx={{
           bgcolor: '#FFC14D',
           color: 'black',
-          fontFamily: 'iransans',
           position: 'fixed',
           right: '0',
         }}
       >
-        <Container maxWidth="lg" sx={{ maxWidth: '1440px' }}>
+        <Container sx={{ maxWidth: '1600px' }}>
           <Toolbar
             sx={{
               display: 'flex',
               flexDirection: 'row-reverse',
-              justifyContent: 'space-around',
+              justifyContent: 'space-between',
               right: '0',
               top: '0',
               zIndex: '10',
             }}
           >
             <Box
-              sx={{
-                width: '20%',
-              }}
+            // sx={{
+            //   width: '20%',
+            // }}
             >
               <Link href="/">
                 <Typography
@@ -211,7 +211,7 @@ export default function Header() {
                     },
                     fontSize: '25px',
                     fontWeight: '500',
-                    pl: '50px',
+                    // pl: '50px',
                     fontFamily: 'iraniransans',
                     ':hover': {
                       color: 'yellow',
@@ -224,7 +224,7 @@ export default function Header() {
               </Link>
             </Box>
             <Search>
-              <SearchIconWrapper>
+              {/* <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
@@ -234,7 +234,8 @@ export default function Header() {
                 }}
                 placeholder="جستجو در فروشگاه کتاب"
                 inputProps={{ 'aria-label': 'search' }}
-              />
+              /> */}
+              <SearchBox />
             </Search>
             <Box
               sx={{
@@ -302,8 +303,15 @@ export default function Header() {
               </Menu>
             </Box>
 
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, margin: '0% 9%' }}>
+            {/* <Box sx={{ flexGrow: 1 }} /> */}
+            <Box
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                // margin: '0% 9%',
+                justifyContent: 'flex-end',
+                width: '100%',
+              }}
+            >
               <IconButton
                 size="large"
                 aria-label="show 4 new mails"
