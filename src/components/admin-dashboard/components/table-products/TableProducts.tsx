@@ -1,5 +1,5 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { blue } from '@mui/material/colors';
@@ -7,17 +7,29 @@ import { useGetBooks } from '@/components/products/hooks';
 import { deleteRow } from '../../services';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import LoadingPage from '@/components/shared/loading/Loading';
+import EditFormModal from '../edit-product-form';
+import { useState } from 'react';
+import AddProduct from '../add-product-form/AddProduct';
 
 export default function TableProducts() {
+  const [isOpenForm, setIsOpenForm] = useState(false);
+  const [editModal, setEditModal] = useState({
+    isOpen: false,
+    id: 0,
+  });
   const queryClient = useQueryClient();
 
   const { mutate: deleteHandler } = useMutation({
-    mutationKey: ['deleteProduct'],
+    mutationKey: ['deleteBook'],
     mutationFn: deleteRow,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['Books'] });
+      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
     },
   });
+
+  const editHandler = (id: number) => {
+    setEditModal({ id, isOpen: true });
+  };
 
   const { data: bookRows, isLoading } = useGetBooks();
   const columns: GridColDef[] = [
@@ -48,16 +60,12 @@ export default function TableProducts() {
       headerName: 'عملیات ها',
       width: 200,
       renderCell: (params) => {
-        // const deleteHandler = async (id: number) => {
-        //   await deleteRow(id);
-        // };
-
         return (
           <div>
             <Button onClick={() => deleteHandler(params.row.id)}>
               <DeleteIcon sx={{ color: 'red' }} />
             </Button>
-            <Button>
+            <Button onClick={() => editHandler(params.row.id)}>
               <EditIcon sx={{ color: blue[400] }} />
             </Button>
           </div>
@@ -72,6 +80,18 @@ export default function TableProducts() {
 
   return (
     <div style={{ height: 400, width: '100%' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          width: '100%',
+          p: 3,
+        }}
+      >
+        <Button variant="contained" onClick={() => setIsOpenForm(true)}>
+          اضافه کردن محصول جدید
+        </Button>
+      </Box>
       <DataGrid
         autoPageSize
         rows={bookRows ? bookRows : []}
@@ -84,6 +104,8 @@ export default function TableProducts() {
         pageSizeOptions={[5, 10]}
         checkboxSelection
       />
+      <EditFormModal setEditModal={setEditModal} editModal={editModal} />
+      {isOpenForm ? <AddProduct setIsOpenForm={setIsOpenForm} /> : ''}
     </div>
   );
 }

@@ -1,17 +1,16 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { BasicModaltype } from '@/types/types';
+import { EditModalType } from '@/types/types';
 import { grey } from '@mui/material/colors';
+import AddProduct from '../add-product-form/AddProduct';
 
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 350,
+  width: '50%',
   bgcolor: grey[300],
   border: '1px solid #d6eed7',
   boxShadow: 24,
@@ -20,19 +19,16 @@ const style = {
   borderRadius: '5px',
 };
 
-export default function BasicModal({ modal, setModal }: BasicModaltype) {
-  const handleClose = () => setModal((prev) => ({ ...prev, isOpen: false }));
-  React.useEffect(() => {
-    if (modal.isOpen) {
-      const timer = setTimeout(handleClose, 1500);
-      return () => clearTimeout(timer);
-    }
-  }, [modal.isOpen]);
+export default function EditFormModal({
+  editModal,
+  setEditModal,
+}: EditModalType) {
+  const handleClose = () => setEditModal({ id: '', isOpen: false });
 
   return (
     <Modal
       sx={{ borderRadius: '40px' }}
-      open={modal.isOpen}
+      open={editModal?.isOpen}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -42,7 +38,7 @@ export default function BasicModal({ modal, setModal }: BasicModaltype) {
           id="modal-modal-description"
           sx={{ mt: 2, direction: 'rtl' }}
         >
-          {modal.message}
+          <AddProduct editId={editModal.id} setEditModal={setEditModal} />
         </Typography>
       </Box>
     </Modal>
