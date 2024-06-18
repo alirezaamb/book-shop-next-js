@@ -1,32 +1,115 @@
-import { Button } from '@mui/material';
-import React from 'react';
-import { BookSlider } from './swiper/BookSlider';
-import { pageLevelLocalization } from '@/constants/localization';
+import { Box, Button, Divider, Typography } from "@mui/material";
+import React from "react";
+import { BookSlider } from "./swiper/BookSlider";
+import { pageLevelLocalization } from "@/constants/localization";
+import { useGetPublisher } from "../hooks";
+import { PublisherSlider } from "./swiper/PublisherSlider";
+import { DiscountSlider } from "./swiper/DiscountSlider";
 
 const MainHome = () => {
   return (
     <>
-      <div className="flex justify-between bg-[#fffbf7] px-10 py-10 sm:flex-col-reverse lg:flex-row ">
-        <div className="flex flex-col justify-center lg:items-start xs:items-center w-full">
-          <h2 className="font-semibold text-8xl text-center">
-            Discover the book treasure
-          </h2>
-          <Button variant="contained" color="error" sx={{ p: 2 }}>
-            Explore Now
-          </Button>
-        </div>
-        <img
-          src="photo/photo.png"
-          alt="picture of photo"
-          className="hidden pr-20 sm:hidden lg:block "
-        />
-      </div>
-      <div>
-        <h3 className="flex justify-center items-center text-2xl font-semibold my-5">
-          {pageLevelLocalization.homePage.bestSellers}
-        </h3>
+      <Box
+        sx={{
+          backgroundImage: `url('https://cdn.snappshop.co/components/a4/7b/9c20320e-d537-419b-8366-ca920b41a47b.jpg?w=2048&q=75')`,
+          backgroundSize: "cover",
+          my: 4,
+        }}
+        height="385px"
+      ></Box>
+      <Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+
+            my: 5,
+          }}
+        >
+          <Box
+            sx={{
+              borderBottom: "1px solid gray",
+              width: "85%",
+              alignSelf: "flex-end",
+            }}
+          ></Box>
+          <Typography
+            variant="h4"
+            component={"h4"}
+            sx={{
+              backgroundColor: "gray",
+              width: "fit-content",
+              color: "white",
+              p: 2,
+              borderRadius: "2px 24px 2px 24px",
+            }}
+          >
+            {pageLevelLocalization.homePage.bestSellers}
+          </Typography>
+        </Box>
         <BookSlider />
-      </div>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            my: 5,
+          }}
+        >
+          <Box
+            sx={{
+              borderBottom: "1px solid gray",
+              width: "90%",
+              alignSelf: "flex-end",
+            }}
+          ></Box>
+          <Typography
+            variant="h4"
+            component={"h4"}
+            sx={{
+              backgroundColor: "gray",
+              width: "fit-content",
+              color: "white",
+              p: 2,
+              borderRadius: "2px 24px 2px 24px",
+            }}
+          >
+            {pageLevelLocalization.homePage.discount}
+          </Typography>
+        </Box>
+        <DiscountSlider />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            my: 5,
+          }}
+        >
+          <Box
+            sx={{
+              borderBottom: "1px solid gray",
+              width: "90%",
+              alignSelf: "flex-end",
+            }}
+          ></Box>
+          <Typography
+            variant="h4"
+            component={"h4"}
+            sx={{
+              backgroundColor: "gray",
+              width: "fit-content",
+              color: "white",
+              p: 2,
+              borderRadius: "2px 24px 2px 24px",
+            }}
+          >
+            {pageLevelLocalization.homePage.publishers}
+          </Typography>
+        </Box>
+        <PublisherSlider />
+      </Box>
     </>
   );
 };
