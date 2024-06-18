@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -6,19 +6,19 @@ import {
   Grid,
   InputLabel,
   TextField,
-} from '@mui/material';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import UploadFileButton from './upload-file-button/UploadFileButton';
-import { pageLevelLocalization } from '@/constants/localization';
+} from "@mui/material";
+import { useForm, SubmitHandler } from "react-hook-form";
+import UploadFileButton from "./upload-file-button/UploadFileButton";
+import { pageLevelLocalization } from "@/constants/localization";
 import {
   UseMutationResult,
   useMutation,
   useQueryClient,
-} from '@tanstack/react-query';
-import { editedProduct, newProduct } from '../../services';
-import { AxiosResponse } from 'axios';
-import { AddProductProps, Inputs, NewProductType } from '@/types/types';
-import { useGetBookById } from '@/components/admin-dashboard/hooks';
+} from "@tanstack/react-query";
+import { editedProduct, newProduct } from "../../services";
+import { AxiosResponse } from "axios";
+import { AddProductProps, Inputs, NewProductType } from "@/types/types";
+import { useGetBookById } from "@/components/admin-dashboard/hooks";
 
 export default function AddProduct({
   editId,
@@ -26,7 +26,7 @@ export default function AddProduct({
   setIsOpenForm,
 }: AddProductProps) {
   const queryClient = useQueryClient();
-  const [img, setImg] = useState<string>('');
+  const [img, setImg] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -42,9 +42,9 @@ export default function AddProduct({
     NewProductType
   > = useMutation({
     mutationFn: newProduct,
-    mutationKey: ['addBook'],
+    mutationKey: ["addBook"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
+      queryClient.invalidateQueries({ queryKey: ["allBooks"] });
     },
   });
 
@@ -56,9 +56,9 @@ export default function AddProduct({
     NewProductType
   > = useMutation({
     mutationFn: editedProduct,
-    mutationKey: ['editedBook', editId],
+    mutationKey: ["editedBook", editId],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
+      queryClient.invalidateQueries({ queryKey: ["allBooks"] });
     },
   });
 
@@ -100,9 +100,11 @@ export default function AddProduct({
     }
     reset();
     if (setEditModal) {
-      setEditModal({ id: '', isOpen: false });
+      setEditModal({ id: "", isOpen: false });
     }
-    setIsOpenForm(false);
+    if (setIsOpenForm) {
+      setIsOpenForm(false);
+    }
   };
 
   // Handle the button upload file
@@ -118,7 +120,7 @@ export default function AddProduct({
 
   const abortHandler = () => {
     if (setEditModal) {
-      setEditModal({ id: '', isOpen: false });
+      setEditModal({ id: "", isOpen: false });
     }
     if (setIsOpenForm) {
       setIsOpenForm(false);
@@ -127,12 +129,12 @@ export default function AddProduct({
 
   return (
     <Card>
-      <CardContent sx={{ width: '80%', mx: 'auto' }}>
+      <CardContent sx={{ width: "80%", mx: "auto" }}>
         <form dir="rtl" onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <InputLabel
-                sx={{ fontSize: '16px', fontWeight: '600' }}
+                sx={{ fontSize: "16px", fontWeight: "600" }}
                 htmlFor={pageLevelLocalization.addProduct.name}
               >
                 {pageLevelLocalization.addProduct.name}
@@ -142,18 +144,18 @@ export default function AddProduct({
                 fullWidth
                 id={pageLevelLocalization.addProduct.name}
                 aria-describedby={pageLevelLocalization.addProduct.name}
-                {...register('name', { required: true })}
+                {...register("name", { required: true })}
                 error={!!errors.name}
                 helperText={
                   errors.name
                     ? `${pageLevelLocalization.addProduct.name} ${pageLevelLocalization.addProduct.error}`
-                    : ''
+                    : ""
                 }
               />
             </Grid>
             <Grid item xs={12}>
               <InputLabel
-                sx={{ fontSize: '16px', fontWeight: '600' }}
+                sx={{ fontSize: "16px", fontWeight: "600" }}
                 htmlFor={pageLevelLocalization.addProduct.author}
               >
                 {pageLevelLocalization.addProduct.author}
@@ -163,18 +165,18 @@ export default function AddProduct({
                 fullWidth
                 id={pageLevelLocalization.addProduct.author}
                 aria-describedby={pageLevelLocalization.addProduct.author}
-                {...register('author', { required: true })}
+                {...register("author", { required: true })}
                 error={!!errors.author}
                 helperText={
                   errors.author
                     ? `${pageLevelLocalization.addProduct.author} ${pageLevelLocalization.addProduct.error}`
-                    : ''
+                    : ""
                 }
               />
             </Grid>
             <Grid item xs={12}>
               <InputLabel
-                sx={{ fontSize: '16px', fontWeight: '600' }}
+                sx={{ fontSize: "16px", fontWeight: "600" }}
                 htmlFor={pageLevelLocalization.addProduct.desc}
               >
                 {pageLevelLocalization.addProduct.desc}
@@ -184,18 +186,18 @@ export default function AddProduct({
                 fullWidth
                 id={pageLevelLocalization.addProduct.desc}
                 aria-describedby={pageLevelLocalization.addProduct.desc}
-                {...register('desc', { required: true })}
+                {...register("desc", { required: true })}
                 error={!!errors.desc}
                 helperText={
                   errors.desc
                     ? `${pageLevelLocalization.addProduct.desc} ${pageLevelLocalization.addProduct.error}`
-                    : ''
+                    : ""
                 }
               />
             </Grid>
             <Grid item xs={12}>
               <InputLabel
-                sx={{ fontSize: '16px', fontWeight: '600' }}
+                sx={{ fontSize: "16px", fontWeight: "600" }}
                 htmlFor={pageLevelLocalization.addProduct.translator}
               >
                 {pageLevelLocalization.addProduct.translator}
@@ -205,18 +207,18 @@ export default function AddProduct({
                 fullWidth
                 id={pageLevelLocalization.addProduct.translator}
                 aria-describedby={pageLevelLocalization.addProduct.translator}
-                {...register('translator', { required: true })}
+                {...register("translator", { required: true })}
                 error={!!errors.translator}
                 helperText={
                   errors.translator
                     ? `${pageLevelLocalization.addProduct.translator} ${pageLevelLocalization.addProduct.error}`
-                    : ''
+                    : ""
                 }
               />
             </Grid>
             <Grid item xs={12}>
               <InputLabel
-                sx={{ fontSize: '16px', fontWeight: '600' }}
+                sx={{ fontSize: "16px", fontWeight: "600" }}
                 htmlFor={pageLevelLocalization.addProduct.price}
               >
                 {pageLevelLocalization.addProduct.price}
@@ -227,12 +229,12 @@ export default function AddProduct({
                 id={pageLevelLocalization.addProduct.price}
                 aria-describedby={pageLevelLocalization.addProduct.price}
                 type="number"
-                {...register('price', { required: true })}
+                {...register("price", { required: true })}
                 error={!!errors.price}
                 helperText={
                   errors.price
                     ? `${pageLevelLocalization.addProduct.price} ${pageLevelLocalization.addProduct.error}`
-                    : ''
+                    : ""
                 }
               />
             </Grid>
@@ -242,7 +244,7 @@ export default function AddProduct({
             <Grid
               item
               xs={12}
-              sx={{ display: 'flex', justifyContent: 'end', gap: 3 }}
+              sx={{ display: "flex", justifyContent: "end", gap: 3 }}
             >
               <Button variant="contained" type="submit">
                 ثبت
@@ -251,9 +253,9 @@ export default function AddProduct({
                 onClick={abortHandler}
                 variant="contained"
                 sx={{
-                  bgcolor: 'secondary.main',
-                  '&:hover': {
-                    bgcolor: 'secondary.light',
+                  bgcolor: "secondary.main",
+                  "&:hover": {
+                    bgcolor: "secondary.light",
                   },
                 }}
               >

@@ -5,18 +5,21 @@ import { pageLevelLocalization } from "@/constants/localization";
 import { useGetPublisher } from "../hooks";
 import { PublisherSlider } from "./swiper/PublisherSlider";
 import { DiscountSlider } from "./swiper/DiscountSlider";
+import Link from "next/link";
 
 const MainHome = () => {
   return (
     <>
-      <Box
-        sx={{
-          backgroundImage: `url('https://cdn.snappshop.co/components/a4/7b/9c20320e-d537-419b-8366-ca920b41a47b.jpg?w=2048&q=75')`,
-          backgroundSize: "cover",
-          my: 4,
-        }}
-        height="385px"
-      ></Box>
+      <Link href={"/products"}>
+        <Box
+          sx={{
+            backgroundImage: `url('https://cdn.snappshop.co/components/a4/7b/9c20320e-d537-419b-8366-ca920b41a47b.jpg?w=2048&q=75')`,
+            backgroundSize: "cover",
+            my: 4,
+          }}
+          height="385px"
+        ></Box>
+      </Link>
       <Box>
         <Box
           sx={{

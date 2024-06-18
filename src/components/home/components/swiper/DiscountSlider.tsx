@@ -16,6 +16,7 @@ import { useGetBooks } from "../../hooks";
 import { Badge, Box, Divider, Typography } from "@mui/material";
 import { localization } from "@/constants/localization";
 import { BooksEntity } from "@/types/types";
+import Link from "next/link";
 
 export const DiscountSlider = () => {
   const { data: books } = useGetBooks();
@@ -41,52 +42,58 @@ export const DiscountSlider = () => {
                 anchorOrigin={{ vertical: "top", horizontal: "right" }}
                 overlap="circular"
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    borderRadius: "12px",
-                    boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.3)",
-                    mb: 8,
-                    mt: 2,
-                    pl: 4,
-                    px: 2,
-                    width: "fit-content",
-                  }}
-                >
-                  <Box sx={{ pt:2 ,pb:4 }}>
-                    <img src={book.imgURL} alt="photo of book" className="h-56"/>
-                  </Box>
-                  <Divider sx={{ width: "80%" }} />
-                  <Typography variant="body1">{book.name}</Typography>
+                <Link href={`/products/${book?.id}`}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      borderRadius: "12px",
+                      boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.3)",
+                      mb: 8,
+                      mt: 2,
+                      pl: 4,
+                      px: 2,
+                      width: "fit-content",
+                    }}
+                  >
+                    <Box sx={{ pt: 2, pb: 4 }}>
+                      <img
+                        src={book?.imgURL}
+                        alt="photo of book"
+                        className="h-56"
+                      />
+                    </Box>
+                    <Divider sx={{ width: "80%" }} />
+                    <Typography variant="body1">{book?.name}</Typography>
 
-                  <Box sx={{ display: "flex", gap: 4, py: 2 }}>
-                    <Typography
-                      sx={{
-                        alignSelf: "flex-end",
-                        textDecoration: "line-through",
-                      }}
-                    >
-                      {book.price.toLocaleString()}
-                    </Typography>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row-reverse",
-                        gap: 1,
-                      }}
-                    >
-                      <Typography sx={{ fontWeight: "bold" }}>
-                        {(
-                          book.price -
-                          (book.price * book.discount) / 100
-                        ).toLocaleString()}
+                    <Box sx={{ display: "flex", gap: 4, py: 2 }}>
+                      <Typography
+                        sx={{
+                          alignSelf: "flex-end",
+                          textDecoration: "line-through",
+                        }}
+                      >
+                        {book?.price.toLocaleString()}
                       </Typography>
-                      <Typography>{localization.toman}</Typography>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row-reverse",
+                          gap: 1,
+                        }}
+                      >
+                        <Typography sx={{ fontWeight: "bold" }}>
+                          {(
+                            book?.price -
+                            (book?.price * book?.discount) / 100
+                          ).toLocaleString()}
+                        </Typography>
+                        <Typography>{localization.toman}</Typography>
+                      </Box>
                     </Box>
                   </Box>
-                </Box>
+                </Link>
               </Badge>
             </SwiperSlide>
           ))

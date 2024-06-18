@@ -20,7 +20,7 @@ import {
 } from "../../../constants/localization";
 import Carousel from "react-material-ui-carousel";
 
-const SingleCard = () => {
+export const SingleCard = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const router = useRouter();
   const { data: book, isLoading } = useGetBookById(router.query.bookId);
@@ -40,7 +40,7 @@ const SingleCard = () => {
   }
 
   return book ? (
-    <Container dir="rtl" sx={{ mt: 5, display: "flex", gap: 4 }}>
+    <Container dir="rtl" sx={{ mt: 3, display: "flex", gap: 4 }}>
       <Box
         sx={{
           display: "flex",
@@ -151,7 +151,9 @@ const SingleCard = () => {
           </Box>
         </Box>
       </Box>
-      <Paper sx={{ width: "35%", p: 3, mx: "auto", boxShadow: 3 }}>
+      <Paper
+        sx={{ width: "35%", maxHeight: 350, p: 3, mx: "auto", boxShadow: 3 }}
+      >
         <Box sx={{ textAlign: "center", mb: 2 }}>
           <Typography
             variant="h5"
