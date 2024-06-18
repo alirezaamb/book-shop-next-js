@@ -55,8 +55,8 @@ export const DiscountSlider = () => {
                     width: "fit-content",
                   }}
                 >
-                  <Box sx={{ height: 170, width: 170, py: 2 }}>
-                    <img src={book.imgURL} alt="photo of book" />
+                  <Box sx={{ pt:2 ,pb:4 }}>
+                    <img src={book.imgURL} alt="photo of book" className="h-56"/>
                   </Box>
                   <Divider sx={{ width: "80%" }} />
                   <Typography variant="body1">{book.name}</Typography>
