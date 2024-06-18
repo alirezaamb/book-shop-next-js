@@ -79,7 +79,7 @@ export default function TableProducts() {
   }
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 450, width: '100%' }}>
       <Box
         sx={{
           display: 'flex',
