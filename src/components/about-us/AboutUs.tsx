@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   Grid,
-  Icon,
   TextField,
   Typography,
 } from "@mui/material";
@@ -16,7 +15,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import Image from "next/image";
 
 
-const AboutUsPage = () => {
+const AboutUs= () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
@@ -61,7 +60,7 @@ const AboutUsPage = () => {
             marginTop: "2%",
             padding: "3%",
             height: "30%",
-            // gap: "2%"
+          
         }}>
           <Card sx={{width:"30%", height:"10%", marginTop:"3%", paddingX:"9%",marginX:"1%", marginRight:"3%"}}>
             <CardContent sx={{display:"flex", gap:"7%"}}>
@@ -178,4 +177,4 @@ const AboutUsPage = () => {
   );
 };
 
-export default AboutUsPage;
+export default AboutUs;
