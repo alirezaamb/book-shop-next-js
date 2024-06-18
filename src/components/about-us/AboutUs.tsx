@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   Grid,
-  Icon,
   TextField,
   Typography,
 } from "@mui/material";
@@ -16,7 +15,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import Image from "next/image";
 
 
-const AboutUsPage = () => {
+const AboutUs= () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
@@ -178,4 +177,4 @@ const AboutUsPage = () => {
   );
 };
 
-export default AboutUsPage;
+export default AboutUs;
