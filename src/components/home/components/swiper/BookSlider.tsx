@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import {
   A11y,
   Navigation,
   Pagination,
   Scrollbar,
   Autoplay,
-} from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import { getBooks } from '@/api/get/get';
-import LoadingPage from '@/components/shared/loading/Loading';
+} from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import LoadingPage from "@/components/shared/loading/Loading";
+import { Box } from "@mui/material";
+import { useGetBooks } from "../../hooks";
+import { BooksEntity } from "@/types/types";
 
 export const BookSlider = () => {
-  const [booksPhoto, setBooksPhoto] = useState<string[]>([]);
-
-  useEffect(() => {
-    getBooks().then((res) => {
-      const books = res?.map((item: { imgURL: string }) => item?.imgURL);
-      setBooksPhoto(books);
-    });
-  }, []);
+  const { data: books } = useGetBooks();
 
   return (
     <Swiper
@@ -34,12 +29,16 @@ export const BookSlider = () => {
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
     >
-      {!!booksPhoto && booksPhoto?.length > 0 ? (
-        booksPhoto?.map((bookPhoto: string, index: number) => (
-          <SwiperSlide key={index}>
-            <img src={bookPhoto} alt="photo of book" />
-          </SwiperSlide>
-        ))
+      {!!books && books?.length > 0 ? (
+        books
+          ?.filter((book: BooksEntity) => book.salesAmount >= 10)
+          ?.map((book: BooksEntity) => (
+            <SwiperSlide key={book.id}>
+              <Box sx={{ pb: 8 }}>
+                <img src={book.imgURL} alt="photo of book" className="h-56" />
+              </Box>
+            </SwiperSlide>
+          ))
       ) : (
         <SwiperSlide>
           <LoadingPage />

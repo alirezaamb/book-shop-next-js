@@ -11,6 +11,8 @@ export const localization = {
 export const pageLevelLocalization = {
   homePage: {
     bestSellers: 'پر فروش ترین ها',
+    publishers:'انتشارات',
+    discount:"تخفیفات"
   },
   aboutUs: {},
   products: {
