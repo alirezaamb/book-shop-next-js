@@ -57,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    // paddingLeft: calc(1em +` ${theme.spacing(4)}`),
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -167,7 +167,7 @@ export default function Header() {
       sx: {
         bgcolor: 'gray',
       },
-      children: `${name ? name[0] : ''}`,
+      children: ` ${name ? name[0] : ''}`,
     };
   }
 
@@ -223,20 +223,7 @@ export default function Header() {
                 </Typography>
               </Link>
             </Box>
-            {/* <Search> */}
-            {/* <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                sx={{
-                  padding: { sx: ' 0% 7%', md: '0 11%' },
-                  fontSize: '18px',
-                }}
-                placeholder="جستجو در فروشگاه کتاب"
-                inputProps={{ 'aria-label': 'search' }}
-              /> */}
             <SearchBox />
-            {/* </Search> */}
             <Box
               sx={{
                 display: 'flex',
@@ -308,45 +295,53 @@ export default function Header() {
               sx={{
                 display: { xs: 'none', md: 'flex' },
                 // margin: '0% 9%',
+                gap: '2%',
                 justifyContent: 'flex-end',
                 width: '100%',
               }}
             >
-              <IconButton
+              {/* <IconButton
                 size="large"
                 aria-label="show 4 new mails"
                 color="inherit"
+              > */}
+              <Typography
+                sx={{
+                  fontFamily: 'iraniransans',
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  borderBottom: '2px solid transparent',
+                  transition: 'border-color 0.5s',
+                  ':hover': { borderBottomColor: 'primary.light' },
+                }}
               >
+                {localization.aboutUs}
+              </Typography>
+              {/* </IconButton> */}
+
+              <Link href="/products">
+                {/* <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                > */}
                 <Typography
                   sx={{
                     fontFamily: 'iraniransans',
                     fontSize: '16px',
                     fontWeight: '500',
+                    borderBottom: '2px solid transparent',
+                    transition: 'border-color 0.5s',
+                    ':hover': { borderBottomColor: 'primary.light' },
                   }}
                 >
-                  {localization.aboutUs}
+                  {localization.products}
                 </Typography>
-              </IconButton>
-
-              <Link href="/products">
-                <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                >
-                  <Typography
-                    sx={{
-                      fontFamily: 'iraniransans',
-                      fontSize: '16px',
-                      fontWeight: '500',
-                    }}
-                  >
-                    {localization.products}
-                  </Typography>
-                </IconButton>
+                {/* </IconButton> */}
               </Link>
               <Link href="/">
-                <IconButton
+                {/* <IconButton
                   size="large"
                   edge="end"
                   aria-label="account of current user"
@@ -354,17 +349,20 @@ export default function Header() {
                   aria-haspopup="true"
                   // onClick={handleProfileMenuOpen}
                   color="inherit"
+                > */}
+                <Typography
+                  sx={{
+                    fontFamily: 'iraniransans',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    borderBottom: '2px solid transparent',
+                    transition: 'border-color 0.5s',
+                    ':hover': { borderBottomColor: 'primary.light' },
+                  }}
                 >
-                  <Typography
-                    sx={{
-                      fontFamily: 'iraniransans',
-                      fontSize: '16px',
-                      fontWeight: '500',
-                    }}
-                  >
-                    {localization.home}
-                  </Typography>
-                </IconButton>
+                  {localization.home}
+                </Typography>
+                {/* </IconButton> */}
               </Link>
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
