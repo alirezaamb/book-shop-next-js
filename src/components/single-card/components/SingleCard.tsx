@@ -4,7 +4,6 @@ import {
   localization,
   pageLevelLocalization,
 } from "../../../constants/localization";
-import { getBookById } from "@/api/get/get";
 import { useRouter } from "next/router";
 import LoadingPage from "../../shared/loading/Loading";
 import { useGetBookById } from "../hooks";
