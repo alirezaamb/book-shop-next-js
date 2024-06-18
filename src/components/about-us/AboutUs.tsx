@@ -1,4 +1,3 @@
-
 import {
   Box,
   Button,
@@ -7,32 +6,36 @@ import {
   Grid,
   TextField,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import AddCardTwoToneIcon from '@mui/icons-material/AddCardTwoTone';
 import CheckIcon from '@mui/icons-material/Check';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-
-const AboutUs= () => {
+const AboutUs = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
   return (
     <>
-      <Grid container direction={"column"} spacing={3} sx={{margin:"1% 0 0 0", width:"100%"}}>
+      <Grid
+        container
+        direction={'column'}
+        spacing={3}
+        sx={{ margin: '1% 0 0 0', width: '100%' }}
+      >
         <Box
           sx={{
-            backgroundImage: "url(photo/Page_19.jpg)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            direction: "ltr", 
-            padding: "40px",
+            backgroundImage: 'url(photo/Page_19.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            direction: 'ltr',
+            padding: '40px',
           }}
         >
           <Grid item xs={12} md={6}>
-            <Card sx={{ width:"50%"}}>
+            <Card sx={{ width: '50%' }}>
               <CardContent>
                 <Typography variant="h4" gutterBottom>
                   درباره فروشگاه کتاب
@@ -53,72 +56,95 @@ const AboutUs= () => {
             </Card>
           </Grid>
         </Box>
-        <Box 
+        <Box
           sx={{
-            display:"flex",
+            display: 'flex',
             bgcolor: '#FFC14D',
-            marginTop: "2%",
-            padding: "3%",
-            height: "30%",
-          
-        }}>
-          <Card sx={{width:"30%", height:"10%", marginTop:"3%", paddingX:"9%",marginX:"1%", marginRight:"3%"}}>
-            <CardContent sx={{display:"flex", gap:"7%"}}>
-             <Typography>روش ارسال</Typography>
-             <ShoppingCartTwoToneIcon sx={{color:"#FFC14D"}} />
+            padding: '3%',
+            height: '30%',
+          }}
+        >
+          <Card
+            sx={{
+              width: '30%',
+              height: '10%',
+              marginTop: '3%',
+              paddingX: '9%',
+              marginX: '1%',
+              marginRight: '3%',
+            }}
+          >
+            <CardContent sx={{ display: 'flex', gap: '7%' }}>
+              <Typography>روش ارسال</Typography>
+              <ShoppingCartTwoToneIcon sx={{ color: '#FFC14D' }} />
             </CardContent>
           </Card>
-          <Card sx={{width:"30%", height:"10%", marginTop:"3%", paddingX:"7%",marginX:"1%"}}>
-            <CardContent sx={{display:"flex", gap:"7%"}}>
-             <Typography>خرید از طریق شتاب</Typography>
-             <AddCardTwoToneIcon sx={{color:"#FFC14D"}}/>
+          <Card
+            sx={{
+              width: '30%',
+              height: '10%',
+              marginTop: '3%',
+              paddingX: '7%',
+              marginX: '1%',
+            }}
+          >
+            <CardContent sx={{ display: 'flex', gap: '7%' }}>
+              <Typography>خرید از طریق شتاب</Typography>
+              <AddCardTwoToneIcon sx={{ color: '#FFC14D' }} />
             </CardContent>
           </Card>
-          <Card sx={{width:"30%", height:"10%", marginTop:"3%", paddingX:"8%",marginX:"1%"}}>
-            <CardContent sx={{display:"flex", gap:"7%"}}>
-             <Typography>ضمانت ارسال</Typography>
-             <CheckIcon sx={{color:"#FFC14D"}}/>
+          <Card
+            sx={{
+              width: '30%',
+              height: '10%',
+              marginTop: '3%',
+              paddingX: '8%',
+              marginX: '1%',
+            }}
+          >
+            <CardContent sx={{ display: 'flex', gap: '7%' }}>
+              <Typography>ضمانت ارسال</Typography>
+              <CheckIcon sx={{ color: '#FFC14D' }} />
             </CardContent>
           </Card>
         </Box>
 
         <Box
           sx={{
-            backgroundColor: "black",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            direction: "ltr",
-            padding: "40px",
-            marginTop: "2%",
-            display: "flex", 
-            gap:"15%",
-            width: "100%"
+            backgroundColor: 'black',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            direction: 'ltr',
+            padding: '40px',
+            display: 'flex',
+            gap: '15%',
+            width: '100%',
           }}
         >
           <Image
-      src="/photo/Page_18.jpg"
-      width={500}
-      height={500}
-      alt="Picture of the author"
-    />
+            src="/photo/Page_18.jpg"
+            width={500}
+            height={500}
+            alt="Picture of the author"
+          />
           <Grid item xs={12} md={6}>
-            <Card sx={{ width:"80%", marginTop:"20%" }}>
+            <Card sx={{ width: '80%', marginTop: '20%' }}>
               <CardContent>
                 <Typography variant="h4" gutterBottom>
                   مسئولیت اجتماعی
                 </Typography>
-               
-               <Typography sx={{textAlign:"justify"}}>
+
+                <Typography sx={{ textAlign: 'justify' }}>
                   همه‌ی ما مسئولیم‌؛ نسبت به یکدیگر، نسبت به جامعه‌ای که در آن
                   زندگی می‌کنیم و نسبت به محیط زیستمان.‌فروشگاه کتاب به سهم خود
                   در تمام این حوزه‌ها قدمی هرچند کوچک برداشته و تلاش می‌کند
                   فعالیت‌های خود در زمینه‌ی مسئولیت اجتماعی را گسترش دهد و در
                   این مسیر از ایده‌ها و پیشنهادهای تمام همراهان دغدغه‌مند خود
                   استقبال می‌کند.‌گزیده‌ای از تلاش‌های مجموعه فروشگاه کتاب با
-                  موضوع مسئولیت اجتماعی:<br/> - فروشگاه کتاب بی پلاستیک <br/>-انجمن
-                  حامی‌
+                  موضوع مسئولیت اجتماعی:
+                  <br /> - فروشگاه کتاب بی پلاستیک <br />
+                  -انجمن حامی‌
                 </Typography>
-              
               </CardContent>
             </Card>
           </Grid>
@@ -138,7 +164,7 @@ const AboutUs= () => {
                 component="form"
                 noValidate
                 onSubmit={handleSubmit}
-                sx={{ mt: 1}}
+                sx={{ mt: 1 }}
               >
                 <TextField
                   margin="normal"

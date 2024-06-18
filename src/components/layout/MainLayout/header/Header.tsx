@@ -192,11 +192,7 @@ export default function Header() {
               zIndex: '10',
             }}
           >
-            <Box
-            // sx={{
-            //   width: '20%',
-            // }}
-            >
+            <Box>
               <Link href="/">
                 <Typography
                   variant="h6"
@@ -211,12 +207,10 @@ export default function Header() {
                     },
                     fontSize: '25px',
                     fontWeight: '500',
-                    // pl: '50px',
                     fontFamily: 'iraniransans',
                     ':hover': {
                       color: 'yellow',
                     },
-                    // margin: '0 15%',
                   }}
                 >
                   فروشگاه کتاب
@@ -294,38 +288,28 @@ export default function Header() {
             <Box
               sx={{
                 display: { xs: 'none', md: 'flex' },
-                // margin: '0% 9%',
                 gap: '2%',
                 justifyContent: 'flex-end',
                 width: '100%',
               }}
             >
-              {/* <IconButton
-                size="large"
-                aria-label="show 4 new mails"
-                color="inherit"
-              > */}
-              <Typography
-                sx={{
-                  fontFamily: 'iraniransans',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  borderBottom: '2px solid transparent',
-                  transition: 'border-color 0.5s',
-                  ':hover': { borderBottomColor: 'primary.light' },
-                }}
-              >
-                {localization.aboutUs}
-              </Typography>
-              {/* </IconButton> */}
+              <Link href={'/about-us'}>
+                <Typography
+                  sx={{
+                    fontFamily: 'iraniransans',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    borderBottom: '2px solid transparent',
+                    transition: 'border-color 0.5s',
+                    ':hover': { borderBottomColor: 'primary.light' },
+                  }}
+                >
+                  {localization.aboutUs}
+                </Typography>
+              </Link>
 
               <Link href="/products">
-                {/* <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                > */}
                 <Typography
                   sx={{
                     fontFamily: 'iraniransans',
@@ -338,18 +322,8 @@ export default function Header() {
                 >
                   {localization.products}
                 </Typography>
-                {/* </IconButton> */}
               </Link>
               <Link href="/">
-                {/* <IconButton
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  // onClick={handleProfileMenuOpen}
-                  color="inherit"
-                > */}
                 <Typography
                   sx={{
                     fontFamily: 'iraniransans',
@@ -380,7 +354,11 @@ export default function Header() {
           </Toolbar>
         </Container>
       </AppBar>
-      {renderMobileMenu}
+      <Box
+        sx={{ display: 'flex', justifyContent: 'flex-end', bgcolor: 'white' }}
+      >
+        {renderMobileMenu}
+      </Box>
     </Box>
   );
 }
