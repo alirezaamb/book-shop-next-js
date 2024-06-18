@@ -61,7 +61,7 @@ const AboutUsPage = () => {
             marginTop: "2%",
             padding: "3%",
             height: "30%",
-            // gap: "2%"
+          
         }}>
           <Card sx={{width:"30%", height:"10%", marginTop:"3%", paddingX:"9%",marginX:"1%", marginRight:"3%"}}>
             <CardContent sx={{display:"flex", gap:"7%"}}>
