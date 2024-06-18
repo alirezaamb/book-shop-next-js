@@ -1,75 +1,281 @@
 {
   "books": [
     {
+      "id": "1",
       "name": "قدرت شروع ناقص  ",
       "author": "جیمز کلییر",
+      "desc": "نشر میلکان",
       "translator": "سید ایوب کوکبی، فرزانه حاج خلیلی",
-      "desc": "انتشارات میلکان",
       "price": 136500,
-      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/44fe1e4cbebc8fd7411ad668466d24c8fcb2eee5_1658554311.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-      "id": "1"
+      "discount": 12,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
+      "pictures": [
+        "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/28aa45892d77444c9eef11395b2a3a7a.jpg?width=170"
+      ],
+      "salesAmount": 2
     },
     {
-      "name": "هنر ظریف رهایی از دغدغه ها ",
+      "id": "2",
+      "name": "هنر ظریف رهایی از دغدغه ها3",
       "author": "مارک منسن",
-      "translator": "میلاد بشیری",
-      "desc": "انتشارات میلکان",
+      "desc": "نشر میلکان",
       "price": 126000,
-      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/19e45017cecc25e52d787650e497e56b2cc79d44_1610033131.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-      "id": "2"
+      "discount": 0,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
+      "pictures": [
+        "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/104418f5c82a4ec4b9adee31e275fc9a.jpg?width=170"
+      ],
+      "salesAmount": 2
     },
     {
       "id": "3",
-      "name": "بی حد و مرز",
-      "translator": "پگاه فرهنگ مهر",
+      "name": "بی حد و مرز ",
       "author": "جیم کوییک",
-      "desc": "انتشارات میلکان",
+      "desc": "نشر میلکان",
       "price": 145000,
-      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/9aea395b9042a495d513528ab61d406d7acd5faf_1658549418.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+      "discount": 39,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2021/06/Limitless-k1-600x921.jpg",
+      "pictures": [
+        "https://milkan.ir/wp-content/uploads/2021/06/Limitless-k1-600x921.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8_pAf8mnS5BJJKcrcmtHcZx9H5l-_KHtZfDORbBL_lG9V1x3Dke1AUxzh02JuxrqvKog&usqp=CAU"
+      ],
+      "salesAmount": 12
     },
     {
       "id": "4",
-      "name": "برتری خفیف",
-      "author": "جف اولسن",
-      "desc": "انتشارات میلکان",
-      "translator": "سعید کلایی راد",
+      "name": "زندگی خود را دوباره بیافرینید",
+      "author": "جفری یانگ و جنت کلوسکو",
+      "desc": "نشر میلکان",
+      "translator": "رضا اکبری",
       "price": 142000,
-      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/5e9b307c72b11252bb6d35acb036f4062c1051a3_1646657271.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90"
+      "discount": 18,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2021/12/Reinventing-Your-Life-k1.jpg",
+      "pictures": [
+        "https://milkan.ir/wp-content/uploads/2021/12/Reinventing-Your-Life-k1.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/340816aa9e854c4c80d65f8578f908c1.jpg?width=170"
+      ],
+      "salesAmount": 0
     },
     {
-      "name": "اوضاع خیلی خراب است",
-      "author": "مارک منسن",
-      "translator": "سمانه پرهیزکاری",
-      "desc": "انتشارات میلکان",
-      "price": 139800,
-      "imgURL": "https://dkstatics-public.digikala.com/digikala-products/9aea395b9042a495d513528ab61d406d7acd5faf_1658549418.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-      "id": "6"
-    }
-  ],
-  "booksPhoto": [
-    {
-      "image": "https://dkstatics-public.digikala.com/digikala-products/9aea395b9042a495d513528ab61d406d7acd5faf_1658549418.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-      "id": "a981"
+      "id": "5",
+      "name": "خرده عادت ها",
+      "author": "جیمز کلییر",
+      "translator": "زهرا صادقی",
+      "desc": "نشر میلکان",
+      "price": 133700,
+      "discount": 18,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2019/10/54774.jpg",
+      "pictures": [
+        "https://milkan.ir/wp-content/uploads/2019/10/54774.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/9237b79ac90842cdafd130eb58630000.jpg?width=170"
+      ],
+      "salesAmount": 16
     },
     {
-      "image": "https://dkstatics-public.digikala.com/digikala-products/e5a4b93d44eae96a54ae68dae7ffaf43960b6766_1658548854.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-      "id": "991d"
+      "id": "6",
+      "name": "آناتومی پیشرقت های شگرف",
+      "author": "آدام آلتر",
+      "translator": "آراز بارسقیان",
+      "desc": "نشر میلکان",
+      "price": 255000,
+      "discount": 0,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C1.jpg",
+      "pictures": [
+        "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C1.jpg",
+        "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C2.jpg"
+      ],
+      "salesAmount": 5
     },
     {
-      "image": "https://dkstatics-public.digikala.com/digikala-products/5e9b307c72b11252bb6d35acb036f4062c1051a3_1646657271.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-      "id": "d921"
+      "id": "7",
+      "name": "ما تمامش میکنیم",
+      "author": "کالین هوور",
+      "translator": "آرتمیس مسعودی",
+      "desc": "نشر آموت",
+      "price": 255000,
+      "discount": 25,
+      "imgURL": "https://cdn.kowsarsamaneh.com/WebResources/aamout.ir/Images/Goods/BigImages/9786006605159.jpg",
+      "pictures": [
+        "https://cdn.kowsarsamaneh.com/WebResources/aamout.ir/Images/Goods/BigImages/9786006605159.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/c869ed6c555a455ea2f9ba7ecdaf2f6f.jpg"
+      ],
+      "salesAmount": 24
     },
     {
-      "image": "https://dkstatics-public.digikala.com/digikala-products/9aea395b9042a495d513528ab61d406d7acd5faf_1658549418.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-      "id": "a79d"
+      "id": "8",
+      "name": "ما شروعش میکنیم",
+      "author": "کالین هوور",
+      "translator": "آرتمیس مسعودی",
+      "desc": "نشر آموت",
+      "price": 250000,
+      "discount": 5,
+      "imgURL": "https://www.aamout.com/images/books/foreign/1401-12.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/foreign/1401-12.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/f912f772994f4eda8972479b8d59630b.jpg"
+      ],
+      "salesAmount": 4
     },
     {
-      "image": "https://dkstatics-public.digikala.com/digikala-products/19e45017cecc25e52d787650e497e56b2cc79d44_1610033131.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-      "id": "3e20"
+      "id": "9",
+      "name": "به یاد او",
+      "author": "کالین هوور",
+      "translator": "عباس زارعی",
+      "desc": "نشر آموت",
+      "price": 275000,
+      "discount": 12,
+      "imgURL": "https://www.aamout.com/images/books/foreign/1401-08.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/foreign/1401-08.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/c10a64962a2b46a89041b5777c502ccf.jpg"
+      ],
+      "salesAmount": 4
     },
     {
-      "image": "https://dkstatics-public.digikala.com/digikala-products/44fe1e4cbebc8fd7411ad668466d24c8fcb2eee5_1658554311.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-      "id": "a086"
+      "id": "10",
+      "name": "اسب رقصان",
+      "author": "جوجو مویز",
+      "translator": "مریم مفتاحی",
+      "desc": "نشر آموت",
+      "price": 422000,
+      "discount": 15,
+      "imgURL": "https://www.aamout.com/images/books/foreign/the-horse-dancer.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/foreign/the-horse-dancer.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/1fc4d21525cf46afbd8b0c3be9e54148.jpg?width=170"
+      ],
+      "salesAmount": 0
+    },
+    {
+      "id": "11",
+      "name": "میوه خارجی",
+      "author": "جوجو مویز",
+      "translator": "مریم مفتاحی",
+      "desc": "نشر آموت",
+      "price": 496000,
+      "discount": 15,
+      "imgURL": "https://www.aamout.com/images/books/foreign/foreign-fruit.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/foreign/foreign-fruit.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/4cdb263ad3a3419ebd032ad3d4695c4c.jpg"
+      ],
+      "salesAmount": 10
+    },
+    {
+      "id": "12",
+      "name": "پیش از تو",
+      "author": "جوجو مویز",
+      "translator": "مریم مفتاحی",
+      "desc": "نشر آموت",
+      "price": 331000,
+      "discount": 0,
+      "imgURL": "https://www.aamout.com/images/books/foreign/Me-Before-You.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/foreign/Me-Before-You.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/1b74670f93144edbb84bf8c6b180a276.jpg?width=170"
+      ],
+      "salesAmount": 30
+    },
+    {
+      "id": "13",
+      "name": "پس از تو ",
+      "author": "جوجو مویز",
+      "translator": "مریم مفتاحی",
+      "desc": "نشر آموت",
+      "price": 332000,
+      "discount": 0,
+      "imgURL": "https://www.aamout.com/images/books/foreign/after-you.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/foreign/after-you.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/e5bd59d1b80f49a98d5d8c4bedefb06e.jpg?width=170"
+      ],
+      "salesAmount": 8
+    },
+    {
+      "id": "14",
+      "name": "هنوز هم من ",
+      "author": "جوجو مویز",
+      "translator": "مریم مفتاحی",
+      "desc": "نشر آموت",
+      "price": 330000,
+      "discount": 5,
+      "imgURL": "https://www.aamout.com/images/books/foreign/Still-Me.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/foreign/Still-Me.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/ce5284d565064ab2bd462f1ce2f7d55f.jpg?width=170"
+      ],
+      "salesAmount": 4
+    },
+    {
+      "id": "15",
+      "name": "زاهو",
+      "author": "یوسف علیخانی",
+      "translator": "",
+      "desc": "نشر آموت",
+      "price": 335000,
+      "discount": 0,
+      "imgURL": "https://www.aamout.com/images/books/persian/Zahoo.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/persian/Zahoo.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/4cf5e0b61a0346b8a79290128c3c7da2.jpg?width=170"
+      ],
+      "salesAmount": 10
+    },
+    {
+      "id": "16",
+      "name": "خاما",
+      "author": "یوسف علیخانی",
+      "translator": "",
+      "desc": "نشر آموت",
+      "price": 250000,
+      "discount": 5,
+      "imgURL": "https://www.aamout.com/images/books/persian/photo_2018-04-23_10-58-51.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/persian/photo_2018-04-23_10-58-51.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/ef3e1d4b6fb844ec9401349b72a71496.jpg?width=170"
+      ],
+      "salesAmount": 12
+    },
+    {
+      "id": "17",
+      "name": "پرتقال خونی",
+      "author": "پروانه سراوانی",
+      "translator": "",
+      "desc": "نشر آموت",
+      "price": 155000,
+      "discount": 5,
+      "imgURL": "https://www.aamout.com/images/books/persian/photo_2018-05-29_10-59-56.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/persian/photo_2018-05-29_10-59-56.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/a2b7d6980b0346749b055178cdd32b2b.jpg?width=170"
+      ],
+      "salesAmount": 1
+    },
+    {
+      "id": "18",
+      "name": "لی لا",
+      "author": "مریلین رابینسون",
+      "translator": "مرجان محمدی",
+      "desc": "نشر آموت",
+      "price": 275000,
+      "discount": 0,
+      "imgURL": "https://www.aamout.com/images/books/foreign/1403-04.jpg",
+      "pictures": [
+        "https://www.aamout.com/images/books/foreign/1403-04.jpg",
+        "https://www.iranketab.ir/Files/AttachFiles/a2b7d6980b0346749b055178cdd32b2b.jpg?width=170"
+      ],
+      "salesAmount": 12
+    },
+    {
+      "name": "خانه داری ",
+      "author": "مریلین رابینسون",
+      "translator": "مرجان محمدی",
+      "desc": "نشر آموت",
+      "price": 200000,
+      "imgURL": "https://www.aamout.com/images/books/foreign/1403-01.jpg",
+      "id": "19"
     }
   ],
   "profiles": [
@@ -96,6 +302,83 @@
       "email": "dsdsd",
       "password": "sdsdsdsd",
       "role": "user"
+    }
+  ],
+  "publishers": [
+    {
+      "image": "https://www.30book.com/Media/Cust/1-888.jpg",
+      "name": "نشر آموت",
+      "id": "1"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-2550.jpg",
+      "name": "نشر پیکان",
+      "id": "2"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-1831.jpg",
+      "name": "نشر کرگدن",
+      "id": "3"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-1660.jpg",
+      "name": "نشر نون",
+      "id": "4"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-1621.jpg",
+      "name": "نشر هورمزد",
+      "id": "5"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-1554.jpg",
+      "name": "نشر میلکان",
+      "id": "6"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-1791.jpg",
+      "name": "نشر هوپا",
+      "id": "7"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-1050.jpg",
+      "name": "نشر قطره",
+      "id": "8"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-4.jpg",
+      "name": "نشر کوله پشتی ",
+      "id": "9"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-2.jpg",
+      "name": "نشر مبتکران",
+      "id": "10"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-630.jpg",
+      "name": "نشر ثالث",
+      "id": "11"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-479.jpg",
+      "name": "نشر نگاه",
+      "id": "12"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-2118.jpg",
+      "name": "نشر برف",
+      "id": "13"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-2080.jpg",
+      "name": "نشر خیلی سبز",
+      "id": "14"
+    },
+    {
+      "image": "https://www.30book.com/Media/Cust/1-37.jpg",
+      "name": "نشر پرتقال",
+      "id": "15"
     }
   ]
 }

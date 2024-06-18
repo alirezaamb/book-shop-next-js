@@ -1,46 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
-  Box,
   Button,
   Card,
   CardContent,
   Grid,
   InputLabel,
   TextField,
-} from '@mui/material';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import UploadFileButton from './upload-file-button/UploadFileButton';
-import { pageLevelLocalization } from '@/constants/localization';
+} from "@mui/material";
+import { useForm, SubmitHandler } from "react-hook-form";
+import UploadFileButton from "./upload-file-button/UploadFileButton";
+import { pageLevelLocalization } from "@/constants/localization";
 import {
   UseMutationResult,
   useMutation,
   useQueryClient,
-} from '@tanstack/react-query';
-import { editedProduct, newProduct } from '../../services';
-import { AxiosResponse } from 'axios';
-import { BooksEntity, NewProductType } from '@/types/types';
-import {
-  useGetBookById,
-  useGetBooks,
-} from '@/components/admin-dashboard/hooks';
+} from "@tanstack/react-query";
+import { editedProduct, newProduct } from "../../services";
+import { AxiosResponse } from "axios";
+import { AddProductProps, Inputs, NewProductType } from "@/types/types";
+import { useGetBookById } from "@/components/admin-dashboard/hooks";
 
-interface Inputs {
-  name: string;
-  author: string;
-  translator: string;
-  desc: string;
-  price: number;
-  imgURL: string;
-  file: File | undefined;
-}
-interface AddProductProps {
-  editId?: string;
-  setEditModal?: (modal: { isOpen: boolean; id: string }) => void;
-}
-
-export default function AddProduct({ editId, setEditModal }: AddProductProps) {
+export default function AddProduct({
+  editId,
+  setEditModal,
+  setIsOpenForm,
+}: AddProductProps) {
   const queryClient = useQueryClient();
-  const [img, setImg] = useState<string>('');
+  const [img, setImg] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -49,67 +35,35 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
   } = useForm<Inputs>({});
 
   // Mutate the new data
-  const mutation: UseMutationResult<
+
+  const addMutation: UseMutationResult<
     AxiosResponse<any>,
     Error,
     NewProductType
   > = useMutation({
     mutationFn: newProduct,
-    mutationKey: ['addBook'],
+    mutationKey: ["addBook"],
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
-      console.log('Queries invalidated');
-      reset();
-      setImg('');
+      queryClient.invalidateQueries({ queryKey: ["allBooks"] });
     },
   });
 
   // Mutate the edit data
 
-  //   const editMutation: UseMutationResult<
-  //   AxiosResponse<any>,
-  //   Error,
-  //   NewProductType
-  // > = useMutation({
-  //   mutationFn: editedProduct,
-  //   mutationKey: ['editedBook', editId],
-  //   onSuccess: () => {
-  //     console.log('edit succesfully');
-  //     queryClient.invalidateQueries({ queryKey: ['allBooks'] });
-  //     reset();
-  //     setImg('');
-  //   },
-  // });
   const editMutation: UseMutationResult<
     AxiosResponse<any>,
     Error,
     NewProductType
   > = useMutation({
     mutationFn: editedProduct,
-    mutationKey: ['editedBook', editId],
-    onSuccess: (data) => {
-      // const updatedData = response.data;
-      console.log(data.data.id);
-      // Invalidate the 'allBooks' query to refetch the books list
-      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
-      // queryClient.invalidateQueries({ queryKey: ['editedBook', data.data.id] });
-
-      // Set the data for the edited book
-
-      // queryClient.setQueryData(
-      //   ['allBooks'],
-      //   (oldData: BooksEntity[] | undefined) => {
-      //     if (!oldData) return [];
-      //     return oldData.map((item) =>
-      //       item.id === updatedData.id ? updatedData : item
-      //     );
-      //   }
-      // );
+    mutationKey: ["editedBook", editId],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["allBooks"] });
     },
   });
 
   // Get data for edit if editId is provided
-  const { data } = useGetBookById(editId || '');
+  const { data } = useGetBookById(editId);
 
   useEffect(() => {
     if (editId && data) {
@@ -137,15 +91,19 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
         price,
       });
     } else {
-      mutation.mutate({
+      addMutation.mutate({
         ...data,
         imgURL: img,
         id: Date.now().toString(),
         price,
       });
     }
+    reset();
     if (setEditModal) {
-      setEditModal({ id: '', isOpen: false });
+      setEditModal({ id: "", isOpen: false });
+    }
+    if (setIsOpenForm) {
+      setIsOpenForm(false);
     }
   };
 
@@ -160,14 +118,23 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
     reader.readAsDataURL(file);
   }
 
+  const abortHandler = () => {
+    if (setEditModal) {
+      setEditModal({ id: "", isOpen: false });
+    }
+    if (setIsOpenForm) {
+      setIsOpenForm(false);
+    }
+  };
+
   return (
     <Card>
-      <CardContent sx={{ width: '80%', mx: 'auto' }}>
+      <CardContent sx={{ width: "80%", mx: "auto" }}>
         <form dir="rtl" onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <InputLabel
-                sx={{ fontSize: '16px', fontWeight: '600' }}
+                sx={{ fontSize: "16px", fontWeight: "600" }}
                 htmlFor={pageLevelLocalization.addProduct.name}
               >
                 {pageLevelLocalization.addProduct.name}
@@ -177,18 +144,18 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
                 fullWidth
                 id={pageLevelLocalization.addProduct.name}
                 aria-describedby={pageLevelLocalization.addProduct.name}
-                {...register('name', { required: true })}
+                {...register("name", { required: true })}
                 error={!!errors.name}
                 helperText={
                   errors.name
                     ? `${pageLevelLocalization.addProduct.name} ${pageLevelLocalization.addProduct.error}`
-                    : ''
+                    : ""
                 }
               />
             </Grid>
             <Grid item xs={12}>
               <InputLabel
-                sx={{ fontSize: '16px', fontWeight: '600' }}
+                sx={{ fontSize: "16px", fontWeight: "600" }}
                 htmlFor={pageLevelLocalization.addProduct.author}
               >
                 {pageLevelLocalization.addProduct.author}
@@ -198,18 +165,18 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
                 fullWidth
                 id={pageLevelLocalization.addProduct.author}
                 aria-describedby={pageLevelLocalization.addProduct.author}
-                {...register('author', { required: true })}
+                {...register("author", { required: true })}
                 error={!!errors.author}
                 helperText={
                   errors.author
                     ? `${pageLevelLocalization.addProduct.author} ${pageLevelLocalization.addProduct.error}`
-                    : ''
+                    : ""
                 }
               />
             </Grid>
             <Grid item xs={12}>
               <InputLabel
-                sx={{ fontSize: '16px', fontWeight: '600' }}
+                sx={{ fontSize: "16px", fontWeight: "600" }}
                 htmlFor={pageLevelLocalization.addProduct.desc}
               >
                 {pageLevelLocalization.addProduct.desc}
@@ -219,18 +186,18 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
                 fullWidth
                 id={pageLevelLocalization.addProduct.desc}
                 aria-describedby={pageLevelLocalization.addProduct.desc}
-                {...register('desc', { required: true })}
+                {...register("desc", { required: true })}
                 error={!!errors.desc}
                 helperText={
                   errors.desc
                     ? `${pageLevelLocalization.addProduct.desc} ${pageLevelLocalization.addProduct.error}`
-                    : ''
+                    : ""
                 }
               />
             </Grid>
             <Grid item xs={12}>
               <InputLabel
-                sx={{ fontSize: '16px', fontWeight: '600' }}
+                sx={{ fontSize: "16px", fontWeight: "600" }}
                 htmlFor={pageLevelLocalization.addProduct.translator}
               >
                 {pageLevelLocalization.addProduct.translator}
@@ -240,18 +207,18 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
                 fullWidth
                 id={pageLevelLocalization.addProduct.translator}
                 aria-describedby={pageLevelLocalization.addProduct.translator}
-                {...register('translator', { required: true })}
+                {...register("translator", { required: true })}
                 error={!!errors.translator}
                 helperText={
                   errors.translator
                     ? `${pageLevelLocalization.addProduct.translator} ${pageLevelLocalization.addProduct.error}`
-                    : ''
+                    : ""
                 }
               />
             </Grid>
             <Grid item xs={12}>
               <InputLabel
-                sx={{ fontSize: '16px', fontWeight: '600' }}
+                sx={{ fontSize: "16px", fontWeight: "600" }}
                 htmlFor={pageLevelLocalization.addProduct.price}
               >
                 {pageLevelLocalization.addProduct.price}
@@ -262,21 +229,37 @@ export default function AddProduct({ editId, setEditModal }: AddProductProps) {
                 id={pageLevelLocalization.addProduct.price}
                 aria-describedby={pageLevelLocalization.addProduct.price}
                 type="number"
-                {...register('price', { required: true })}
+                {...register("price", { required: true })}
                 error={!!errors.price}
                 helperText={
                   errors.price
                     ? `${pageLevelLocalization.addProduct.price} ${pageLevelLocalization.addProduct.error}`
-                    : ''
+                    : ""
                 }
               />
             </Grid>
             <Grid item xs={12}>
               <UploadFileButton handleFile={handleFile} />
             </Grid>
-            <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'end' }}>
+            <Grid
+              item
+              xs={12}
+              sx={{ display: "flex", justifyContent: "end", gap: 3 }}
+            >
               <Button variant="contained" type="submit">
                 ثبت
+              </Button>
+              <Button
+                onClick={abortHandler}
+                variant="contained"
+                sx={{
+                  bgcolor: "secondary.main",
+                  "&:hover": {
+                    bgcolor: "secondary.light",
+                  },
+                }}
+              >
+                لغو
               </Button>
             </Grid>
           </Grid>

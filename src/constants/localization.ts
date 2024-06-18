@@ -3,7 +3,7 @@ export const localization = {
   products: 'محصولات',
   aboutUs: 'درباره ما',
   price: 'قیمت',
-  addToCart: 'افزودن به سبد',
+  addToCart: 'خرید و خواندن کتاب',
   toman: 'تومان',
   search: 'جست و جو',
 };
@@ -11,6 +11,8 @@ export const localization = {
 export const pageLevelLocalization = {
   homePage: {
     bestSellers: 'پر فروش ترین ها',
+    publishers:'انتشارات',
+    discount:"تخفیفات"
   },
   aboutUs: {},
   products: {
