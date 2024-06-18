@@ -9,6 +9,9 @@ export interface BooksEntity {
   imgURL: string;
   author: string;
   translator: string;
+  pictures: string[];
+  discount:number
+  salesAmount : number
 }
 
 export interface SingInType {
@@ -28,4 +31,10 @@ export interface UserType {
 export interface BasicModaltype {
   modal: { isOpen: boolean; message: string };
   setModal: (modal: { isOpen: boolean; message: string }) => void;
+}
+
+export interface Publisher {
+  id: number;
+  image: string;
+  name: string;
 }
