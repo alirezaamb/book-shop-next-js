@@ -1,78 +1,160 @@
-import { useEffect, useState } from "react";
-import { BooksEntity } from "../../../types/types";
+import { useState } from "react";
 import {
   localization,
   pageLevelLocalization,
 } from "../../../constants/localization";
-import { getBookById } from "@/api/get/get";
 import { useRouter } from "next/router";
 import LoadingPage from "../../shared/loading/Loading";
 import { useGetBookById } from "../hooks";
+import {
+  Container,
+  Typography,
+  Box,
+  Button,
+  Avatar,
+  IconButton,
+} from "@mui/material";
+import Carousel from "react-material-ui-carousel";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const SingleCard = () => {
-/*   const [book, setBook] = useState<BooksEntity>(); */
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  /*   const [book, setBook] = useState<BooksEntity>(); */
   const router = useRouter();
 
-  const {data:book,isLoading}= useGetBookById(router.query.bookId);
-  if(isLoading){
-    return <LoadingPage/>
+  const { data: book, isLoading } = useGetBookById(router.query.bookId);
+  if (isLoading) {
+    return <LoadingPage />;
   }
 
- /*  useEffect(() => {
-    router.query &&
-      getBookById(router.query.bookId!).then((data) => setBook(data));
-  }, []); */
+  const handleNext = () => {
+    setCarouselIndex((prev) => (prev + 1) % book.pictures.length);
+  };
+
+  const handlePrev = () => {
+    setCarouselIndex(
+      (prev) => (prev - 1 + book.pictures.length) % book.pictures.length
+    );
+  };
 
   return book ? (
-    <div dir="rtl" className="flex gap-3 mt-10 rtl h-fit mx-14">
-      <img className="w-1/3" src={book?.imgURL} />
-      <div className="flex flex-col gap-10">
-        <h2 className="font-bold text-3xl">{book?.name}</h2>
-        <div className="h-full flex flex-col justify-between">
-          <div className="flex flex-col gap-3">
-            <div className="flex gap-2">
-              <span className="text-gray-500 text-xl">
-                {pageLevelLocalization.singleProduct.publisher}:
-              </span>
-              <span className="text-gray-700 text-xl">{book?.desc}</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="text-gray-500 text-xl">
-                {pageLevelLocalization.singleProduct.writer}:
-              </span>
-              <span className="text-gray-700 text-xl">{book?.author}</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="text-gray-500 text-xl">
-                {pageLevelLocalization.singleProduct.translator}:
-              </span>
-              <span className="text-gray-700 text-xl">{book?.translator}</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="text-gray-500 text-xl">
-                {pageLevelLocalization.singleProduct.score}:
-              </span>
-              <p className="text-gray-700 text-xl">
-                <span className="text-white bg-green-600 rounded-full px-1 text-lg mx-1">
-                  2.6
-                </span>
+    <Container
+      dir="rtl"
+      sx={{ mt: 8, display: "flex", flexDirection: "column", gap: 3 }}
+    >
+      <Box sx={{ display: "flex", gap: 3 }}>
+        {/* <Box component="img" sx={{ width: '30%' }} src={book.imgURL} alt={book.name} /> */}
+        <Box
+          sx={{
+            display: "flex",
+            gap: 3,
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Box sx={{ width: "100%", height: "80%" }}>
+            <Carousel
+              index={carouselIndex}
+              autoPlay={false}
+              navButtonsAlwaysInvisible
+            >
+              {book.pictures.map((url:string, index:number) => (
+                <Box
+                  key={index}
+                  component="img"
+                  src={url}
+                  alt={`Picture ${index + 1}`}
+                  sx={{ width: "100%", height: "100%" }}
+                />
+              ))}
+            </Carousel>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <IconButton onClick={handlePrev}>
+              <ArrowForwardIosIcon />
+            </IconButton>
+            <Box sx={{ display: "flex", overflow: "hidden", width: "80%" }}>
+              {book.pictures.map((url:string, index:number) => (
+                <Box
+                  key={index}
+                  component="img"
+                  src={url}
+                  alt={`Thumbnail ${index + 1}`}
+                  sx={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                    mx: 1,
+                    cursor: "pointer",
+                    border: carouselIndex === index ? "2px solid blue" : "none",
+                  }}
+                  onClick={() => setCarouselIndex(index)}
+                />
+              ))}
+            </Box>
+            <IconButton onClick={handleNext}>
+              <ArrowBackIosIcon />
+            </IconButton>
+          </Box>
+        </Box>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
+          <Typography variant="h4" component="h2" fontWeight="bold">
+            {book.name}
+          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <Typography variant="h6" color="text.secondary">
+                ناشر:
+              </Typography>
+              <Typography variant="h6" color="text.primary">
+                {book.desc}
+              </Typography>
+            </Box>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <Typography variant="h6" color="text.secondary">
+                نویسنده:
+              </Typography>
+              <Typography variant="h6" color="text.primary">
+                {book.author}
+              </Typography>
+            </Box>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <Typography variant="h6" color="text.secondary">
+                مترجم:
+              </Typography>
+              <Typography variant="h6" color="text.primary">
+                {book.translator}
+              </Typography>
+            </Box>
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <Typography variant="h6" color="text.secondary">
+                امتیاز:
+              </Typography>
+              <Typography variant="h6" color="text.primary">
+                <Avatar sx={{ bgcolor: "green", mx: 1 }}>2.6</Avatar>
                 {pageLevelLocalization.singleProduct.scoreDescription}
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-3">
-            <div>
-              <span className="text-xl">{localization.price}:</span>
-              <span className="text-xl ">{book?.price?.toLocaleString()}</span>
-              <span> {localization.toman}</span>
-            </div>
-            <button className="bg-blue-500 text-white px-2 py-1 rounded">
+              </Typography>
+            </Box>
+          </Box>
+          <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>
+            <Typography variant="h6">
+              قیمت: {book.price.toLocaleString()} {localization.toman}
+            </Typography>
+            <Button variant="contained" color="primary">
               {localization.addToCart}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+    </Container>
   ) : (
     <LoadingPage />
   );
