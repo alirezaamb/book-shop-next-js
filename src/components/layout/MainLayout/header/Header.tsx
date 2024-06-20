@@ -14,57 +14,8 @@ import Tooltip from '@mui/material/Tooltip';
 import { deleteCookie, getCookie, hasCookie } from 'cookies-next';
 import { localStorageGetter, localStorageSetter } from '@/utils/localStorage';
 import Avatar from '@mui/material/Avatar';
-import { styled, alpha } from '@mui/material/styles';
-import SearchIcon from '@mui/icons-material/Search';
-import InputBase from '@mui/material/InputBase';
-import { Container } from '@mui/material';
+import { Container, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import SearchBox from '../search-box/SearchBox';
-//ُsearch
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  direction: 'rtl',
-  borderRadius: '50px',
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  // width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: '35%',
-  },
-  // [theme.breakpoints.up('xl')]: {
-  // marginRiht: theme.spacing(0),
-  // marginLeft: 0,
-  // },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  direction: 'rtl',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  direction: 'rtl',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    // paddingLeft: calc(1em +` ${theme.spacing(4)}`),
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
 
 //we should fix it the type
 const signOutHandler = (router: any) => {
@@ -81,6 +32,7 @@ export default function Header() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const [alignment, setAlignment] = React.useState('web');
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
@@ -110,8 +62,18 @@ export default function Header() {
       setName(username);
     }
   }, []);
-
-  const menuId = 'primary-search-account-menu';
+  const handleChange = (event, newAlignment: string) => {
+    console.log(event.target.value);
+    setAlignment(newAlignment);
+    if (event.target.value === 'home') {
+      return router.push('/');
+    } else if (event.target.value === 'about-us') {
+      console.log('here');
+      return router.push('/about-us');
+    } else if (event.target.value === 'products') {
+      return router.push('/products');
+    }
+  };
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -283,7 +245,6 @@ export default function Header() {
               </Menu>
             </Box>
 
-            {/* <Box sx={{ flexGrow: 1 }} /> */}
             <Box
               sx={{
                 display: { xs: 'none', md: 'flex' },
@@ -292,48 +253,68 @@ export default function Header() {
                 width: '100%',
               }}
             >
-              <Link href={'/about-us'}>
-                <Typography
+              <ToggleButtonGroup
+                color="standard"
+                value={alignment}
+                exclusive
+                onChange={handleChange}
+                aria-label="Platform"
+              >
+                <ToggleButton
                   sx={{
+                    border: 'none',
+                    p: 0,
+                    mr: 3,
                     fontSize: '16px',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    borderBottom: '2px solid transparent',
-                    transition: 'border-color 0.5s',
-                    ':hover': { borderBottomColor: 'primary.light' },
+                    '&.Mui-selected': {
+                      bgcolor: 'transparent',
+                      borderBottom: '2px solid',
+                    },
+                    '&:hover': {
+                      bgcolor: 'transparent',
+                    },
                   }}
+                  value="about-us"
                 >
                   {localization.aboutUs}
-                </Typography>
-              </Link>
-
-              <Link href="/products">
-                <Typography
+                </ToggleButton>
+                <ToggleButton
                   sx={{
+                    border: 'none',
+                    p: 0,
+                    mr: 3,
                     fontSize: '16px',
-                    fontWeight: '500',
-                    borderBottom: '2px solid transparent',
-                    transition: 'border-color 0.5s',
-                    ':hover': { borderBottomColor: 'primary.light' },
+                    '&.Mui-selected': {
+                      bgcolor: 'transparent',
+                      borderBottom: '2px solid',
+                    },
+                    '&:hover': {
+                      bgcolor: 'transparent',
+                    },
                   }}
+                  value="products"
                 >
                   {localization.products}
-                </Typography>
-              </Link>
-              <Link href="/">
-                <Typography
+                </ToggleButton>
+                <ToggleButton
                   sx={{
+                    border: 'none',
+                    p: 0,
+                    mr: 3,
                     fontSize: '16px',
-                    fontWeight: '500',
-                    borderBottom: '2px solid transparent',
-                    transition: 'border-color 0.5s',
-                    ':hover': { borderBottomColor: 'primary.light' },
+                    '&.Mui-selected': {
+                      bgcolor: 'transparent',
+                      borderBottom: '2px solid',
+                    },
+                    '&:hover': {
+                      bgcolor: 'transparent',
+                    },
                   }}
+                  value="home"
                 >
                   {localization.home}
-                </Typography>
-                {/* </IconButton> */}
-              </Link>
+                </ToggleButton>
+              </ToggleButtonGroup>
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <IconButton

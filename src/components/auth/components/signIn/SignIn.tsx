@@ -12,46 +12,52 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { SingInType, UserType } from '@/types/types';
-import { getAllProfiles } from '@/api/get/get';
 import { useRouter } from 'next/router';
 import { setCookie } from 'cookies-next';
 import { localStorageSetter } from '@/utils/localStorage';
+import { Alert, Snackbar } from '@mui/material';
+import { useGetUsers } from '../../hooks';
 
 export default function SignIn({ setSearchParams }: SingInType) {
   const router = useRouter();
+  const [toastState, setToastState] = React.useState({
+    isOpen: false,
+    message: 'UserName or Password is incorrect',
+  });
+
   const [isLoading, setIsLoading] = React.useState(false);
+  const { data: allUsers } = useGetUsers();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    setIsLoading(true);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const allusers = await getAllProfiles();
-    if (allusers) {
-      const foundedUser = allusers.find(
+    setIsLoading(true);
+    if (allUsers) {
+      const foundedUser = allUsers.find(
         (user: UserType) =>
           user.email === data.get('email') &&
           user.password === data.get('password')
       );
-      setIsLoading(false);
+
       if (foundedUser) {
         setCookie('access', true);
         setCookie('role', foundedUser.role);
         localStorageSetter('name', JSON.stringify(foundedUser.firstName));
-        // if (foundedUser.role === 'admin') {
-        //   router.push('/admin-dashboard');
-        // } else {
-        //   router.push('/');
-        // }
+        setIsLoading(false);
 
         router.push(foundedUser.role === 'admin' ? '/admin-dashboard' : '/');
       } else {
-        console.log('Your email or password is incorrect');
+        setToastState((prev) => ({ ...prev, isOpen: true }));
+        setIsLoading(false);
       }
     }
   };
 
   const handleSignUpLinkClick = () => {
     setSearchParams({ action: 'signup' });
+  };
+  const handleClose = () => {
+    setToastState((prev) => ({ ...prev, isOpen: false }));
   };
 
   return (
@@ -74,7 +80,6 @@ export default function SignIn({ setSearchParams }: SingInType) {
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
-            required
             fullWidth
             id="email"
             label="Email Address"
@@ -84,7 +89,6 @@ export default function SignIn({ setSearchParams }: SingInType) {
           />
           <TextField
             margin="normal"
-            required
             fullWidth
             name="password"
             label="Password"
@@ -114,6 +118,21 @@ export default function SignIn({ setSearchParams }: SingInType) {
           </Box>
         </Box>
       </Box>
+      <Snackbar
+        autoHideDuration={2000}
+        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        open={toastState.isOpen}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="error"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {toastState.message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }

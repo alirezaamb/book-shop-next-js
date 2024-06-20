@@ -1,5 +1,13 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Box, Button } from '@mui/material';
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { blue } from '@mui/material/colors';
@@ -7,7 +15,7 @@ import { useGetBooks } from '@/components/products/hooks';
 import { deleteRow } from '../../services';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import LoadingPage from '@/components/shared/loading/Loading';
-import EditFormModal from '../edit-product-form';
+import EditFormModal from '../edit-modal';
 import { useState } from 'react';
 import AddProduct from '../add-product-form/AddProduct';
 
@@ -15,8 +23,10 @@ export default function TableProducts() {
   const [isOpenForm, setIsOpenForm] = useState(false);
   const [editModal, setEditModal] = useState({
     isOpen: false,
-    id: 0,
+    id: '',
   });
+
+  const [confirmDelete, setConfirmDelete] = useState({ isOpen: false, id: '' });
   const queryClient = useQueryClient();
 
   const { mutate: deleteHandler } = useMutation({
@@ -26,8 +36,19 @@ export default function TableProducts() {
       queryClient.invalidateQueries({ queryKey: ['allBooks'] });
     },
   });
+  const handleClickOpen = (id: string) => {
+    setConfirmDelete(() => ({ id, isOpen: true }));
+  };
 
-  const editHandler = (id: number) => {
+  const abortDeleteHanler = () => {
+    setConfirmDelete(() => ({ id: '', isOpen: false }));
+  };
+  const deleteItem = () => {
+    deleteHandler(confirmDelete.id);
+    setConfirmDelete(() => ({ id: '', isOpen: false }));
+  };
+
+  const editHandler = (id: string) => {
     setEditModal({ id, isOpen: true });
   };
   //get data of the table
@@ -63,7 +84,7 @@ export default function TableProducts() {
       renderCell: (params) => {
         return (
           <div>
-            <Button onClick={() => deleteHandler(params.row.id)}>
+            <Button onClick={() => handleClickOpen(params.row.id)}>
               <DeleteIcon sx={{ color: 'red' }} />
             </Button>
             <Button onClick={() => editHandler(params.row.id)}>
@@ -107,7 +128,25 @@ export default function TableProducts() {
         checkboxSelection
       />
       <EditFormModal setEditModal={setEditModal} editModal={editModal} />
-      {/* {isOpenForm ? <AddProduct setIsOpenForm={setIsOpenForm} /> : ''} */}
+      {isOpenForm ? <AddProduct setIsOpenForm={setIsOpenForm} /> : ''}
+      <Dialog
+        open={confirmDelete.isOpen}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {'Are You Sure You Want To Delete?'}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            آیا میخواهید آیتم {confirmDelete.id} حذف کنید؟
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={abortDeleteHanler}>لغو</Button>
+          <Button onClick={deleteItem}>تایید</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

@@ -1,25 +1,11 @@
-import { useEffect, useState } from "react";
-import { BooksEntity } from "../../../types/types";
-import CardOfBook from "./card/Card";
-import { getBooks } from "@/api/get/get";
-import LoadingPage from "../../shared/loading/Loading";
-import { useQuery } from "@tanstack/react-query";
-import { useGetBooks } from "../hooks";
+import { BooksEntity } from '../../../types/types';
+import CardOfBook from './card/Card';
+import LoadingPage from '../../shared/loading/Loading';
+import { useGetBooks } from '../hooks';
 
 const Products = () => {
-/*   const [books, setBooks] = useState<BooksEntity[]>([]); */
- /*  const [isLoading, setIsLoading] = useState(true); */
+  const { data: books, isLoading } = useGetBooks();
 
-  const { data:books, isLoading } = useGetBooks();
-
-  /*   useEffect(() => {
-    getBooks()
-      .then((data) => {
-        setBooks(data);
-      })
-      .finally(() => setIsLoading(false));
-  }, []);
- */
   if (isLoading) {
     return <LoadingPage />;
   }
