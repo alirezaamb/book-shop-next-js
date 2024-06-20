@@ -207,7 +207,7 @@ export default function Header() {
                     },
                     fontSize: '25px',
                     fontWeight: '500',
-                    fontFamily: 'iraniransans',
+
                     ':hover': {
                       color: 'yellow',
                     },
@@ -236,7 +236,6 @@ export default function Header() {
               <Typography
                 sx={{
                   textWrap: 'nowrap',
-                  fontFamily: 'iransans',
                   display: {
                     xs: 'none',
                     sm: 'block',
@@ -296,7 +295,6 @@ export default function Header() {
               <Link href={'/about-us'}>
                 <Typography
                   sx={{
-                    fontFamily: 'iraniransans',
                     fontSize: '16px',
                     fontWeight: '500',
                     cursor: 'pointer',
@@ -312,7 +310,6 @@ export default function Header() {
               <Link href="/products">
                 <Typography
                   sx={{
-                    fontFamily: 'iraniransans',
                     fontSize: '16px',
                     fontWeight: '500',
                     borderBottom: '2px solid transparent',
@@ -326,7 +323,6 @@ export default function Header() {
               <Link href="/">
                 <Typography
                   sx={{
-                    fontFamily: 'iraniransans',
                     fontSize: '16px',
                     fontWeight: '500',
                     borderBottom: '2px solid transparent',

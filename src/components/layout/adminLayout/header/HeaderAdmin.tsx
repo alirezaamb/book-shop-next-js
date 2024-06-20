@@ -11,6 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuIcon from '@mui/icons-material/Menu';
 import { deleteCookie } from 'cookies-next';
 import Link from 'next/link';
+import { localStorageSetter } from '@/utils/localStorage';
 
 export default function HeaderAdmin() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
@@ -40,6 +41,7 @@ export default function HeaderAdmin() {
     router.push('/auth');
     deleteCookie('access', { path: '/' });
     deleteCookie('role', { path: '/' });
+    localStorageSetter('name', '');
   };
   return (
     <Box sx={{ flexGrow: 1, direction: 'rtl' }}>

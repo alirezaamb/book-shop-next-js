@@ -36,11 +36,11 @@ const queryClient = new QueryClient({
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
-  return getLayout(
+  return (
     <ThemeContextProvider>
       <QueryClientProvider client={queryClient}>
         <CssBaseline />
-        <Component {...pageProps} />
+        {getLayout(<Component {...pageProps} />)}
       </QueryClientProvider>
     </ThemeContextProvider>
   );

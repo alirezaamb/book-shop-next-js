@@ -116,7 +116,6 @@ const Footer = () => {
             </Typography>
             <Box sx={{ mt: 2 }}>
               <Typography
-                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -127,7 +126,6 @@ const Footer = () => {
                 صفحه اصلی
               </Typography>
               <Typography
-                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -139,7 +137,6 @@ const Footer = () => {
                 فروشگاه
               </Typography>
               <Typography
-                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -151,7 +148,6 @@ const Footer = () => {
                 درباره
               </Typography>
               <Typography
-                fontFamily="iransans"
                 variant="body2"
                 sx={{
                   color: 'gray.300',
@@ -173,10 +169,10 @@ const Footer = () => {
             alignItems: 'center',
           }}
         >
-          <Typography variant="body2" fontFamily="iransans">
+          <Typography variant="body2">
             &copy; 2024 فروشگاه کتاب. تمامی حقوق محفوظ است.
           </Typography>
-          <Typography variant="body2" fontFamily="iransans">
+          <Typography variant="body2">
             خیابان کتاب 123، شهر خواندن | info@bookshop.com | (123) 456-7890
           </Typography>
         </Box>
