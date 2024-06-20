@@ -107,7 +107,7 @@ export default function TableProducts() {
         checkboxSelection
       />
       <EditFormModal setEditModal={setEditModal} editModal={editModal} />
-      {isOpenForm ? <AddProduct setIsOpenForm={setIsOpenForm} /> : ''}
+      {/* {isOpenForm ? <AddProduct setIsOpenForm={setIsOpenForm} /> : ''} */}
     </div>
   );
 }
