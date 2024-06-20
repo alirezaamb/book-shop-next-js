@@ -30,8 +30,9 @@ export default function TableProducts() {
   const editHandler = (id: number) => {
     setEditModal({ id, isOpen: true });
   };
-
+  //get data of the table
   const { data: bookRows, isLoading } = useGetBooks();
+
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'نام محصول', width: 250 },
@@ -93,6 +94,7 @@ export default function TableProducts() {
         </Button>
       </Box>
       <DataGrid
+        sx={{ direction: 'ltr' }}
         autoPageSize
         rows={bookRows ? bookRows : []}
         columns={columns}
@@ -105,7 +107,7 @@ export default function TableProducts() {
         checkboxSelection
       />
       <EditFormModal setEditModal={setEditModal} editModal={editModal} />
-      {isOpenForm ? <AddProduct setIsOpenForm={setIsOpenForm} /> : ''}
+      {/* {isOpenForm ? <AddProduct setIsOpenForm={setIsOpenForm} /> : ''} */}
     </div>
   );
 }

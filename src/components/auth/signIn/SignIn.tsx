@@ -37,11 +37,13 @@ export default function SignIn({ setSearchParams }: SingInType) {
         setCookie('access', true);
         setCookie('role', foundedUser.role);
         localStorageSetter('name', JSON.stringify(foundedUser.firstName));
-        if (foundedUser.role === 'admin') {
-          router.push('admin-dashboard');
-        } else {
-          router.push('/');
-        }
+        // if (foundedUser.role === 'admin') {
+        //   router.push('/admin-dashboard');
+        // } else {
+        //   router.push('/');
+        // }
+
+        router.push(foundedUser.role === 'admin' ? '/admin-dashboard' : '/');
       } else {
         console.log('Your email or password is incorrect');
       }
