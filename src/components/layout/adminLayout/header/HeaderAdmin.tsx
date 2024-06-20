@@ -18,12 +18,8 @@ export default function HeaderAdmin() {
     null
   );
   const router = useRouter();
-  // const handleAddProducts = () => {
-  //   router.push('/admin-dashboard/add-product');
-  // };
 
   const handleToDashboard = () => {
-    // router.push('/admin-dashboard');
     location.href = '/admin-dashboard';
   };
   const handleToHomePage = () => {
@@ -43,17 +39,33 @@ export default function HeaderAdmin() {
     deleteCookie('role', { path: '/' });
     localStorageSetter('name', '');
   };
+
   return (
-    <Box sx={{ flexGrow: 1, direction: 'rtl' }}>
-      <AppBar
-        position="static"
-        sx={{
-          bgcolor: '#FFC14D',
-          color: 'black',
-          fontFamily: 'iransans, sans-serif',
-        }}
-      >
-        <Toolbar>
+    <AppBar
+      position="static"
+      sx={{
+        bgcolor: 'primary.main',
+        color: 'black',
+      }}
+    >
+      <Toolbar>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Typography
+            onClick={handleToDashboard}
+            variant="h6"
+            component="div"
+            sx={{ mx: 2, cursor: 'pointer', fontWeight: '600' }}
+          >
+            داشبورد
+          </Typography>
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -76,11 +88,6 @@ export default function HeaderAdmin() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {/* <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="right" onClick={handleAddProducts}>
-                  ثبت محصول جدید
-                </Typography>
-              </MenuItem> */}
               <MenuItem onClick={handleCloseUserMenu}>
                 <Typography textAlign="right" onClick={handleToHomePage}>
                   خانه
@@ -93,17 +100,8 @@ export default function HeaderAdmin() {
               </MenuItem>
             </Menu>
           </Box>
-
-          <Typography
-            onClick={handleToDashboard}
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, mx: 2, cursor: 'pointer', fontWeight: '600' }}
-          >
-            داشبورد
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
