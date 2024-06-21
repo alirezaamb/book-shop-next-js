@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface IBooks {
   books: BooksEntity[];
 }
@@ -9,6 +11,9 @@ export interface BooksEntity {
   imgURL: string;
   author: string;
   translator: string;
+  pictures: string[];
+  discount: number;
+  salesAmount: number;
 }
 
 export interface SingInType {
@@ -28,4 +33,40 @@ export interface UserType {
 export interface BasicModaltype {
   modal: { isOpen: boolean; message: string };
   setModal: (modal: { isOpen: boolean; message: string }) => void;
+}
+
+export interface Publisher {
+  id: number;
+  image: string;
+  name: string;
+}
+export interface NewProductType {
+  imgURL: string;
+  id: string;
+  price: number;
+  name: string;
+  author: string;
+  translator: string;
+  desc: string;
+  file: File | undefined;
+}
+
+export interface EditModalType {
+  editModal: { isOpen: boolean; id: string };
+  setEditModal: Dispatch<SetStateAction<{ isOpen: boolean; id: string }>>;
+}
+
+export interface Inputs {
+  name: string;
+  author: string;
+  translator: string;
+  desc: string;
+  price: number;
+  imgURL: string;
+  file: File | undefined;
+}
+export interface AddProductProps {
+  editId?: string;
+  setEditModal?: (modal: { isOpen: boolean; id: string }) => void;
+  setIsOpenForm?: Dispatch<SetStateAction<boolean>>;
 }

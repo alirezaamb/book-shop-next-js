@@ -22,8 +22,12 @@ export default function CardOfBook({ data }: { data: BooksEntity }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }} className="flex flex-col justify-between">
+    <Card
+      sx={{ maxWidth: 345, borderRadius: '10px' }}
+      className="flex flex-col justify-between"
+    >
       <CardMedia
+        sx={{ p: 2, borderRadius: '20px' }}
         component="img"
         alt="book"
         height="140"

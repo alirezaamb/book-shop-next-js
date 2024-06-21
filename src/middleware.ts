@@ -10,16 +10,16 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  // if (pathname.startsWith('/')) {
-  //   const isLoginCookie = req.cookies.get('access')?.value;
-  //   if (isLoginCookie !== 'true') {
-  //     return NextResponse.redirect(new URL('/auth', req.url));
-  //   }
-  // }
+  if (pathname.startsWith('/auth')) {
+    const accessCookie = req.cookies.get('access')?.value;
+    if (accessCookie === 'true') {
+      return NextResponse.redirect(new URL('/', req.url));
+    }
+  }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/admin-dashboard/:path*', '//:path*'],
+  matcher: ['/admin-dashboard/:path*', '/auth'],
 };

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import SignIn from '@/components/auth/signIn/SignIn';
-import SignUp from '@/components/auth/signUp/SignUp';
+import SignIn from '@/components/auth/components/signIn/SignIn';
+import SignUp from '@/components/auth/components/signUp/SignUp';
 
 const AuthPage = () => {
   const router = useRouter();

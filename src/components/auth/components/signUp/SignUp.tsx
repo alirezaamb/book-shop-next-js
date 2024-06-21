@@ -10,14 +10,17 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Alert, Snackbar } from '@mui/material';
-import { SignUpType } from '@/types/types';
-import { newUser } from '@/api/post/post';
+import { SignUpType, UserType } from '@/types/types';
+import { useNewUser } from '../../hooks';
+import { green } from '@mui/material/colors';
 
 export default function SignUp({ setSearchParams }: SignUpType) {
   const [toastState, setToastState] = useState({
     isOpen: false,
     message: 'All fields must be filled',
   });
+
+  const { mutate: newUserProfile, isSuccess } = useNewUser();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,7 +33,7 @@ export default function SignUp({ setSearchParams }: SignUpType) {
         password: data.get('password'),
         role: 'user',
       };
-      newUser(userData);
+      newUserProfile({ userData });
       event.currentTarget.reset();
     } else {
       setToastState({ isOpen: true, message: 'All fields must be filled' });
@@ -47,22 +50,6 @@ export default function SignUp({ setSearchParams }: SignUpType) {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Snackbar
-        autoHideDuration={2000}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={toastState.isOpen}
-        onClose={handleClose}
-      >
-        <Alert
-          onClose={handleClose}
-          severity="error"
-          variant="filled"
-          sx={{ width: '100%' }}
-        >
-          {toastState.message}
-        </Alert>
-      </Snackbar>
-      <CssBaseline />
       <Box
         sx={{
           marginTop: 8,
@@ -130,6 +117,23 @@ export default function SignUp({ setSearchParams }: SignUpType) {
           >
             Sign Up
           </Button>
+          {isSuccess && (
+            <Typography
+              sx={{
+                bgcolor: green[400],
+                color: 'white',
+                borderRadius: '5px',
+                px: 2,
+                py: 1,
+                display: 'flex',
+                justifyContent: 'center',
+                boxShadow: 2,
+                mb: 2,
+              }}
+            >
+              Signed up successfully!
+            </Typography>
+          )}
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
@@ -141,6 +145,21 @@ export default function SignUp({ setSearchParams }: SignUpType) {
           </Grid>
         </Box>
       </Box>
+      <Snackbar
+        autoHideDuration={2000}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        open={toastState.isOpen}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="error"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {toastState.message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }

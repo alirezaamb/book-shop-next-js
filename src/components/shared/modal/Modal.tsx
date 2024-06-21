@@ -30,23 +30,21 @@ export default function BasicModal({ modal, setModal }: BasicModaltype) {
   }, [modal.isOpen]);
 
   return (
-    <div>
-      <Modal
-        sx={{ borderRadius: '40px' }}
-        open={modal.isOpen}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography
-            id="modal-modal-description"
-            sx={{ mt: 2, direction: 'rtl' }}
-          >
-            {modal.message}
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
+    <Modal
+      sx={{ borderRadius: '40px' }}
+      open={modal.isOpen}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <Typography
+          id="modal-modal-description"
+          sx={{ mt: 2, direction: 'rtl' }}
+        >
+          {modal.message}
+        </Typography>
+      </Box>
+    </Modal>
   );
 }

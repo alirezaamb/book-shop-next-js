@@ -6,9 +6,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex flex-col min-h-screen container mx-auto">
       <Header />
-      <main className="container flex-grow max-w-[1440px] mx-auto">
-        {children}
-      </main>
+      <main className="container flex-grow mx-auto">{children}</main>
       <Footer />
     </div>
   );

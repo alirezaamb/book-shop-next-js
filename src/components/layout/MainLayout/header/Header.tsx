@@ -10,11 +10,12 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { localization } from '../../../../constants/localization';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Tooltip from '@mui/material/Tooltip';
 import { deleteCookie, getCookie, hasCookie } from 'cookies-next';
 import { localStorageGetter, localStorageSetter } from '@/utils/localStorage';
 import Avatar from '@mui/material/Avatar';
+import { Container, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import SearchBox from '../search-box/SearchBox';
 
 //we should fix it the type
 const signOutHandler = (router: any) => {
@@ -31,6 +32,7 @@ export default function Header() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const [alignment, setAlignment] = React.useState('web');
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
@@ -39,7 +41,6 @@ export default function Header() {
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
-
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
@@ -61,8 +62,18 @@ export default function Header() {
       setName(username);
     }
   }, []);
-
-  const menuId = 'primary-search-account-menu';
+  const handleChange = (event, newAlignment: string) => {
+    console.log(event.target.value);
+    setAlignment(newAlignment);
+    if (event.target.value === 'home') {
+      return router.push('/');
+    } else if (event.target.value === 'about-us') {
+      console.log('here');
+      return router.push('/about-us');
+    } else if (event.target.value === 'products') {
+      return router.push('/products');
+    }
+  };
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -113,24 +124,62 @@ export default function Header() {
       </Link>
     </Menu>
   );
-
   function stringAvatar(name: string) {
     return {
       sx: {
         bgcolor: 'gray',
       },
-      children: `${name ? name[0] : ''}`,
+      children: ` ${name ? name[0] : ''}`,
     };
   }
 
   return (
-    <Box sx={{ flexGrow: 1, mb: 2 }}>
+    <Box sx={{ flexGrow: 1, mb: 20 }}>
       <AppBar
-        sx={{ bgcolor: '#FFC14D', color: 'black', fontFamily: 'iransans' }}
-        position="static"
+        sx={{
+          bgcolor: '#FFC14D',
+          color: 'black',
+          position: 'fixed',
+          right: '0',
+        }}
       >
-        <Toolbar>
-          <Box sx={{ flexGrow: 0 }}>
+        <Container sx={{ maxWidth: '1600px' }}>
+          <Toolbar
+            sx={{
+              display: 'flex',
+              flexDirection: 'row-reverse',
+              justifyContent: 'space-between',
+              right: '0',
+              top: '0',
+              zIndex: '10',
+            }}
+          >
+            <Box>
+              <Link href="/">
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{
+                    display: {
+                      xs: 'none',
+                      sm: 'none',
+                      lg: 'block',
+                      md: 'block',
+                    },
+                    fontSize: '25px',
+                    fontWeight: '500',
+
+                    ':hover': {
+                      color: 'yellow',
+                    },
+                  }}
+                >
+                  فروشگاه کتاب
+                </Typography>
+              </Link>
+            </Box>
+            <SearchBox />
             <Box
               sx={{
                 display: 'flex',
@@ -149,144 +198,144 @@ export default function Header() {
               <Typography
                 sx={{
                   textWrap: 'nowrap',
-                  fontFamily: 'iransans',
-                  display: { xs: 'none', sm: 'block' },
+                  display: {
+                    xs: 'none',
+                    sm: 'block',
+                  },
                 }}
               >
                 {name !== '' ? `${name},خوش آمدید` : 'لطفا وارد شوید'}
               </Typography>
             </Box>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {cookie === 'admin' && (
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography
-                    textAlign="right"
-                    onClick={handleToAdminDashboard}
-                  >
-                    داشبورد ادمین
+          </Toolbar>
+          <Toolbar>
+            <Box sx={{ flexGrow: 0 }}>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {cookie === 'admin' && (
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography
+                      textAlign="right"
+                      onClick={handleToAdminDashboard}
+                    >
+                      داشبورد ادمین
+                    </Typography>
+                  </MenuItem>
+                )}
+
+                <MenuItem onClick={() => signOutHandler(router)}>
+                  <Typography textAlign="right">
+                    {hasCookie('access') ? 'خروج' : 'وارد شوید'}
                   </Typography>
                 </MenuItem>
-              )}
+              </Menu>
+            </Box>
 
-              <MenuItem onClick={() => signOutHandler(router)}>
-                <Typography textAlign="right">
-                  {hasCookie('access') ? 'خروج' : 'وارد شوید'}
-                </Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-            }}
-          >
-            <Link href="/">
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  display: { xs: 'none', sm: 'none', lg: 'block' },
-                  fontSize: '25px',
-                  fontWeight: '500',
-                  pl: '50px',
-                  fontFamily: 'iraniransans',
-                }}
-              >
-                فروشگاه کتاب
-              </Typography>
-            </Link>
-          </Box>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
+            <Box
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                gap: '2%',
+                justifyContent: 'flex-end',
+                width: '100%',
+              }}
             >
-              <Typography
-                sx={{
-                  fontFamily: 'iraniransans',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                }}
+              <ToggleButtonGroup
+                color="standard"
+                value={alignment}
+                exclusive
+                onChange={handleChange}
+                aria-label="Platform"
               >
-                {localization.aboutUs}
-              </Typography>
-            </IconButton>
-
-            <Link href="/products">
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Typography
+                <ToggleButton
                   sx={{
-                    fontFamily: 'iraniransans',
+                    border: 'none',
+                    p: 0,
+                    mr: 3,
                     fontSize: '16px',
-                    fontWeight: '500',
+                    '&.Mui-selected': {
+                      bgcolor: 'transparent',
+                      borderBottom: '2px solid',
+                    },
+                    '&:hover': {
+                      bgcolor: 'transparent',
+                    },
                   }}
+                  value="about-us"
+                >
+                  {localization.aboutUs}
+                </ToggleButton>
+                <ToggleButton
+                  sx={{
+                    border: 'none',
+                    p: 0,
+                    mr: 3,
+                    fontSize: '16px',
+                    '&.Mui-selected': {
+                      bgcolor: 'transparent',
+                      borderBottom: '2px solid',
+                    },
+                    '&:hover': {
+                      bgcolor: 'transparent',
+                    },
+                  }}
+                  value="products"
                 >
                   {localization.products}
-                </Typography>
-              </IconButton>
-            </Link>
-            <Link href="/">
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                // onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <Typography
+                </ToggleButton>
+                <ToggleButton
                   sx={{
-                    fontFamily: 'iraniransans',
+                    border: 'none',
+                    p: 0,
+                    mr: 3,
                     fontSize: '16px',
-                    fontWeight: '500',
+                    '&.Mui-selected': {
+                      bgcolor: 'transparent',
+                      borderBottom: '2px solid',
+                    },
+                    '&:hover': {
+                      bgcolor: 'transparent',
+                    },
                   }}
+                  value="home"
                 >
                   {localization.home}
-                </Typography>
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Box>
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
+                color="inherit"
+              >
+                <MoreIcon />
               </IconButton>
-            </Link>
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
+            </Box>
+          </Toolbar>
+        </Container>
       </AppBar>
-      {renderMobileMenu}
+      <Box
+        sx={{ display: 'flex', justifyContent: 'flex-end', bgcolor: 'white' }}
+      >
+        {renderMobileMenu}
+      </Box>
     </Box>
   );
 }
