@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -39,7 +40,6 @@ export default function TableProducts() {
   const handleClickOpen = (id: string) => {
     setConfirmDelete(() => ({ id, isOpen: true }));
   };
-
   const abortDeleteHanler = () => {
     setConfirmDelete(() => ({ id: '', isOpen: false }));
   };
@@ -127,6 +127,22 @@ export default function TableProducts() {
         pageSizeOptions={[5, 10]}
         checkboxSelection
       />
+      {isOpenForm ? (
+        <Typography
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            mt: 3,
+            fontWeight: 600,
+            fontSize: 20,
+          }}
+        >
+          اضافه کردن محصول جدید
+        </Typography>
+      ) : (
+        ''
+      )}
       <EditFormModal setEditModal={setEditModal} editModal={editModal} />
       {isOpenForm ? <AddProduct setIsOpenForm={setIsOpenForm} /> : ''}
       <Dialog

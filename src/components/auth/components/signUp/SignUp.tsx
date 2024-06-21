@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Alert, Snackbar } from '@mui/material';
-import { SignUpType } from '@/types/types';
+import { SignUpType, UserType } from '@/types/types';
 import { useNewUser } from '../../hooks';
 import { green } from '@mui/material/colors';
 
@@ -50,22 +50,6 @@ export default function SignUp({ setSearchParams }: SignUpType) {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Snackbar
-        autoHideDuration={2000}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={toastState.isOpen}
-        onClose={handleClose}
-      >
-        <Alert
-          onClose={handleClose}
-          severity="error"
-          variant="filled"
-          sx={{ width: '100%' }}
-        >
-          {toastState.message}
-        </Alert>
-      </Snackbar>
-      <CssBaseline />
       <Box
         sx={{
           marginTop: 8,

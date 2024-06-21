@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
+  Box,
   Button,
   Card,
   CardContent,
@@ -10,14 +11,8 @@ import {
 import { useForm, SubmitHandler } from 'react-hook-form';
 import UploadFileButton from './upload-file-button/UploadFileButton';
 import { pageLevelLocalization } from '@/constants/localization';
-import {
-  UseMutationResult,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
-import { editedProduct, newProduct } from '../../services';
-import { AxiosResponse } from 'axios';
-import { AddProductProps, Inputs, NewProductType } from '@/types/types';
+import { useQueryClient } from '@tanstack/react-query';
+import { AddProductProps, Inputs } from '@/types/types';
 import {
   useAddBook,
   useEditBook,
@@ -29,7 +24,6 @@ export default function AddProduct({
   setEditModal,
   setIsOpenForm,
 }: AddProductProps) {
-  const queryClient = useQueryClient();
   const [img, setImg] = useState<string>('');
   const {
     register,
@@ -111,7 +105,7 @@ export default function AddProduct({
   return (
     <Card>
       <CardContent sx={{ width: '80%', mx: 'auto' }}>
-        <form dir="rtl" onSubmit={handleSubmit(onSubmit)}>
+        <Box component="form" dir="rtl" onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <InputLabel
@@ -244,7 +238,7 @@ export default function AddProduct({
               </Button>
             </Grid>
           </Grid>
-        </form>
+        </Box>
       </CardContent>
     </Card>
   );

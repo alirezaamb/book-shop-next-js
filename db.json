@@ -294,14 +294,6 @@
       "email": "ababaei78@gmail.com",
       "password": "1234",
       "role": "user"
-    },
-    {
-      "id": "09f7",
-      "firstName": "dsdsd",
-      "lastName": "dsdsd",
-      "email": "dsdsd",
-      "password": "sdsdsdsd",
-      "role": "user"
     }
   ],
   "publishers": [
