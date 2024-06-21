@@ -12,6 +12,7 @@ import AddCardTwoToneIcon from '@mui/icons-material/AddCardTwoTone';
 import CheckIcon from '@mui/icons-material/Check';
 
 import Image from 'next/image';
+import { pageLevelLocalization } from '@/constants/localization';
 
 const AboutUs = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -38,19 +39,10 @@ const AboutUs = () => {
             <Card sx={{ width: '50%' }}>
               <CardContent>
                 <Typography variant="h4" gutterBottom>
-                  درباره فروشگاه کتاب
+                  {pageLevelLocalization.aboutUs.aboutOurStore}
                 </Typography>
                 <Typography>
-                  فروشگاه آنلاین کتاب و محصولات فرهنگی ما با تکیه بر تجربه
-                  سال‌ها کتابفروشی، نگاهی به آینده و با هدف سهولت دسترسی
-                  علاقمندان به کتاب و محصولات فرهنگی، در فضای مجازی متولد شده
-                  است. در فروشگاه آنلاین کتاب تلاش کرده‌ایم با همان رویکرد
-                  همیشگی که خدمت‌رسانی با کیفیت بوده، کتاب و محصولات فرهنگی را
-                  به دست مخاطبانمان برسانیم. از این پس با کامپیوترهای شخصی و یا
-                  با تلفن‌های همراهتان از محل کار، در وسایل نقلیه، از خانه و
-                  هرکجا که هستید می‌توانید به دنیای کتاب سفر کنید چون فروشگاه
-                  کتاب به شما نزدیک‌تر شده است. فروشگاه کتاب محل تلاقی دست‌ها و
-                  اندیشه‌هایی‌ست که فردا را پرنورتر، شاد‌تر و آگاه‌تر می‌خواهند.
+                  {pageLevelLocalization.aboutUs.describeAboutUs}
                 </Typography>
               </CardContent>
             </Card>
@@ -89,7 +81,9 @@ const AboutUs = () => {
             }}
           >
             <CardContent sx={{ display: 'flex', gap: '7%' }}>
-              <Typography>خرید از طریق شتاب</Typography>
+              <Typography>
+                {pageLevelLocalization.aboutUs.buyWithShetab}
+              </Typography>
               <AddCardTwoToneIcon sx={{ color: '#FFC14D' }} />
             </CardContent>
           </Card>
@@ -103,7 +97,9 @@ const AboutUs = () => {
             }}
           >
             <CardContent sx={{ display: 'flex', gap: '7%' }}>
-              <Typography>ضمانت ارسال</Typography>
+              <Typography>
+                {pageLevelLocalization.aboutUs.warrantySending}
+              </Typography>
               <CheckIcon sx={{ color: '#FFC14D' }} />
             </CardContent>
           </Card>
@@ -131,19 +127,11 @@ const AboutUs = () => {
             <Card sx={{ width: '80%', marginTop: '20%' }}>
               <CardContent>
                 <Typography variant="h4" gutterBottom>
-                  مسئولیت اجتماعی
+                  {pageLevelLocalization.aboutUs.socialResponsibility}
                 </Typography>
 
                 <Typography sx={{ textAlign: 'justify' }}>
-                  همه‌ی ما مسئولیم‌؛ نسبت به یکدیگر، نسبت به جامعه‌ای که در آن
-                  زندگی می‌کنیم و نسبت به محیط زیستمان.‌فروشگاه کتاب به سهم خود
-                  در تمام این حوزه‌ها قدمی هرچند کوچک برداشته و تلاش می‌کند
-                  فعالیت‌های خود در زمینه‌ی مسئولیت اجتماعی را گسترش دهد و در
-                  این مسیر از ایده‌ها و پیشنهادهای تمام همراهان دغدغه‌مند خود
-                  استقبال می‌کند.‌گزیده‌ای از تلاش‌های مجموعه فروشگاه کتاب با
-                  موضوع مسئولیت اجتماعی:
-                  <br /> - فروشگاه کتاب بی پلاستیک <br />
-                  -انجمن حامی‌
+                  {pageLevelLocalization.aboutUs.detailsResponsibilityL}
                 </Typography>
               </CardContent>
             </Card>
@@ -154,11 +142,10 @@ const AboutUs = () => {
           <Card>
             <CardContent>
               <Typography variant="h4" align="center" gutterBottom>
-                عضویت در خبرنامه‌ی فروشگاه کتاب
+                {pageLevelLocalization.aboutUs.joinToOurClub}
               </Typography>
               <Typography variant="body2" align="center">
-                برای اطلاع از تخفیف‌ها، فروش‌های ویژه و پیشنهادها، در خبرنامه‌ی
-                ما عضو شوید.
+                {pageLevelLocalization.aboutUs.knowAboutOurDiscountJoinUs}
               </Typography>
               <Box
                 component="form"
@@ -192,7 +179,7 @@ const AboutUs = () => {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  ثبت نام
+                  {pageLevelLocalization.aboutUs.signUp}
                 </Button>
               </Box>
             </CardContent>
