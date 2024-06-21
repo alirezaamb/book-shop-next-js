@@ -52,7 +52,7 @@ export const useAddBook = () => {
   return addMutation;
 };
 
-export const useEditBook = () => {
+export const useEditBook = (id: string) => {
   const queryClient = useQueryClient();
 
   const editMutation: UseMutationResult<
@@ -61,7 +61,7 @@ export const useEditBook = () => {
     NewProductType
   > = useMutation({
     mutationFn: editedProduct,
-    mutationKey: ['editedBook'],
+    mutationKey: ['editedBook', id],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['allBooks'] });
     },

@@ -14,6 +14,7 @@ export interface BooksEntity {
   pictures: string[];
   discount: number;
   salesAmount: number;
+  inventory: number;
 }
 
 export interface SingInType {

@@ -11,7 +11,6 @@ import {
 import { useForm, SubmitHandler } from 'react-hook-form';
 import UploadFileButton from './upload-file-button/UploadFileButton';
 import { pageLevelLocalization } from '@/constants/localization';
-import { useQueryClient } from '@tanstack/react-query';
 import { AddProductProps, Inputs } from '@/types/types';
 import {
   useAddBook,
@@ -35,7 +34,7 @@ export default function AddProduct({
   const { mutate: addBook } = useAddBook();
 
   // Mutate the edit data
-  const { mutate: editBook } = useEditBook();
+  const { mutate: editBook } = useEditBook(editId!);
 
   // Get data for edit if editId is provided
   const { data } = useGetBookById(editId);
