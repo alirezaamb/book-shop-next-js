@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { BASE_URL } from '@/api/const';
 import { NewProductType } from '@/api/products/products.type';
+import { BooksEntity } from '@/types/types';
 
 export const getBooks = async () => {
   const response = await axios.get(`${BASE_URL}/books`);
@@ -19,7 +20,7 @@ export const newProduct = async (
 };
 
 export const editedProduct = async (
-  product: NewProductType
+  product: BooksEntity
 ): Promise<AxiosResponse<any>> => {
   return await axios.put(`${BASE_URL}/books/${product.id}`, product);
 };

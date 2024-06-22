@@ -1,10 +1,10 @@
 export interface NewProductType {
-  imgURL: string;
+  imgURL: File | undefined;
   id: string;
   price: number;
   name: string;
   author: string;
   translator: string;
   desc: string;
-  file: File | undefined;
+  // file:
 }

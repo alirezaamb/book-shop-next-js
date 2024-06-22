@@ -13,6 +13,7 @@ import {
 } from '@/api/products/products.api';
 import { AxiosResponse } from 'axios';
 import { NewProductType } from '@/api/products/products.type';
+import { BooksEntity } from '@/types/types';
 
 export const useGetBooks = () => {
   return useQuery({
@@ -37,11 +38,7 @@ export const useGetBookById = (id: string | undefined) => {
 export const useAddBook = () => {
   const queryClient = useQueryClient();
 
-  const addMutation: UseMutationResult<
-    AxiosResponse<any>,
-    Error,
-    NewProductType
-  > = useMutation({
+  const addMutation = useMutation({
     mutationFn: newProduct,
     mutationKey: ['addBook'],
     onSuccess: () => {
@@ -55,11 +52,7 @@ export const useAddBook = () => {
 export const useEditBook = () => {
   const queryClient = useQueryClient();
 
-  const editMutation: UseMutationResult<
-    AxiosResponse<any>,
-    Error,
-    NewProductType
-  > = useMutation({
+  const editMutation = useMutation({
     mutationFn: editedProduct,
     mutationKey: ['editedBook'],
     onSuccess: () => {

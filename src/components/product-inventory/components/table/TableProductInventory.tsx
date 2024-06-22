@@ -6,10 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import {
-  useEditedBook,
-  useGetBooks,
-} from '@/components/product-inventory/hooks/index';
+import { useEditBook, useGetBooks } from '@/api/products/products.queries';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { BooksEntity } from '@/types/types';
@@ -25,6 +22,7 @@ const TableProductInventory = () => {
 
   const [books, setBooks] = useState<BooksEntity[]>([]);
   const [editedBooks, setEditedBooks] = useState<BooksEntity[]>([]);
+  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
     setBooks(data);
@@ -43,27 +41,19 @@ const TableProductInventory = () => {
     }
   };
 
-  const { mutate, isPending } = useEditedBook();
+  const { mutate, isPending } = useEditBook();
   console.log(isPending);
 
   const changeHandler = () => {
-    editedBooks.forEach((item) => mutate(item));
+    editedBooks.forEach((item) => {
+      return mutate(item);
+    });
   };
-  //   const changeHandler = async () => {
-  //     try {
-  //       await Promise.all(editedBooks.map((item) => mutate(item)));
-  //       // Optionally, you can reset the editedBooks state after successful mutation
-  //       setEditedBooks([]);
-  //       console.log('All changes have been saved successfully');
-  //     } catch (error) {
-  //       console.error('Error saving changes:', error);
-  //     }
-  //   };
 
   if (isLoading || isPending) {
     return <LoadingPage />;
   }
-  const formatNumberToFarsi = (number) => {
+  const formatNumberToFarsi = (number: number) => {
     return new Intl.NumberFormat('fa-IR', { useGrouping: true }).format(number);
   };
 
@@ -104,6 +94,7 @@ const TableProductInventory = () => {
                         editHandler(temp[index]);
                         setIsEdit((prev) => ({ ...prev, inventory: false }));
                         setBooks(temp);
+                        setDisableButton(true);
                       }}
                     />
                   ) : (
@@ -127,6 +118,7 @@ const TableProductInventory = () => {
                         setIsEdit((prev) => ({ ...prev, price: false }));
                         setBooks(temp);
                         editHandler(temp[index]);
+                        setDisableButton(true);
                       }}
                     />
                   ) : (
