@@ -2,7 +2,6 @@ import { Box, Button, Divider, Typography } from '@mui/material';
 import React from 'react';
 import { BookSlider } from './swiper/BookSlider';
 import { pageLevelLocalization } from '@/constants/localization';
-import { useGetPublisher } from '../hooks';
 import { PublisherSlider } from './swiper/PublisherSlider';
 import { DiscountSlider } from './swiper/DiscountSlider';
 import Link from 'next/link';

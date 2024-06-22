@@ -12,13 +12,12 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { blue } from '@mui/material/colors';
-import { useGetBooks } from '@/components/products/hooks';
-import { deleteRow } from '../../services';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useGetBooks } from '@/api/products/products.queries';
 import LoadingPage from '@/components/shared/loading/Loading';
 import EditFormModal from '../edit-modal';
 import { useState } from 'react';
 import AddProduct from '../add-product-form/AddProduct';
+import { useDeleteBook } from '@/api/products/products.queries';
 
 export default function TableProducts() {
   const [isOpenForm, setIsOpenForm] = useState(false);
@@ -28,15 +27,10 @@ export default function TableProducts() {
   });
 
   const [confirmDelete, setConfirmDelete] = useState({ isOpen: false, id: '' });
-  const queryClient = useQueryClient();
 
-  const { mutate: deleteHandler } = useMutation({
-    mutationKey: ['deleteBook'],
-    mutationFn: deleteRow,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
-    },
-  });
+  //handle delete book
+  const { mutate: deleteHandler } = useDeleteBook();
+
   const handleClickOpen = (id: string) => {
     setConfirmDelete(() => ({ id, isOpen: true }));
   };

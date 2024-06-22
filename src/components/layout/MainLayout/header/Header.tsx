@@ -63,12 +63,10 @@ export default function Header() {
     }
   }, []);
   const handleChange = (event, newAlignment: string) => {
-    console.log(event.target.value);
     setAlignment(newAlignment);
     if (event.target.value === 'home') {
       return router.push('/');
     } else if (event.target.value === 'about-us') {
-      console.log('here');
       return router.push('/about-us');
     } else if (event.target.value === 'products') {
       return router.push('/products');

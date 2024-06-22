@@ -11,13 +11,12 @@ import {
 import { useForm, SubmitHandler } from 'react-hook-form';
 import UploadFileButton from './upload-file-button/UploadFileButton';
 import { pageLevelLocalization } from '@/constants/localization';
-import { useQueryClient } from '@tanstack/react-query';
 import { AddProductProps, Inputs } from '@/types/types';
 import {
   useAddBook,
   useEditBook,
   useGetBookById,
-} from '@/components/admin-dashboard/hooks';
+} from '@/api/products/products.queries';
 
 export default function AddProduct({
   editId,

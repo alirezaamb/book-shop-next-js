@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { EditModalType } from '@/types/types';
 import { grey } from '@mui/material/colors';
-import AddProduct from '../add-product-form/AddProduct';
+import AddProduct from '@/components/admin-dashboard/components/add-product-form/AddProduct';
 
 const style = {
   position: 'absolute' as 'absolute',
