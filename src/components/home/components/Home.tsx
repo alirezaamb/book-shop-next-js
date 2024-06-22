@@ -36,8 +36,8 @@ const MainHome = () => {
             }}
           ></Box>
           <Typography
-            variant="h4"
-            component={'h4'}
+            variant="h6"
+            component={'h6'}
             sx={{
               backgroundColor: 'gray',
               width: 'fit-content',
@@ -66,8 +66,8 @@ const MainHome = () => {
             }}
           ></Box>
           <Typography
-            variant="h4"
-            component={'h4'}
+            variant="h6"
+            component={'h6'}
             sx={{
               backgroundColor: 'gray',
               width: 'fit-content',
@@ -96,8 +96,8 @@ const MainHome = () => {
             }}
           ></Box>
           <Typography
-            variant="h4"
-            component={'h4'}
+            variant="h6"
+            component={'h6'}
             sx={{
               backgroundColor: 'gray',
               width: 'fit-content',

@@ -11,6 +11,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuIcon from '@mui/icons-material/Menu';
 import { deleteCookie } from 'cookies-next';
 import { localStorageSetter } from '@/utils/localStorage';
+import Link from 'next/link';
+import { pageLevelLocalization } from '@/constants/localization';
 
 export default function HeaderAdmin() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
@@ -20,9 +22,6 @@ export default function HeaderAdmin() {
 
   const handleToDashboard = () => {
     location.href = '/admin-dashboard';
-  };
-  const handleToHomePage = () => {
-    router.push('/');
   };
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -62,17 +61,23 @@ export default function HeaderAdmin() {
             component="div"
             sx={{ mx: 2, cursor: 'pointer', fontWeight: '600' }}
           >
-            داشبورد
+            {pageLevelLocalization.adminHeader.dashboard}
           </Typography>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box
+            sx={{
+              flexGrow: 0,
+            }}
+          >
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <MenuIcon />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{
+                mt: '45px',
+              }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -87,16 +92,34 @@ export default function HeaderAdmin() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="right" onClick={handleToHomePage}>
-                  خانه
+              <Link href={'/'}>
+                <MenuItem
+                  sx={{ display: 'flex', justifyContent: 'flex-end' }}
+                  onClick={handleCloseUserMenu}
+                >
+                  <Typography>
+                    {pageLevelLocalization.adminHeader.home}
+                  </Typography>
+                </MenuItem>
+              </Link>
+              <MenuItem
+                sx={{ display: 'flex', justifyContent: 'flex-end' }}
+                onClick={handleCloseUserMenu}
+              >
+                <Typography onClick={logOutHandler}>
+                  {pageLevelLocalization.adminHeader.exit}
                 </Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="right" onClick={logOutHandler}>
-                  خروج
-                </Typography>
-              </MenuItem>
+              <Link href={'/admin-dashboard/product-inventory'}>
+                <MenuItem
+                  sx={{ display: 'flex', justifyContent: 'flex-end' }}
+                  onClick={handleCloseUserMenu}
+                >
+                  <Typography>
+                    {pageLevelLocalization.adminHeader.inventory}
+                  </Typography>
+                </MenuItem>
+              </Link>
             </Menu>
           </Box>
         </Box>

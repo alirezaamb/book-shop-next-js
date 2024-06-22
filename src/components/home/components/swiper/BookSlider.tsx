@@ -17,6 +17,7 @@ import { useGetBooks } from '@/api/products/products.queries';
 import { BooksEntity } from '@/types/types';
 import Link from 'next/link';
 import { localization } from '@/constants/localization';
+import Image from 'next/image';
 
 export const BookSlider = () => {
   const { data: books } = useGetBooks();
@@ -34,7 +35,7 @@ export const BookSlider = () => {
     >
       {!!books && books?.length > 0 ? (
         books
-          ?.filter((book: BooksEntity) => book.salesAmount >= 10)
+          ?.filter((book: BooksEntity) => book.salesAmount >= 3)
           ?.map((book: BooksEntity) => (
             <SwiperSlide key={book.id}>
               <Link href={`/products/${book?.id}`}>

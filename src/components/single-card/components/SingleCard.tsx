@@ -58,7 +58,7 @@ export const SingleCard = () => {
             autoPlay={false}
             navButtonsAlwaysInvisible
           >
-            {book.pictures.map((url: string, index: number) => (
+            {book?.pictures?.map((url: string, index: number) => (
               <Box
                 key={index}
                 component="img"

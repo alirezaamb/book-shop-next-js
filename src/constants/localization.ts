@@ -6,6 +6,8 @@ export const localization = {
   addToCart: 'خرید و خواندن کتاب',
   toman: 'تومان',
   search: 'جست و جو',
+  bookStore: 'فروشگاه کتاب',
+  adminDashboard: 'داشبورد ادمین',
 };
 
 export const pageLevelLocalization = {
@@ -46,5 +48,11 @@ export const pageLevelLocalization = {
     price: 'قیمت',
     imgURL: 'عکس',
     error: 'باید پر شود.',
+  },
+  adminHeader: {
+    dashboard: 'داشبورد',
+    home: 'خانه',
+    exit: 'خروج',
+    inventory: 'موجودی و قیمت',
   },
 };

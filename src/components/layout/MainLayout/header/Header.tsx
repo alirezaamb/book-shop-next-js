@@ -52,9 +52,6 @@ export default function Header() {
     setAnchorElUser(null);
   };
   const cookie = getCookie('role');
-  const handleToAdminDashboard = () => {
-    router.push('admin-dashboard');
-  };
 
   React.useEffect(() => {
     const username = localStorageGetter('name');
@@ -173,7 +170,7 @@ export default function Header() {
                     },
                   }}
                 >
-                  فروشگاه کتاب
+                  {localization.bookStore}
                 </Typography>
               </Link>
             </Box>
@@ -225,14 +222,13 @@ export default function Header() {
                 onClose={handleCloseUserMenu}
               >
                 {cookie === 'admin' && (
-                  <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography
-                      textAlign="right"
-                      onClick={handleToAdminDashboard}
-                    >
-                      داشبورد ادمین
-                    </Typography>
-                  </MenuItem>
+                  <Link href={'/admin-dashboard'}>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Typography textAlign="right">
+                        {localization.adminDashboard}
+                      </Typography>
+                    </MenuItem>
+                  </Link>
                 )}
 
                 <MenuItem onClick={() => signOutHandler(router)}>

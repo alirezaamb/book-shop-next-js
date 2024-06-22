@@ -83,3 +83,6 @@
   background-color: #ffa500;
   border-radius: 20px;
 }
+.swiper-scrollbar {
+  display: none;
+}
