@@ -29,7 +29,8 @@ export const BookSlider = () => {
       slidesPerView={5}
       navigation
       pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}
+      scrollbar={{ draggable: true, hide: true }}
+      className="custom-swiper"
     >
       {!!books && books?.length > 0 ? (
         books

@@ -30,6 +30,7 @@ export const DiscountSlider = () => {
       navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
+      className="custom-swiper"
     >
       {!!books && books?.length > 0 ? (
         books

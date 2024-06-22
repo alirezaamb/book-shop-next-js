@@ -29,6 +29,7 @@ export const PublisherSlider = () => {
       navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
+      className="custom-swiper"
     >
       {!!publisherPhotos && publisherPhotos?.length > 0 ? (
         publisherPhotos?.map((publisher: Publisher) => (

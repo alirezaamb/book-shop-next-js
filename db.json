@@ -13,21 +13,23 @@
         "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/28aa45892d77444c9eef11395b2a3a7a.jpg?width=170"
       ],
-      "salesAmount": 2
+      "salesAmount": 2,
+      "inventory": "13"
     },
     {
       "id": "2",
       "name": "هنر ظریف رهایی از دغدغه ها3",
       "author": "مارک منسن",
       "desc": "نشر میلکان",
-      "price": 126000,
+      "price": "130000",
       "discount": 0,
       "imgURL": "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
       "pictures": [
         "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/104418f5c82a4ec4b9adee31e275fc9a.jpg?width=170"
       ],
-      "salesAmount": 2
+      "salesAmount": 2,
+      "inventory": "23"
     },
     {
       "id": "3",
@@ -41,7 +43,8 @@
         "https://milkan.ir/wp-content/uploads/2021/06/Limitless-k1-600x921.jpg",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8_pAf8mnS5BJJKcrcmtHcZx9H5l-_KHtZfDORbBL_lG9V1x3Dke1AUxzh02JuxrqvKog&usqp=CAU"
       ],
-      "salesAmount": 12
+      "salesAmount": 1,
+      "inventory": "31"
     },
     {
       "id": "4",
@@ -56,7 +59,8 @@
         "https://milkan.ir/wp-content/uploads/2021/12/Reinventing-Your-Life-k1.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/340816aa9e854c4c80d65f8578f908c1.jpg?width=170"
       ],
-      "salesAmount": 0
+      "salesAmount": 0,
+      "inventory": 6
     },
     {
       "id": "5",
@@ -71,7 +75,8 @@
         "https://milkan.ir/wp-content/uploads/2019/10/54774.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/9237b79ac90842cdafd130eb58630000.jpg?width=170"
       ],
-      "salesAmount": 16
+      "salesAmount": 1,
+      "inventory": 66
     },
     {
       "id": "6",
@@ -86,7 +91,8 @@
         "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C1.jpg",
         "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C2.jpg"
       ],
-      "salesAmount": 5
+      "salesAmount": 5,
+      "inventory": 6
     },
     {
       "id": "7",
@@ -101,7 +107,8 @@
         "https://cdn.kowsarsamaneh.com/WebResources/aamout.ir/Images/Goods/BigImages/9786006605159.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/c869ed6c555a455ea2f9ba7ecdaf2f6f.jpg"
       ],
-      "salesAmount": 24
+      "salesAmount": 2,
+      "inventory": 64
     },
     {
       "id": "8",
@@ -116,7 +123,8 @@
         "https://www.aamout.com/images/books/foreign/1401-12.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/f912f772994f4eda8972479b8d59630b.jpg"
       ],
-      "salesAmount": 4
+      "salesAmount": 4,
+      "inventory": 6
     },
     {
       "id": "9",
@@ -131,7 +139,8 @@
         "https://www.aamout.com/images/books/foreign/1401-08.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/c10a64962a2b46a89041b5777c502ccf.jpg"
       ],
-      "salesAmount": 4
+      "salesAmount": 4,
+      "inventory": 6
     },
     {
       "id": "10",
@@ -146,7 +155,8 @@
         "https://www.aamout.com/images/books/foreign/the-horse-dancer.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/1fc4d21525cf46afbd8b0c3be9e54148.jpg?width=170"
       ],
-      "salesAmount": 0
+      "salesAmount": 0,
+      "inventory": 6
     },
     {
       "id": "11",
@@ -161,7 +171,8 @@
         "https://www.aamout.com/images/books/foreign/foreign-fruit.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/4cdb263ad3a3419ebd032ad3d4695c4c.jpg"
       ],
-      "salesAmount": 10
+      "salesAmount": 1,
+      "inventory": 60
     },
     {
       "id": "12",
@@ -176,7 +187,8 @@
         "https://www.aamout.com/images/books/foreign/Me-Before-You.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/1b74670f93144edbb84bf8c6b180a276.jpg?width=170"
       ],
-      "salesAmount": 30
+      "salesAmount": 3,
+      "inventory": 60
     },
     {
       "id": "13",
@@ -191,7 +203,8 @@
         "https://www.aamout.com/images/books/foreign/after-you.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/e5bd59d1b80f49a98d5d8c4bedefb06e.jpg?width=170"
       ],
-      "salesAmount": 8
+      "salesAmount": 8,
+      "inventory": 6
     },
     {
       "id": "14",
@@ -206,7 +219,8 @@
         "https://www.aamout.com/images/books/foreign/Still-Me.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/ce5284d565064ab2bd462f1ce2f7d55f.jpg?width=170"
       ],
-      "salesAmount": 4
+      "salesAmount": 4,
+      "inventory": 6
     },
     {
       "id": "15",
@@ -221,7 +235,8 @@
         "https://www.aamout.com/images/books/persian/Zahoo.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/4cf5e0b61a0346b8a79290128c3c7da2.jpg?width=170"
       ],
-      "salesAmount": 10
+      "salesAmount": 1,
+      "inventory": 60
     },
     {
       "id": "16",
@@ -236,7 +251,8 @@
         "https://www.aamout.com/images/books/persian/photo_2018-04-23_10-58-51.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/ef3e1d4b6fb844ec9401349b72a71496.jpg?width=170"
       ],
-      "salesAmount": 12
+      "salesAmount": 1,
+      "inventory": 62
     },
     {
       "id": "17",
@@ -251,7 +267,8 @@
         "https://www.aamout.com/images/books/persian/photo_2018-05-29_10-59-56.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/a2b7d6980b0346749b055178cdd32b2b.jpg?width=170"
       ],
-      "salesAmount": 1
+      "salesAmount": 1,
+      "inventory": 6
     },
     {
       "id": "18",
@@ -266,7 +283,8 @@
         "https://www.aamout.com/images/books/foreign/1403-04.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/a2b7d6980b0346749b055178cdd32b2b.jpg?width=170"
       ],
-      "salesAmount": 12
+      "salesAmount": 1,
+      "inventory": 62
     },
     {
       "name": "خانه داری ",

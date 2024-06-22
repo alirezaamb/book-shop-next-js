@@ -34,7 +34,7 @@ export default function AddProduct({
   const { mutate: addBook } = useAddBook();
 
   // Mutate the edit data
-  const { mutate: editBook } = useEditBook();
+  const { mutate: editBook } = useEditBook(editId!);
 
   // Get data for edit if editId is provided
   const { data } = useGetBookById(editId);
