@@ -21,7 +21,7 @@
       "name": "هنر ظریف رهایی از دغدغه ها3",
       "author": "مارک منسن",
       "desc": "نشر میلکان",
-      "price": "130000",
+      "price": 130000,
       "discount": 0,
       "imgURL": "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
       "pictures": [
@@ -293,7 +293,8 @@
       "desc": "نشر آموت",
       "price": 200000,
       "imgURL": "https://www.aamout.com/images/books/foreign/1403-01.jpg",
-      "id": "19"
+      "id": "19",
+      "inventory": 20
     }
   ],
   "profiles": [
