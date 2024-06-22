@@ -2,6 +2,7 @@ import {
   UseMutationResult,
   useMutation,
   useQuery,
+  useQueryClient,
 } from '@tanstack/react-query';
 import { editedProduct, getBooks } from '../services';
 import { AxiosResponse } from 'axios';
@@ -13,18 +14,20 @@ export const useGetBooks = () => {
     queryFn: () => {
       return getBooks();
     },
-    refetchOnMount: 'always',
   });
 };
 
 export const useEditedBook = () => {
+  const queryClient = useQueryClient();
   const editMutation: UseMutationResult<
     AxiosResponse<any>,
     Error,
     BooksEntity
   > = useMutation({
     mutationFn: editedProduct,
-    mutationKey: ['editedBook'],
+    onSuccess: () => {
+      queryClient.invalidateQueries(['allBooks']);
+    },
   });
 
   return editMutation;

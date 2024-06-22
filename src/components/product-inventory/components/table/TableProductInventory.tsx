@@ -10,11 +10,14 @@ import {
   useEditedBook,
   useGetBooks,
 } from '@/components/product-inventory/hooks/index';
+import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { BooksEntity } from '@/types/types';
+import LoadingPage from '@/components/shared/loading/Loading';
+import { Box } from '@mui/material';
 
 const TableProductInventory = () => {
-  const { data } = useGetBooks();
+  const { data, isLoading } = useGetBooks();
   const [isEdit, setIsEdit] = useState<Record<string, boolean | number>>({
     price: false,
     inventory: false,
@@ -40,23 +43,41 @@ const TableProductInventory = () => {
     }
   };
 
-  const { mutate } = useEditedBook();
+  const { mutate, isPending } = useEditedBook();
+  console.log(isPending);
 
   const changeHandler = () => {
-    editedBooks.map((item) => {
-      mutate(item);
-    });
+    editedBooks.forEach((item) => mutate(item));
+  };
+  //   const changeHandler = async () => {
+  //     try {
+  //       await Promise.all(editedBooks.map((item) => mutate(item)));
+  //       // Optionally, you can reset the editedBooks state after successful mutation
+  //       setEditedBooks([]);
+  //       console.log('All changes have been saved successfully');
+  //     } catch (error) {
+  //       console.error('Error saving changes:', error);
+  //     }
+  //   };
+
+  if (isLoading || isPending) {
+    return <LoadingPage />;
+  }
+  const formatNumberToFarsi = (number) => {
+    return new Intl.NumberFormat('fa-IR', { useGrouping: true }).format(number);
   };
 
   return (
-    <>
-      <button onClick={changeHandler}>ثبت تغییرات</button>
+    <Box sx={{ p: 2 }}>
+      <Button onClick={changeHandler} variant={'default'} color="primary">
+        ثبت تغییرات
+      </Button>
       <Table dir="rtl">
         <TableHeader>
           <TableRow>
-            <TableHead className="text-right">نام محصول</TableHead>
-            <TableHead className="text-right">موجودی</TableHead>
-            <TableHead className="text-right">قیمت</TableHead>
+            <TableHead className="text-right w-1/3">نام محصول</TableHead>
+            <TableHead className="text-right w-1/3">موجودی</TableHead>
+            <TableHead className="text-right w-1/3">قیمت</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -86,7 +107,7 @@ const TableProductInventory = () => {
                       }}
                     />
                   ) : (
-                    <span>{book?.inventory}</span>
+                    <span>{formatNumberToFarsi(book?.inventory)}</span>
                   )}
                 </TableCell>
                 <TableCell
@@ -109,7 +130,7 @@ const TableProductInventory = () => {
                       }}
                     />
                   ) : (
-                    <span>{book?.price}</span>
+                    <span>{formatNumberToFarsi(book?.price)}</span>
                   )}
                 </TableCell>
               </TableRow>
@@ -117,7 +138,7 @@ const TableProductInventory = () => {
           })}
         </TableBody>
       </Table>
-    </>
+    </Box>
   );
 };
 
