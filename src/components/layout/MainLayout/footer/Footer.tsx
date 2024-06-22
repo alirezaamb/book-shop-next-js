@@ -6,7 +6,6 @@ import {
   Typography,
   IconButton,
   Divider,
-  colors,
 } from '@mui/material';
 import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
 
@@ -38,7 +37,6 @@ const Footer = () => {
             <Box
               sx={{
                 display: 'flex',
-                // justifyContent: 'space-between',
                 alignItems: 'center',
                 gap: '40%',
                 mb: 4,

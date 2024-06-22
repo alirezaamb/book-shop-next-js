@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -11,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Alert, Snackbar } from '@mui/material';
 import { SignUpType, UserType } from '@/types/types';
-import { useNewUser } from '../../hooks';
+import { useNewUser } from '@/api/auth/auth.queries';
 import { green } from '@mui/material/colors';
 
 export default function SignUp({ setSearchParams }: SignUpType) {

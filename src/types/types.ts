@@ -41,16 +41,16 @@ export interface Publisher {
   image: string;
   name: string;
 }
-export interface NewProductType {
-  imgURL: string;
-  id: string;
-  price: number;
-  name: string;
-  author: string;
-  translator: string;
-  desc: string;
-  file: File | undefined;
-}
+// export interface NewProductType {
+//   imgURL: string;
+//   id: string;
+//   price: number;
+//   name: string;
+//   author: string;
+//   translator: string;
+//   desc: string;
+//   file: File | undefined;
+// }
 
 export interface EditModalType {
   editModal: { isOpen: boolean; id: string };

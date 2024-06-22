@@ -16,7 +16,7 @@ import {
   useAddBook,
   useEditBook,
   useGetBookById,
-} from '@/components/admin-dashboard/hooks';
+} from '@/api/products/products.queries';
 
 export default function AddProduct({
   editId,

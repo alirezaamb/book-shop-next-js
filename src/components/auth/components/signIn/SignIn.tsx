@@ -16,7 +16,8 @@ import { useRouter } from 'next/router';
 import { setCookie } from 'cookies-next';
 import { localStorageSetter } from '@/utils/localStorage';
 import { Alert, Snackbar } from '@mui/material';
-import { useGetUsers } from '../../hooks';
+import { useGetUsers } from '@/api/auth/auth.queries';
+import LoadingPage from '@/components/shared/loading/Loading';
 
 export default function SignIn({ setSearchParams }: SingInType) {
   const router = useRouter();
@@ -25,13 +26,13 @@ export default function SignIn({ setSearchParams }: SingInType) {
     message: 'UserName or Password is incorrect',
   });
 
-  const [isLoading, setIsLoading] = React.useState(false);
-  const { data: allUsers } = useGetUsers();
+  const [isLoadingButton, setIsLoadingButton] = React.useState(false);
+  const { data: allUsers, isLoading } = useGetUsers();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setIsLoading(true);
+    setIsLoadingButton(true);
     if (allUsers) {
       const foundedUser = allUsers.find(
         (user: UserType) =>
@@ -43,12 +44,12 @@ export default function SignIn({ setSearchParams }: SingInType) {
         setCookie('access', true);
         setCookie('role', foundedUser.role);
         localStorageSetter('name', JSON.stringify(foundedUser.firstName));
-        setIsLoading(false);
+        setIsLoadingButton(false);
 
         router.push(foundedUser.role === 'admin' ? '/admin-dashboard' : '/');
       } else {
         setToastState((prev) => ({ ...prev, isOpen: true }));
-        setIsLoading(false);
+        setIsLoadingButton(false);
       }
     }
   };
@@ -59,6 +60,10 @@ export default function SignIn({ setSearchParams }: SingInType) {
   const handleClose = () => {
     setToastState((prev) => ({ ...prev, isOpen: false }));
   };
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -105,7 +110,7 @@ export default function SignIn({ setSearchParams }: SingInType) {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            disabled={isLoading}
+            disabled={isLoadingButton}
           >
             Sign In
           </Button>

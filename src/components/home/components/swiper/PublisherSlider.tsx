@@ -14,7 +14,7 @@ import 'swiper/css/scrollbar';
 import LoadingPage from '@/components/shared/loading/Loading';
 import { Box, Typography } from '@mui/material';
 import { Publisher } from '@/types/types';
-import { useGetPublisher } from '../../hooks';
+import { useGetPublisher } from '@/api/publisher/publisher.queries';
 
 export const PublisherSlider = () => {
   const { data: publisherPhotos } = useGetPublisher();

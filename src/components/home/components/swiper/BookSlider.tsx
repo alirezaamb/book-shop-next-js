@@ -13,7 +13,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import LoadingPage from '@/components/shared/loading/Loading';
 import { Box, Divider, Typography } from '@mui/material';
-import { useGetBooks } from '../../hooks';
+import { useGetBooks } from '@/api/products/products.queries';
 import { BooksEntity } from '@/types/types';
 import Link from 'next/link';
 import { localization } from '@/constants/localization';

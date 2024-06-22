@@ -1,7 +1,7 @@
 import { BooksEntity } from '../../../types/types';
 import CardOfBook from './card/Card';
 import LoadingPage from '../../shared/loading/Loading';
-import { useGetBooks } from '../hooks';
+import { useGetBooks } from '@/api/products/products.queries';
 
 const Products = () => {
   const { data: books, isLoading } = useGetBooks();
