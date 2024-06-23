@@ -27,7 +27,7 @@ const Footer = () => {
           <Grid
             item
             xs={12}
-            md={8}
+            md={10}
             sx={{
               display: 'flex',
               flexDirection: 'column',
@@ -44,7 +44,7 @@ const Footer = () => {
             >
               <Typography
                 variant="h5"
-                component="h2"
+                component="h5"
                 sx={{
                   fontWeight: 'bold',
                   ':hover': { color: 'yellow' },
@@ -53,42 +53,62 @@ const Footer = () => {
               >
                 فروشگاه کتاب
               </Typography>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 2,
-                  fontSize: '18px',
-                }}
-              >
-                <Box sx={{ fontWeight: 'bold' }}>راه های ارتباطی</Box>
-                <Box sx={{ display: 'flex' }}>
-                  <IconButton
-                    href="https://facebook.com"
-                    sx={{ color: 'gray.300', '&:hover': { color: '#1877F2' } }}
+              <Grid item xs={12} md={2}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2,
+                    fontSize: '18px',
+                  }}
+                >
+                  <Typography
+                    variant="h5"
+                    component="h5"
+                    sx={{ fontWeight: 'bold' }}
                   >
-                    <Facebook />
-                  </IconButton>
-                  <IconButton
-                    href="https://twitter.com"
-                    sx={{ color: 'gray.300', '&:hover': { color: '#1DA1F2' } }}
-                  >
-                    <Twitter />
-                  </IconButton>
-                  <IconButton
-                    href="https://instagram.com"
-                    sx={{ color: 'gray.300', '&:hover': { color: '#E1306C' } }}
-                  >
-                    <Instagram />
-                  </IconButton>
-                  <IconButton
-                    href="https://linkedin.com"
-                    sx={{ color: 'gray.300', '&:hover': { color: '#0A66C2' } }}
-                  >
-                    <LinkedIn />
-                  </IconButton>
+                    راه های ارتباطی
+                  </Typography>
+                  <Box sx={{ display: 'flex' }}>
+                    <IconButton
+                      href="https://facebook.com"
+                      sx={{
+                        color: 'gray.300',
+                        '&:hover': { color: '#1877F2' },
+                      }}
+                    >
+                      <Facebook />
+                    </IconButton>
+                    <IconButton
+                      href="https://twitter.com"
+                      sx={{
+                        color: 'gray.300',
+                        '&:hover': { color: '#1DA1F2' },
+                      }}
+                    >
+                      <Twitter />
+                    </IconButton>
+                    <IconButton
+                      href="https://instagram.com"
+                      sx={{
+                        color: 'gray.300',
+                        '&:hover': { color: '#E1306C' },
+                      }}
+                    >
+                      <Instagram />
+                    </IconButton>
+                    <IconButton
+                      href="https://linkedin.com"
+                      sx={{
+                        color: 'gray.300',
+                        '&:hover': { color: '#0A66C2' },
+                      }}
+                    >
+                      <LinkedIn />
+                    </IconButton>
+                  </Box>
                 </Box>
-              </Box>
+              </Grid>
             </Box>
             <Typography
               variant="body2"
@@ -108,8 +128,13 @@ const Footer = () => {
               تجربه خواندن برای شماست.
             </Typography>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold' }}>
+          <Grid item xs={12} md={1}>
+            <Typography
+              noWrap
+              variant="h5"
+              component="h2"
+              sx={{ fontWeight: 'bold' }}
+            >
               لینک‌ های سریع
             </Typography>
             <Box sx={{ mt: 2 }}>

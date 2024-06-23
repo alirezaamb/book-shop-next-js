@@ -1,27 +1,21 @@
 {
   "books": [
     {
-      "id": "1",
       "name": "قدرت شروع ناقص  ",
       "author": "جیمز کلییر",
-      "desc": "نشر میلکان",
       "translator": "سید ایوب کوکبی، فرزانه حاج خلیلی",
-      "price": 136500,
-      "discount": 12,
+      "desc": "نشر میلکان",
+      "price": 136000,
       "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
-      "pictures": [
-        "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
-        "https://www.iranketab.ir/Files/AttachFiles/28aa45892d77444c9eef11395b2a3a7a.jpg?width=170"
-      ],
-      "salesAmount": 2,
-      "inventory": "12"
+      "id": "1",
+      "inventory": "20"
     },
     {
       "id": "2",
       "name": "هنر ظریف رهایی از دغدغه ها3",
       "author": "مارک منسن",
       "desc": "نشر میلکان",
-      "price": 130000,
+      "price": 150000,
       "discount": 0,
       "imgURL": "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
       "pictures": [
@@ -29,14 +23,14 @@
         "https://www.iranketab.ir/Files/AttachFiles/104418f5c82a4ec4b9adee31e275fc9a.jpg?width=170"
       ],
       "salesAmount": 2,
-      "inventory": "23"
+      "inventory": "21"
     },
     {
       "id": "3",
       "name": "بی حد و مرز ",
       "author": "جیم کوییک",
       "desc": "نشر میلکان",
-      "price": 145000,
+      "price": 189000,
       "discount": 39,
       "imgURL": "https://milkan.ir/wp-content/uploads/2021/06/Limitless-k1-600x921.jpg",
       "pictures": [
@@ -44,7 +38,7 @@
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8_pAf8mnS5BJJKcrcmtHcZx9H5l-_KHtZfDORbBL_lG9V1x3Dke1AUxzh02JuxrqvKog&usqp=CAU"
       ],
       "salesAmount": 1,
-      "inventory": "31"
+      "inventory": "43"
     },
     {
       "id": "4",
@@ -52,7 +46,7 @@
       "author": "جفری یانگ و جنت کلوسکو",
       "desc": "نشر میلکان",
       "translator": "رضا اکبری",
-      "price": 142000,
+      "price": 245000,
       "discount": 18,
       "imgURL": "https://milkan.ir/wp-content/uploads/2021/12/Reinventing-Your-Life-k1.jpg",
       "pictures": [
@@ -60,7 +54,7 @@
         "https://www.iranketab.ir/Files/AttachFiles/340816aa9e854c4c80d65f8578f908c1.jpg?width=170"
       ],
       "salesAmount": 0,
-      "inventory": 6
+      "inventory": "11"
     },
     {
       "id": "5",
@@ -68,7 +62,7 @@
       "author": "جیمز کلییر",
       "translator": "زهرا صادقی",
       "desc": "نشر میلکان",
-      "price": 133700,
+      "price": 95000,
       "discount": 18,
       "imgURL": "https://milkan.ir/wp-content/uploads/2019/10/54774.jpg",
       "pictures": [
@@ -76,7 +70,7 @@
         "https://www.iranketab.ir/Files/AttachFiles/9237b79ac90842cdafd130eb58630000.jpg?width=170"
       ],
       "salesAmount": 1,
-      "inventory": 66
+      "inventory": "12"
     },
     {
       "id": "6",
@@ -84,7 +78,7 @@
       "author": "آدام آلتر",
       "translator": "آراز بارسقیان",
       "desc": "نشر میلکان",
-      "price": 255000,
+      "price": 450000,
       "discount": 0,
       "imgURL": "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C1.jpg",
       "pictures": [

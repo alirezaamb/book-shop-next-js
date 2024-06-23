@@ -28,7 +28,7 @@ export const SingleCard = () => {
   );
 
   const handleNext = () => {
-    setCarouselIndex((prev) => (prev + 1) % book.pictures.length);
+    setCarouselIndex((prev) => (prev + 1) % book.pictures?.length);
   };
 
   const handlePrev = () => {
@@ -80,7 +80,7 @@ export const SingleCard = () => {
             <ArrowForwardIosIcon />
           </IconButton>
           <Box sx={{ display: 'flex', overflow: 'hidden', width: '80%' }}>
-            {book.pictures.map((url: string, index: number) => (
+            {book?.pictures?.map((url: string, index: number) => (
               <Box
                 key={index}
                 component="img"
@@ -171,7 +171,9 @@ export const SingleCard = () => {
               <Typography variant="body2" color="text.secondary">
                 حجم
               </Typography>
-              <Typography variant="body1">340/8 مگابایت</Typography>
+              <Typography variant="body1">
+                {(340 / 8).toLocaleString('fa')} مگابایت
+              </Typography>
             </Box>
             <Divider
               orientation="vertical"

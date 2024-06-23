@@ -55,4 +55,10 @@ export const pageLevelLocalization = {
     exit: 'خروج',
     inventory: 'موجودی و قیمت',
   },
+  inventory: {
+    submitChanges: 'ثبت تغییرات',
+    nameOfProduct: 'نام محصول',
+    inventory: 'موجودی',
+    price: 'قیمت',
+  },
 };

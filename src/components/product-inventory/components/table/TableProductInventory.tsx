@@ -11,7 +11,8 @@ import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { BooksEntity } from '@/types/types';
 import LoadingPage from '@/components/shared/loading/Loading';
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
+import { pageLevelLocalization } from '@/constants/localization';
 
 const TableProductInventory = () => {
   const { data, isLoading } = useGetBooks();
@@ -22,7 +23,6 @@ const TableProductInventory = () => {
 
   const [books, setBooks] = useState<BooksEntity[]>([]);
   const [editedBooks, setEditedBooks] = useState<BooksEntity[]>([]);
-  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
     setBooks(data);
@@ -48,9 +48,10 @@ const TableProductInventory = () => {
     editedBooks.forEach((item) => {
       return mutate(item);
     });
+    setEditedBooks([]);
   };
 
-  if (isLoading || isPending) {
+  if (isLoading) {
     return <LoadingPage />;
   }
   const formatNumberToFarsi = (number: number) => {
@@ -59,77 +60,92 @@ const TableProductInventory = () => {
 
   return (
     <Box sx={{ p: 2 }}>
-      <Button onClick={changeHandler} variant={'default'} color="primary">
-        ثبت تغییرات
+      <Button
+        onClick={changeHandler}
+        variant={'default'}
+        color="primary"
+        className="absolute top-20"
+      >
+        {isPending ? (
+          <CircularProgress color="inherit" />
+        ) : (
+          `${pageLevelLocalization.inventory.submitChanges}`
+        )}
       </Button>
-      <Table dir="rtl">
-        <TableHeader>
-          <TableRow>
-            <TableHead className="text-right w-1/3">نام محصول</TableHead>
-            <TableHead className="text-right w-1/3">موجودی</TableHead>
-            <TableHead className="text-right w-1/3">قیمت</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {books?.map((book: any, index: number) => {
-            return (
-              <TableRow key={index}>
-                <TableCell className="font-medium">
-                  <span>{book?.name}</span>
-                </TableCell>
-                <TableCell
-                  onClick={() => {
-                    setIsEdit((prev) => ({
-                      ...prev,
-                      inventory: book.id,
-                    }));
-                  }}
-                >
-                  {isEdit.inventory === book?.id ? (
-                    <input
-                      defaultValue={book?.inventory}
-                      onBlur={(e) => {
-                        let temp = books;
-                        temp[index] = { ...book, inventory: e.target.value };
-                        editHandler(temp[index]);
-                        setIsEdit((prev) => ({ ...prev, inventory: false }));
-                        setBooks(temp);
-                        setDisableButton(true);
-                      }}
-                    />
-                  ) : (
-                    <span>{formatNumberToFarsi(book?.inventory)}</span>
-                  )}
-                </TableCell>
-                <TableCell
-                  onClick={() => {
-                    setIsEdit((prev) => ({
-                      ...prev,
-                      price: book.id,
-                    }));
-                  }}
-                >
-                  {isEdit.price === book?.id ? (
-                    <input
-                      defaultValue={book?.price}
-                      onBlur={(e) => {
-                        let temp = books;
-                        temp[index] = { ...book, price: e.target.value };
-                        setIsEdit((prev) => ({ ...prev, price: false }));
-                        setBooks(temp);
-                        editHandler(temp[index]);
-                        setDisableButton(true);
-                      }}
-                    />
-                  ) : (
-                    <span>{formatNumberToFarsi(book?.price)}</span>
-                  )}
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+      <Box sx={{ mt: 6 }}>
+        <Table dir="rtl">
+          <TableHeader>
+            <TableRow>
+              <TableHead className="text-right w-1/3">
+                {pageLevelLocalization.inventory.nameOfProduct}
+              </TableHead>
+              <TableHead className="text-right w-1/3">
+                {pageLevelLocalization.inventory.inventory}
+              </TableHead>
+              <TableHead className="text-right w-1/3">
+                {pageLevelLocalization.inventory.price}
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {books?.map((book: any, index: number) => {
+              return (
+                <TableRow key={index}>
+                  <TableCell className="font-medium">
+                    <span>{book?.name}</span>
+                  </TableCell>
+                  <TableCell
+                    onClick={() => {
+                      setIsEdit((prev) => ({
+                        ...prev,
+                        inventory: book.id,
+                      }));
+                    }}
+                  >
+                    {isEdit.inventory === book?.id ? (
+                      <input
+                        defaultValue={book?.inventory}
+                        onBlur={(e) => {
+                          let temp = [...books];
+                          temp[index] = { ...book, inventory: e.target.value };
+                          editHandler(temp[index]);
+                          setIsEdit((prev) => ({ ...prev, inventory: false }));
+                          setBooks(temp);
+                        }}
+                      />
+                    ) : (
+                      <span>{formatNumberToFarsi(book?.inventory)}</span>
+                    )}
+                  </TableCell>
+                  <TableCell
+                    onClick={() => {
+                      setIsEdit((prev) => ({
+                        ...prev,
+                        price: book.id,
+                      }));
+                    }}
+                  >
+                    {isEdit.price === book?.id ? (
+                      <input
+                        defaultValue={book?.price}
+                        onBlur={(e) => {
+                          let temp = [...books];
+                          temp[index] = { ...book, price: e.target.value };
+                          setIsEdit((prev) => ({ ...prev, price: false }));
+                          setBooks(temp);
+                          editHandler(temp[index]);
+                        }}
+                      />
+                    ) : (
+                      <span>{formatNumberToFarsi(book?.price)}</span>
+                    )}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Box>
     </Box>
   );
 };
