@@ -61,4 +61,12 @@ export const pageLevelLocalization = {
     inventory: 'موجودی',
     price: 'قیمت',
   },
+  cart: {
+    submit: 'ثبت',
+    totalPrice: 'قیمت کل',
+    toman: 'تومان',
+    discount: 'تخفیف',
+    amountPayable: 'مبلغ قابل پرداخت',
+    finalThePurchase: 'نهایی کردن خرید',
+  },
 };

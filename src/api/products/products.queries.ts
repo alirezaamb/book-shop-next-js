@@ -11,9 +11,6 @@ import {
   getBooks,
   newProduct,
 } from '@/api/products/products.api';
-import { AxiosResponse } from 'axios';
-import { NewProductType } from '@/api/products/products.type';
-import { BooksEntity } from '@/types/types';
 
 export const useGetBooks = () => {
   return useQuery({

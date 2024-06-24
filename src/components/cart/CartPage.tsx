@@ -3,6 +3,7 @@ import CardOfCart from './components/card/Card';
 import { useGetAllCartItems } from '@/api/cart/cart.queries';
 import { Box, Grid } from '@mui/material';
 import { BooksOfCartType } from '@/types/types';
+import TotalCard from './components/total-card/TotalCard';
 
 const CartPage = () => {
   const [books, setBooks] = useState<BooksOfCartType[]>([]);
@@ -32,11 +33,12 @@ const CartPage = () => {
 
   console.log(totalAmount);
   return (
-    <Box sx={{ mx: 'auto' }}>
+    <Box sx={{ mx: 'auto', display: 'flex', gap: 3 }}>
+      <TotalCard totalPrice={totalAmount} />
       <Grid container rowGap={3}>
         {books?.map((book, index) => {
           return (
-            <Grid item key={index} xs={12} md={6} xl={4}>
+            <Grid item key={index} xs={12} md={6}>
               <CardOfCart book={book} updateQuantity={updateQuantity} />
             </Grid>
           );
