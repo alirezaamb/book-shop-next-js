@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
   Box,
@@ -19,21 +19,42 @@ import {
   pageLevelLocalization,
 } from '../../../constants/localization';
 import Carousel from 'react-material-ui-carousel';
+import {
+  useAddToCart,
+  useGetAllCartItems,
+  useUpdateItemOfCart,
+} from '@/api/cart/cart.queries';
+import BasicModal from '@/components/shared/modal/Modal';
 
 export const SingleCard = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const router = useRouter();
-  const { data: book, isLoading } = useGetBookById(
-    router.query.bookId as string
-  );
+  const { data, isLoading } = useGetBookById(router.query.bookId as string);
+  const [modal, setModal] = useState({
+    isOpen: false,
+    message: 'محصول با موفقیت به سبد خرید افزوده شد',
+  });
+  const { mutate: addToCart } = useAddToCart();
+  //get all item in cart
+  const { data: getCartItems } = useGetAllCartItems();
+  //update item
+  const { mutate: updateItem } = useUpdateItemOfCart();
+
+  useEffect(() => {
+    if (data) {
+      setCarouselIndex(0);
+    }
+  }, [data]);
 
   const handleNext = () => {
-    setCarouselIndex((prev) => (prev + 1) % book.pictures?.length);
+    setCarouselIndex((prev) => (prev + 1) % (data?.pictures?.length || 1));
   };
 
   const handlePrev = () => {
     setCarouselIndex(
-      (prev) => (prev - 1 + book.pictures.length) % book.pictures.length
+      (prev) =>
+        (prev - 1 + (data?.pictures?.length || 1)) %
+        (data?.pictures?.length || 1)
     );
   };
 
@@ -41,7 +62,24 @@ export const SingleCard = () => {
     return <LoadingPage />;
   }
 
-  return book ? (
+  if (!data) {
+    return <Typography variant="h6">Book not found</Typography>;
+  }
+
+  const addToCartHandler = () => {
+    const cartItems = Array.isArray(getCartItems?.data)
+      ? getCartItems.data
+      : [];
+
+    const duplicate = cartItems.find((card) => card.id === data.id);
+    if (!duplicate) {
+      addToCart({ ...data, quantity: 1 });
+    } else {
+      updateItem({ id: data.id, quantity: duplicate.quantity + 1 });
+    }
+  };
+
+  return (
     <Container dir="rtl" sx={{ mt: 3, display: 'flex', gap: 4 }}>
       <Box
         sx={{
@@ -58,13 +96,13 @@ export const SingleCard = () => {
             autoPlay={false}
             navButtonsAlwaysInvisible
           >
-            {book?.pictures?.map((url: string, index: number) => (
+            {data?.pictures?.map((url: string, index: number) => (
               <Box
                 key={index}
                 component="img"
                 src={url}
                 alt={`Picture ${index + 1}`}
-                sx={{ width: '100%', height: '100%' }}
+                sx={{ width: '100%', height: '25rem', objectFit: 'cover' }}
               />
             ))}
           </Carousel>
@@ -80,7 +118,7 @@ export const SingleCard = () => {
             <ArrowForwardIosIcon />
           </IconButton>
           <Box sx={{ display: 'flex', overflow: 'hidden', width: '80%' }}>
-            {book?.pictures?.map((url: string, index: number) => (
+            {data.pictures.map((url: string, index: number) => (
               <Box
                 key={index}
                 component="img"
@@ -105,7 +143,7 @@ export const SingleCard = () => {
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         <Typography variant="h4" component="h2" fontWeight="bold" mt={5}>
-          {book.name}
+          {data.name}
         </Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
           <Box sx={{ display: 'flex', gap: 1 }}>
@@ -113,7 +151,7 @@ export const SingleCard = () => {
               {pageLevelLocalization.singleProduct.publisher}:
             </Typography>
             <Typography variant="h6" color="text.primary">
-              {book.desc}
+              {data.desc}
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
@@ -121,7 +159,7 @@ export const SingleCard = () => {
               {pageLevelLocalization.singleProduct.writer}:
             </Typography>
             <Typography variant="h6" color="text.primary">
-              {book.author}
+              {data.author}
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 1 }}>
@@ -129,7 +167,7 @@ export const SingleCard = () => {
               {pageLevelLocalization.singleProduct.translator}:
             </Typography>
             <Typography variant="h6" color="text.primary">
-              {book.translator}
+              {data.translator}
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', flexWrap: 'nowrap' }}>
@@ -201,7 +239,7 @@ export const SingleCard = () => {
               }}
             >
               <Typography variant="h4" fontWeight="bold" color="primary">
-                {book.price.toLocaleString('fa')}
+                {data.price.toLocaleString('fa')}
               </Typography>
               <Typography variant="body1" color="primary" fontWeight={600}>
                 {localization.toman}
@@ -212,14 +250,17 @@ export const SingleCard = () => {
             <Button variant="outlined" sx={{ mr: 2 }}>
               هدیه به دیگری
             </Button>
-            <Button variant="contained" color="primary">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addToCartHandler}
+            >
               {localization.addToCart}
             </Button>
           </Box>
         </Box>
       </Paper>
+      <BasicModal setModal={setModal} modal={modal} />
     </Container>
-  ) : (
-    <LoadingPage />
   );
 };

@@ -63,6 +63,10 @@ export default function AddProduct({
         imgURL: img,
         id: editId!,
         price,
+        pictures: [],
+        discount: 0,
+        salesAmount: 0,
+        inventory: 0,
       });
     } else {
       addBook({

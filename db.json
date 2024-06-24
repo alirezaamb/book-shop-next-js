@@ -5,17 +5,17 @@
       "author": "جیمز کلییر",
       "translator": "سید ایوب کوکبی، فرزانه حاج خلیلی",
       "desc": "نشر میلکان",
-      "price": 136000,
+      "price": "140000",
       "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
       "id": "1",
-      "inventory": "20"
+      "inventory": "25"
     },
     {
       "id": "2",
       "name": "هنر ظریف رهایی از دغدغه ها3",
       "author": "مارک منسن",
       "desc": "نشر میلکان",
-      "price": 150000,
+      "price": "160000",
       "discount": 0,
       "imgURL": "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
       "pictures": [
@@ -384,6 +384,53 @@
       "image": "https://www.30book.com/Media/Cust/1-37.jpg",
       "name": "نشر پرتقال",
       "id": "15"
+    }
+  ],
+  "cart": [
+    {
+      "id": "1",
+      "name": "قدرت شروع ناقص  ",
+      "price": 136000,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
+      "desc": "نشر میلکان",
+      "author": "جیمز کلییر",
+      "quantity": 6
+    },
+    {
+      "id": "2",
+      "name": "هنر ظریف رهایی از دغدغه ها3",
+      "price": 150000,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
+      "desc": "نشر میلکان",
+      "author": "مارک منسن",
+      "quantity": 3
+    },
+    {
+      "id": "3",
+      "name": "بی حد و مرز ",
+      "price": 189000,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2021/06/Limitless-k1-600x921.jpg",
+      "desc": "نشر میلکان",
+      "author": "جیم کوییک",
+      "quantity": 1
+    },
+    {
+      "id": "9",
+      "name": "به یاد او",
+      "price": 275000,
+      "imgURL": "https://www.aamout.com/images/books/foreign/1401-08.jpg",
+      "desc": "نشر آموت",
+      "author": "کالین هوور",
+      "quantity": 1
+    },
+    {
+      "id": "5",
+      "name": "خرده عادت ها",
+      "price": 95000,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2019/10/54774.jpg",
+      "desc": "نشر میلکان",
+      "author": "جیمز کلییر",
+      "quantity": 1
     }
   ]
 }
