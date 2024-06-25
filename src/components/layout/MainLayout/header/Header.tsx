@@ -14,9 +14,11 @@ import Tooltip from '@mui/material/Tooltip';
 import { deleteCookie, getCookie, hasCookie } from 'cookies-next';
 import { localStorageGetter, localStorageSetter } from '@/utils/localStorage';
 import Avatar from '@mui/material/Avatar';
-import { Container, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Badge, Container } from '@mui/material';
 import SearchBox from '../search-box/SearchBox';
-
+import MobileHeader from './MobileHeader';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { useGetAllCartItems } from '@/api/cart/cart.queries';
 //we should fix it the type
 const signOutHandler = (router: any) => {
   deleteCookie('access', { path: '/' });
@@ -25,14 +27,13 @@ const signOutHandler = (router: any) => {
 
   router.push('/auth');
 };
-
 export default function Header() {
   const router = useRouter();
   const [name, setName] = React.useState('');
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
-  const [alignment, setAlignment] = React.useState('web');
+  const [badgeCounter, setBadgeCounter] = React.useState(0);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
@@ -59,66 +60,7 @@ export default function Header() {
       setName(username);
     }
   }, []);
-  const handleChange = (event, newAlignment: string) => {
-    setAlignment(newAlignment);
-    if (event.target.value === 'home') {
-      return router.push('/');
-    } else if (event.target.value === 'about-us') {
-      return router.push('/about-us');
-    } else if (event.target.value === 'products') {
-      return router.push('/products');
-    }
-  };
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <Link href="/">
-        <MenuItem>
-          <IconButton
-            size="large"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          ></IconButton>
-          <p>{localization.home}</p>
-        </MenuItem>
-      </Link>
-      <Link href="products">
-        <MenuItem>
-          <IconButton
-            size="large"
-            aria-label="show 4 new mails"
-            color="inherit"
-          ></IconButton>
-          <p>{localization.products}</p>
-        </MenuItem>
-      </Link>
-      <Link href="about-us">
-        <MenuItem>
-          <IconButton
-            size="large"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          ></IconButton>
-          <p>{localization.aboutUs}</p>
-        </MenuItem>
-      </Link>
-    </Menu>
-  );
   function stringAvatar(name: string) {
     return {
       sx: {
@@ -127,15 +69,22 @@ export default function Header() {
       children: ` ${name ? name[0] : ''}`,
     };
   }
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+
+  const { data: length } = useGetAllCartItems();
+  React.useEffect(() => {
+    setBadgeCounter(length?.data.length);
+  }, [length]);
 
   return (
-    <Box sx={{ flexGrow: 1, mb: 20 }}>
+    <Box sx={{ flexGrow: 1, mb: 9 }}>
       <AppBar
         sx={{
-          bgcolor: '#FFC14D',
+          bgcolor: 'primary.main',
           color: 'black',
-          position: 'fixed',
+          position: 'absolute',
           right: '0',
+          boxShadow: '0 0 0 0',
         }}
       >
         <Container sx={{ maxWidth: '1600px' }}>
@@ -183,6 +132,13 @@ export default function Header() {
                 alignItems: 'center',
               }}
             >
+              <Link href={'/cart'}>
+                <Box sx={{ cursor: 'pointer' }}>
+                  <Badge color="secondary" badgeContent={badgeCounter}>
+                    <ShoppingCartOutlinedIcon />
+                  </Badge>
+                </Box>
+              </Link>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Box>
@@ -246,70 +202,7 @@ export default function Header() {
                 justifyContent: 'flex-end',
                 width: '100%',
               }}
-            >
-              <ToggleButtonGroup
-                color="standard"
-                value={alignment}
-                exclusive
-                onChange={handleChange}
-                aria-label="Platform"
-              >
-                <ToggleButton
-                  sx={{
-                    border: 'none',
-                    p: 0,
-                    mr: 3,
-                    fontSize: '16px',
-                    '&.Mui-selected': {
-                      bgcolor: 'transparent',
-                      borderBottom: '2px solid',
-                    },
-                    '&:hover': {
-                      bgcolor: 'transparent',
-                    },
-                  }}
-                  value="about-us"
-                >
-                  {localization.aboutUs}
-                </ToggleButton>
-                <ToggleButton
-                  sx={{
-                    border: 'none',
-                    p: 0,
-                    mr: 3,
-                    fontSize: '16px',
-                    '&.Mui-selected': {
-                      bgcolor: 'transparent',
-                      borderBottom: '2px solid',
-                    },
-                    '&:hover': {
-                      bgcolor: 'transparent',
-                    },
-                  }}
-                  value="products"
-                >
-                  {localization.products}
-                </ToggleButton>
-                <ToggleButton
-                  sx={{
-                    border: 'none',
-                    p: 0,
-                    mr: 3,
-                    fontSize: '16px',
-                    '&.Mui-selected': {
-                      bgcolor: 'transparent',
-                      borderBottom: '2px solid',
-                    },
-                    '&:hover': {
-                      bgcolor: 'transparent',
-                    },
-                  }}
-                  value="home"
-                >
-                  {localization.home}
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </Box>
+            ></Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
@@ -328,7 +221,11 @@ export default function Header() {
       <Box
         sx={{ display: 'flex', justifyContent: 'flex-end', bgcolor: 'white' }}
       >
-        {renderMobileMenu}
+        <MobileHeader
+          mobileMoreAnchorEl={mobileMoreAnchorEl}
+          isMobileMenuOpen={isMobileMenuOpen}
+          handleMobileMenuClose={handleMobileMenuClose}
+        />
       </Box>
     </Box>
   );

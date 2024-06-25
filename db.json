@@ -388,24 +388,6 @@
   ],
   "cart": [
     {
-      "id": "1",
-      "name": "قدرت شروع ناقص  ",
-      "price": 136000,
-      "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
-      "desc": "نشر میلکان",
-      "author": "جیمز کلییر",
-      "quantity": 6
-    },
-    {
-      "id": "2",
-      "name": "هنر ظریف رهایی از دغدغه ها3",
-      "price": 150000,
-      "imgURL": "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
-      "desc": "نشر میلکان",
-      "author": "مارک منسن",
-      "quantity": 3
-    },
-    {
       "id": "3",
       "name": "بی حد و مرز ",
       "price": 189000,

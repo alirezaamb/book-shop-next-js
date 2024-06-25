@@ -33,7 +33,7 @@ const CartPage = () => {
 
   console.log(totalAmount);
   return (
-    <Box sx={{ mx: 'auto', display: 'flex', gap: 3 }}>
+    <Box sx={{ mx: 'auto', display: 'flex', gap: 3, mt: 4 }}>
       <TotalCard totalPrice={totalAmount} />
       <Grid container rowGap={3}>
         {books?.map((book, index) => {
