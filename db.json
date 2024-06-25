@@ -78,7 +78,7 @@
       "author": "آدام آلتر",
       "translator": "آراز بارسقیان",
       "desc": "نشر میلکان",
-      "price": 450000,
+      "price": 250000,
       "discount": 0,
       "imgURL": "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C1.jpg",
       "pictures": [
@@ -94,7 +94,7 @@
       "author": "کالین هوور",
       "translator": "آرتمیس مسعودی",
       "desc": "نشر آموت",
-      "price": 255000,
+      "price": 240000,
       "discount": 25,
       "imgURL": "https://cdn.kowsarsamaneh.com/WebResources/aamout.ir/Images/Goods/BigImages/9786006605159.jpg",
       "pictures": [
@@ -430,6 +430,24 @@
       "imgURL": "https://milkan.ir/wp-content/uploads/2019/10/54774.jpg",
       "desc": "نشر میلکان",
       "author": "جیمز کلییر",
+      "quantity": 1
+    },
+    {
+      "id": "6",
+      "name": "آناتومی پیشرقت های شگرف",
+      "price": 250000,
+      "imgURL": "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C1.jpg",
+      "desc": "نشر میلکان",
+      "author": "آدام آلتر",
+      "quantity": 1
+    },
+    {
+      "id": "7",
+      "name": "ما تمامش میکنیم",
+      "price": 240000,
+      "imgURL": "https://cdn.kowsarsamaneh.com/WebResources/aamout.ir/Images/Goods/BigImages/9786006605159.jpg",
+      "desc": "نشر آموت",
+      "author": "کالین هوور",
       "quantity": 1
     }
   ]
