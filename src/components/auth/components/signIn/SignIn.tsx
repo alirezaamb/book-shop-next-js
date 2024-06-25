@@ -1,29 +1,29 @@
 /* eslint-disable react/no-unescaped-entities */
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { SingInType, UserType } from '@/types/types';
-import { useRouter } from 'next/router';
-import { setCookie } from 'cookies-next';
-import { localStorageSetter } from '@/utils/localStorage';
-import { Alert, Snackbar } from '@mui/material';
-import { useGetUsers } from '@/api/auth/auth.queries';
-import LoadingPage from '@/components/shared/loading/Loading';
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { SingInType, UserType } from "@/types/types";
+import { useRouter } from "next/router";
+import { setCookie } from "cookies-next";
+import { localStorageSetter } from "@/utils/localStorage";
+import { Alert, Snackbar } from "@mui/material";
+import { useGetUsers } from "@/api/auth/auth.queries";
+import LoadingPage from "@/components/shared/loading/Loading";
 
 export default function SignIn({ setSearchParams }: SingInType) {
   const router = useRouter();
   const [toastState, setToastState] = React.useState({
     isOpen: false,
-    message: 'UserName or Password is incorrect',
+    message: "UserName or Password is incorrect",
   });
 
   const [isLoadingButton, setIsLoadingButton] = React.useState(false);
@@ -36,17 +36,18 @@ export default function SignIn({ setSearchParams }: SingInType) {
     if (allUsers) {
       const foundedUser = allUsers.find(
         (user: UserType) =>
-          user.email === data.get('email') &&
-          user.password === data.get('password')
+          user.email === data.get("email") &&
+          user.password === data.get("password")
       );
 
       if (foundedUser) {
-        setCookie('access', true);
-        setCookie('role', foundedUser.role);
-        localStorageSetter('name', JSON.stringify(foundedUser.firstName));
+        setCookie("access", true);
+        setCookie("role", foundedUser.role);
+        setCookie("id", foundedUser.id);
+        localStorageSetter("name", JSON.stringify(foundedUser.firstName));
         setIsLoadingButton(false);
 
-        router.push(foundedUser.role === 'admin' ? '/admin-dashboard' : '/');
+        router.push(foundedUser.role === "admin" ? "/admin-dashboard" : "/");
       } else {
         setToastState((prev) => ({ ...prev, isOpen: true }));
         setIsLoadingButton(false);
@@ -55,7 +56,7 @@ export default function SignIn({ setSearchParams }: SingInType) {
   };
 
   const handleSignUpLinkClick = () => {
-    setSearchParams({ action: 'signup' });
+    setSearchParams({ action: "signup" });
   };
   const handleClose = () => {
     setToastState((prev) => ({ ...prev, isOpen: false }));
@@ -71,12 +72,12 @@ export default function SignIn({ setSearchParams }: SingInType) {
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -114,7 +115,7 @@ export default function SignIn({ setSearchParams }: SingInType) {
           >
             Sign In
           </Button>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Link href="#" variant="body2">
               <Box onClick={handleSignUpLinkClick}>
                 "Don't have an account? Sign Up"
@@ -125,7 +126,7 @@ export default function SignIn({ setSearchParams }: SingInType) {
       </Box>
       <Snackbar
         autoHideDuration={2000}
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
         open={toastState.isOpen}
         onClose={handleClose}
       >
@@ -133,7 +134,7 @@ export default function SignIn({ setSearchParams }: SingInType) {
           onClose={handleClose}
           severity="error"
           variant="filled"
-          sx={{ width: '100%' }}
+          sx={{ width: "100%" }}
         >
           {toastState.message}
         </Alert>

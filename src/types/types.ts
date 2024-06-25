@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from "react";
 
 export interface IBooks {
   books: BooksEntity[];
@@ -25,6 +25,7 @@ export interface SignUpType {
 }
 
 export interface UserType {
+  id?: number | string;
   firstName?: FormDataEntryValue | null;
   lastName?: FormDataEntryValue | null;
   email: FormDataEntryValue | null;
@@ -66,6 +67,19 @@ export interface Inputs {
   imgURL: string;
   file: File | undefined;
 }
+
+export interface InputsCheckout {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: number;
+  address: string;
+  date: number;
+  postId: number;
+  city: string;
+  state: string;
+}
+
 export interface AddProductProps {
   editId?: string;
   setEditModal?: (modal: { isOpen: boolean; id: string }) => void;
