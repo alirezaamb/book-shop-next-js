@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+/* import { useQuery } from "@tanstack/react-query";
 import { getUserProfile } from "../services";
 
 export const useGetUserProfile = () => {
@@ -7,3 +7,4 @@ export const useGetUserProfile = () => {
     queryFn: () => getUserProfile(),
   });
 };
+ */

@@ -4,21 +4,29 @@ import FormLabel from "@mui/material/FormLabel";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/system";
 import { getCookie } from "cookies-next";
-import { useGetUserProfile } from "../hooks";
+
 import { useEffect, useState } from "react";
 import { InputsCheckout, UserType } from "@/types/types";
 import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  useGetUserProfile,
+  useUpdateProfile,
+} from "@/api/address/address.queries";
+import LoadingPage from "@/components/shared/loading/Loading";
+import { useRouter } from "next/router";
 
 const FormGrid = styled(Grid)(() => ({
   display: "flex",
   flexDirection: "column",
 }));
 
-const userId = getCookie("id");
+const userId = getCookie("access")!;
 
 export default function Checkout() {
-  const { data: users } = useGetUserProfile();
-  const [userProfile, setUserProfile] = useState<UserType | null>(null);
+  const router = useRouter();
+  const { data: userProfile, isLoading } = useGetUserProfile(userId);
+  console.log(userProfile);
+  const { mutate: updateProfile, isSuccess } = useUpdateProfile();
   const {
     register,
     handleSubmit,
@@ -26,12 +34,24 @@ export default function Checkout() {
     formState: { errors },
   } = useForm<InputsCheckout>();
 
-  const onSubmit: SubmitHandler<InputsCheckout> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<InputsCheckout> = (data) => {
+    console.log(data);
+    const address = {
+      address: data.address,
+      city: data.city,
+      state: data.state,
+      postalCode: data.postalCode,
+    };
+    updateProfile({ id: userId, address });
 
-  useEffect(() => {
-    const userProfile = users?.find((user: UserType) => user.id === userId);
-    setUserProfile(userProfile);
-  }, [users, userId]);
+    if (isSuccess) {
+      router.push("/payment");
+    }
+  };
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <Container sx={{ mt: 12 }}>
@@ -42,7 +62,7 @@ export default function Checkout() {
               {pageLevelLocalization.checkout.firstName}
             </FormLabel>
             <TextField
-              value={userProfile?.firstName}
+              defaultValue={userProfile?.firstName}
               size="small"
               fullWidth
               id="firstName"
@@ -54,9 +74,6 @@ export default function Checkout() {
                   ? `${pageLevelLocalization.checkout.firstName} ${pageLevelLocalization.checkout.error}`
                   : ""
               }
-              onChange={(e) => {
-                setUserProfile((prevUserProfile) => prevUserProfile? {...prevUserProfile, firstName: e.target.value } : null);
-              }}
             />
           </FormGrid>
           <FormGrid item xs={12} md={6}>
@@ -64,7 +81,7 @@ export default function Checkout() {
               {pageLevelLocalization.checkout.lastName}
             </FormLabel>
             <TextField
-              value={userProfile?.lastName}
+              defaultValue={userProfile?.lastName}
               id="lastName"
               size="small"
               fullWidth
@@ -76,9 +93,6 @@ export default function Checkout() {
                   ? `${pageLevelLocalization.checkout.lastName} ${pageLevelLocalization.checkout.error}`
                   : ""
               }
-              onChange={(e) => {
-                setUserProfile((prevUserProfile) => prevUserProfile? {...prevUserProfile, lastName: e.target.value } : null);
-              }}
             />
           </FormGrid>
           <FormGrid item xs={12} md={6}>
@@ -86,7 +100,7 @@ export default function Checkout() {
               {pageLevelLocalization.checkout.email}
             </FormLabel>
             <TextField
-              value={userProfile?.email}
+              defaultValue={userProfile?.email}
               id="email"
               size="small"
               fullWidth
@@ -98,9 +112,6 @@ export default function Checkout() {
                   ? `${pageLevelLocalization.checkout.email} ${pageLevelLocalization.checkout.error}`
                   : ""
               }
-              onChange={(e) => {
-                setUserProfile((prevUserProfile) => prevUserProfile? {...prevUserProfile, email: e.target.value } : null);
-              }}
             />
           </FormGrid>
           <FormGrid item xs={12} md={6}>
