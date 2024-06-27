@@ -5,10 +5,12 @@
       "author": "جیمز کلییر",
       "translator": "سید ایوب کوکبی، فرزانه حاج خلیلی",
       "desc": "نشر میلکان",
-      "price": "140000",
+      "price": 150000,
       "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
       "id": "1",
-      "inventory": "25"
+      "inventory": "20",
+      "ages": "children",
+      "category": "roman"
     },
     {
       "id": "2",
@@ -23,7 +25,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/104418f5c82a4ec4b9adee31e275fc9a.jpg?width=170"
       ],
       "salesAmount": 2,
-      "inventory": "21"
+      "inventory": "21",
+      "ages": "children",
+      "category": "roman"
     },
     {
       "id": "3",
@@ -38,7 +42,9 @@
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8_pAf8mnS5BJJKcrcmtHcZx9H5l-_KHtZfDORbBL_lG9V1x3Dke1AUxzh02JuxrqvKog&usqp=CAU"
       ],
       "salesAmount": 1,
-      "inventory": "43"
+      "inventory": "43",
+      "ages": "children",
+      "category": "roman"
     },
     {
       "id": "4",
@@ -54,7 +60,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/340816aa9e854c4c80d65f8578f908c1.jpg?width=170"
       ],
       "salesAmount": 0,
-      "inventory": "11"
+      "inventory": "11",
+      "ages": "children",
+      "category": "roman"
     },
     {
       "id": "5",
@@ -70,7 +78,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/9237b79ac90842cdafd130eb58630000.jpg?width=170"
       ],
       "salesAmount": 1,
-      "inventory": "12"
+      "inventory": "12",
+      "ages": "children",
+      "category": "roman"
     },
     {
       "id": "6",
@@ -78,7 +88,7 @@
       "author": "آدام آلتر",
       "translator": "آراز بارسقیان",
       "desc": "نشر میلکان",
-      "price": 450000,
+      "price": 250000,
       "discount": 0,
       "imgURL": "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C1.jpg",
       "pictures": [
@@ -86,7 +96,9 @@
         "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C2.jpg"
       ],
       "salesAmount": 5,
-      "inventory": 6
+      "inventory": 6,
+      "ages": "children",
+      "category": "story"
     },
     {
       "id": "7",
@@ -94,7 +106,7 @@
       "author": "کالین هوور",
       "translator": "آرتمیس مسعودی",
       "desc": "نشر آموت",
-      "price": 255000,
+      "price": 240000,
       "discount": 25,
       "imgURL": "https://cdn.kowsarsamaneh.com/WebResources/aamout.ir/Images/Goods/BigImages/9786006605159.jpg",
       "pictures": [
@@ -102,7 +114,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/c869ed6c555a455ea2f9ba7ecdaf2f6f.jpg"
       ],
       "salesAmount": 2,
-      "inventory": 64
+      "inventory": 64,
+      "ages": "teenager",
+      "category": "story"
     },
     {
       "id": "8",
@@ -118,7 +132,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/f912f772994f4eda8972479b8d59630b.jpg"
       ],
       "salesAmount": 4,
-      "inventory": 6
+      "inventory": 6,
+      "ages": "teenager",
+      "category": "story"
     },
     {
       "id": "9",
@@ -134,7 +150,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/c10a64962a2b46a89041b5777c502ccf.jpg"
       ],
       "salesAmount": 4,
-      "inventory": 6
+      "inventory": 6,
+      "ages": "teenager",
+      "category": "story"
     },
     {
       "id": "10",
@@ -150,7 +168,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/1fc4d21525cf46afbd8b0c3be9e54148.jpg?width=170"
       ],
       "salesAmount": 0,
-      "inventory": 6
+      "inventory": 6,
+      "ages": "teenager",
+      "category": "story"
     },
     {
       "id": "11",
@@ -166,7 +186,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/4cdb263ad3a3419ebd032ad3d4695c4c.jpg"
       ],
       "salesAmount": 1,
-      "inventory": 60
+      "inventory": 60,
+      "ages": "teenager",
+      "category": "diary"
     },
     {
       "id": "12",
@@ -182,7 +204,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/1b74670f93144edbb84bf8c6b180a276.jpg?width=170"
       ],
       "salesAmount": 3,
-      "inventory": 60
+      "inventory": 60,
+      "ages": "teenager",
+      "category": "diary"
     },
     {
       "id": "13",
@@ -198,7 +222,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/e5bd59d1b80f49a98d5d8c4bedefb06e.jpg?width=170"
       ],
       "salesAmount": 8,
-      "inventory": 6
+      "inventory": 6,
+      "ages": "adult",
+      "category": "diary"
     },
     {
       "id": "14",
@@ -214,7 +240,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/ce5284d565064ab2bd462f1ce2f7d55f.jpg?width=170"
       ],
       "salesAmount": 4,
-      "inventory": 6
+      "inventory": 6,
+      "ages": "adult",
+      "category": "diary"
     },
     {
       "id": "15",
@@ -230,7 +258,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/4cf5e0b61a0346b8a79290128c3c7da2.jpg?width=170"
       ],
       "salesAmount": 1,
-      "inventory": 60
+      "inventory": 60,
+      "ages": "adult",
+      "category": "diary"
     },
     {
       "id": "16",
@@ -246,7 +276,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/ef3e1d4b6fb844ec9401349b72a71496.jpg?width=170"
       ],
       "salesAmount": 1,
-      "inventory": 62
+      "inventory": 62,
+      "ages": "adult",
+      "category": "diary"
     },
     {
       "id": "17",
@@ -262,7 +294,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/a2b7d6980b0346749b055178cdd32b2b.jpg?width=170"
       ],
       "salesAmount": 1,
-      "inventory": 6
+      "inventory": 6,
+      "ages": "adult",
+      "category": "diary"
     },
     {
       "id": "18",
@@ -278,7 +312,9 @@
         "https://www.iranketab.ir/Files/AttachFiles/a2b7d6980b0346749b055178cdd32b2b.jpg?width=170"
       ],
       "salesAmount": 1,
-      "inventory": 62
+      "inventory": 62,
+      "ages": "adult",
+      "category": "diary"
     },
     {
       "name": "خانه داری ",
@@ -288,7 +324,9 @@
       "price": 200000,
       "imgURL": "https://www.aamout.com/images/books/foreign/1403-01.jpg",
       "id": "19",
-      "inventory": 20
+      "inventory": 20,
+      "ages": "adult",
+      "category": "diary"
     }
   ],
   "profiles": [
@@ -298,7 +336,19 @@
       "lastName": "admin",
       "email": "admin@gmail.com",
       "password": "1234",
-      "role": "admin"
+      "role": "admin",
+      "cart": [
+        {
+          "id": "2",
+          "name": "هنر ظریف رهایی از دغدغه ها3",
+          "price": "160000",
+          "imgURL": "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
+          "desc": "نشر میلکان",
+          "author": "مارک منسن",
+          "quantity": 1
+        }
+      ],
+      "address": {}
     },
     {
       "id": "1da8",
@@ -306,7 +356,45 @@
       "lastName": "babaei",
       "email": "ababaei78@gmail.com",
       "password": "1234",
-      "role": "user"
+      "role": "user",
+      "cart": [
+        {
+          "id": "2",
+          "name": "هنر ظریف رهایی از دغدغه ها3",
+          "author": "مارک منسن",
+          "desc": "نشر میلکان",
+          "price": "160000",
+          "discount": 0,
+          "imgURL": "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
+          "pictures": [
+            "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
+            "https://www.iranketab.ir/Files/AttachFiles/104418f5c82a4ec4b9adee31e275fc9a.jpg?width=170"
+          ],
+          "salesAmount": 2,
+          "inventory": "21",
+          "ages": "children",
+          "category": "roman",
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "name": "بی حد و مرز ",
+          "author": "جیم کوییک",
+          "desc": "نشر میلکان",
+          "price": 189000,
+          "discount": 39,
+          "imgURL": "https://milkan.ir/wp-content/uploads/2021/06/Limitless-k1-600x921.jpg",
+          "pictures": [
+            "https://milkan.ir/wp-content/uploads/2021/06/Limitless-k1-600x921.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8_pAf8mnS5BJJKcrcmtHcZx9H5l-_KHtZfDORbBL_lG9V1x3Dke1AUxzh02JuxrqvKog&usqp=CAU"
+          ],
+          "salesAmount": 1,
+          "inventory": "43",
+          "ages": "children",
+          "category": "roman",
+          "quantity": 2
+        }
+      ]
     }
   ],
   "publishers": [
@@ -386,51 +474,12 @@
       "id": "15"
     }
   ],
-  "cart": [
+  "order": [
     {
       "id": "1",
-      "name": "قدرت شروع ناقص  ",
-      "price": 136000,
-      "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
-      "desc": "نشر میلکان",
-      "author": "جیمز کلییر",
-      "quantity": 6
-    },
-    {
-      "id": "2",
-      "name": "هنر ظریف رهایی از دغدغه ها3",
-      "price": 150000,
-      "imgURL": "https://milkan.ir/wp-content/uploads/2019/09/3709611.jpg",
-      "desc": "نشر میلکان",
-      "author": "مارک منسن",
-      "quantity": 3
-    },
-    {
-      "id": "3",
-      "name": "بی حد و مرز ",
-      "price": 189000,
-      "imgURL": "https://milkan.ir/wp-content/uploads/2021/06/Limitless-k1-600x921.jpg",
-      "desc": "نشر میلکان",
-      "author": "جیم کوییک",
-      "quantity": 1
-    },
-    {
-      "id": "9",
-      "name": "به یاد او",
-      "price": 275000,
-      "imgURL": "https://www.aamout.com/images/books/foreign/1401-08.jpg",
-      "desc": "نشر آموت",
-      "author": "کالین هوور",
-      "quantity": 1
-    },
-    {
-      "id": "5",
-      "name": "خرده عادت ها",
-      "price": 95000,
-      "imgURL": "https://milkan.ir/wp-content/uploads/2019/10/54774.jpg",
-      "desc": "نشر میلکان",
-      "author": "جیمز کلییر",
-      "quantity": 1
+      "userId": "1234342",
+      "books": [],
+      "delivered": false
     }
   ]
 }

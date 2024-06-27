@@ -1,10 +1,9 @@
-import { Box, Button, Divider, Typography } from '@mui/material';
-import React from 'react';
-import { BookSlider } from './swiper/BookSlider';
 import { pageLevelLocalization } from '@/constants/localization';
-import { PublisherSlider } from './swiper/PublisherSlider';
-import { DiscountSlider } from './swiper/DiscountSlider';
+import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
+import { BookSlider } from './swiper/BookSlider';
+import { DiscountSlider } from './swiper/DiscountSlider';
+import { PublisherSlider } from './swiper/PublisherSlider';
 
 const MainHome = () => {
   return (

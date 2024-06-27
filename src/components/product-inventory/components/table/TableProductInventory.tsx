@@ -129,7 +129,7 @@ const TableProductInventory = () => {
                         defaultValue={book?.price}
                         onBlur={(e) => {
                           let temp = [...books];
-                          temp[index] = { ...book, price: e.target.value };
+                          temp[index] = { ...book, price: +e.target.value };
                           setIsEdit((prev) => ({ ...prev, price: false }));
                           setBooks(temp);
                           editHandler(temp[index]);

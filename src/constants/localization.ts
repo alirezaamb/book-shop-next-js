@@ -74,4 +74,12 @@ export const pageLevelLocalization = {
     textLabel: "اطلاعات شما ذخیره شود؟",
     error:"باید پر شود"
   },
+  cart: {
+    submit: 'ثبت',
+    totalPrice: 'قیمت کل',
+    toman: 'تومان',
+    discount: 'تخفیف',
+    amountPayable: 'مبلغ قابل پرداخت',
+    finalThePurchase: 'نهایی کردن خرید',
+  },
 };

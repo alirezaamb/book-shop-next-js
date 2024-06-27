@@ -18,7 +18,6 @@ import { useGetPublisher } from '@/api/publisher/publisher.queries';
 
 export const PublisherSlider = () => {
   const { data: publisherPhotos } = useGetPublisher();
-  console.log(publisherPhotos);
 
   return (
     <Swiper
