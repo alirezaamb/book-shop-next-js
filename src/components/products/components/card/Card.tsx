@@ -8,11 +8,7 @@ import { BooksEntity } from '@/types/types';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import BasicModal from '@/components/shared/modal/Modal';
-import {
-  useAddToCart,
-  useGetAllCartItems,
-  useUpdateItemOfCart,
-} from '@/api/cart/cart.queries';
+import { useGetAllCartItems, useUpdateCart } from '@/api/cart/cart.queries';
 import { getCookie } from 'cookies-next';
 
 export default function CardOfBook({ data }: { data: BooksEntity }) {
@@ -29,25 +25,38 @@ export default function CardOfBook({ data }: { data: BooksEntity }) {
 
   const userId = getCookie('access')!;
   //post new item
-  const { mutate: addToCart, isSuccess, isError } = useAddToCart();
+  // const { mutate: addToCart, isSuccess, isError } = useAddToCart();
+
+  const { mutate: updateCart, isSuccess, isError } = useUpdateCart();
 
   //get all item in cart
   const { data: getCartItems } = useGetAllCartItems(userId);
   // console.log(getCartItems);
 
   //update item
-  const { mutate: updateItem } = useUpdateItemOfCart();
+  // const { mutate: updateItem } = useUpdateItemOfCart();
 
   const addTocartHandler = () => {
-    const cartItems = Array.isArray(getCartItems?.data)
-      ? getCartItems.data
-      : [];
+    const cartItems = Array.isArray(getCartItems) ? getCartItems : [];
 
     const duplicate = cartItems.find((card) => card.id === id);
     if (!duplicate) {
-      addToCart({ id, name, price, imgURL, desc, author, quantity: 1 });
+      updateCart({
+        id: userId,
+        cart: [
+          ...cartItems,
+          { name, price, imgURL, desc, id, author, quantity: 1 },
+        ],
+      });
+      // addToCart({ id, name, price, imgURL, desc, author, quantity: 1 });
     } else {
-      updateItem({ id, quantity: duplicate.quantity + 1 });
+      duplicate.quantity++;
+      updateCart({
+        id: userId,
+        cart: cartItems,
+      });
+
+      // updateItem({ id, quantity: duplicate.quantity + 1 });
     }
   };
   useEffect(() => {

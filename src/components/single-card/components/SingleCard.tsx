@@ -19,11 +19,7 @@ import {
   pageLevelLocalization,
 } from '../../../constants/localization';
 import Carousel from 'react-material-ui-carousel';
-import {
-  useAddToCart,
-  useGetAllCartItems,
-  useUpdateItemOfCart,
-} from '@/api/cart/cart.queries';
+import { useGetAllCartItems, useUpdateCart } from '@/api/cart/cart.queries';
 import BasicModal from '@/components/shared/modal/Modal';
 import { getCookie } from 'cookies-next';
 
@@ -35,12 +31,11 @@ export const SingleCard = () => {
     isOpen: false,
     message: 'محصول با موفقیت به سبد خرید افزوده شد',
   });
-  const { mutate: addToCart } = useAddToCart();
-  //get all item in cart
+
   const userId = getCookie('access')!;
   const { data: getCartItems } = useGetAllCartItems(userId);
-  //update item
-  const { mutate: updateItem } = useUpdateItemOfCart();
+
+  const { mutate: updateCart } = useUpdateCart();
 
   useEffect(() => {
     if (data) {
@@ -69,15 +64,21 @@ export const SingleCard = () => {
   }
 
   const addToCartHandler = () => {
-    const cartItems = Array.isArray(getCartItems?.data)
-      ? getCartItems.data
-      : [];
+    const cartItems = Array.isArray(getCartItems) ? getCartItems : [];
 
     const duplicate = cartItems.find((card) => card.id === data.id);
     if (!duplicate) {
-      addToCart({ ...data, quantity: 1 });
+      updateCart({
+        id: userId,
+        cart: [...cartItems, { ...data, quantity: 1 }],
+      });
+      // addToCart({ ...data, quantity: 1 });
     } else {
-      updateItem({ id: data.id, quantity: duplicate.quantity + 1 });
+      duplicate.quantity++;
+      updateCart({
+        id: userId,
+        cart: cartItems,
+      });
     }
   };
 
@@ -120,7 +121,7 @@ export const SingleCard = () => {
             <ArrowForwardIosIcon />
           </IconButton>
           <Box sx={{ display: 'flex', overflow: 'hidden', width: '80%' }}>
-            {data.pictures.map((url: string, index: number) => (
+            {data?.pictures?.map((url: string, index: number) => (
               <Box
                 key={index}
                 component="img"
