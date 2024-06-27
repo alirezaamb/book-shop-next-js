@@ -75,7 +75,7 @@ export interface InputsCheckout {
   phoneNumber: number;
   address: string;
   date: number;
-  postId: number;
+  postalCode: number;
   city: string;
   state: string;
 }

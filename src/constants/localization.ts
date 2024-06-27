@@ -72,5 +72,6 @@ export const pageLevelLocalization = {
     postalCode: "کدپستی",
     dateOfRegistration: " تاریخ ثبت ",
     textLabel: "اطلاعات شما ذخیره شود؟",
+    error:"باید پر شود"
   },
 };
