@@ -1,3 +1,4 @@
+import { CartType } from '@/api/cart/cart.type';
 import { Dispatch, SetStateAction } from 'react';
 
 export interface IBooks {
@@ -30,6 +31,8 @@ export interface UserType {
   email: FormDataEntryValue | null;
   password: FormDataEntryValue | null;
   role: string;
+  id: string;
+  cart?: CartType[];
 }
 export interface BasicModaltype {
   modal: { isOpen: boolean; message: string };

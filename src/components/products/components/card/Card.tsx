@@ -13,6 +13,7 @@ import {
   useGetAllCartItems,
   useUpdateItemOfCart,
 } from '@/api/cart/cart.queries';
+import { getCookie } from 'cookies-next';
 
 export default function CardOfBook({ data }: { data: BooksEntity }) {
   const [modal, setModal] = useState({
@@ -26,11 +27,13 @@ export default function CardOfBook({ data }: { data: BooksEntity }) {
     router.push(`/products/${id}`);
   };
 
+  const userId = getCookie('access')!;
   //post new item
   const { mutate: addToCart, isSuccess, isError } = useAddToCart();
 
   //get all item in cart
-  const { data: getCartItems } = useGetAllCartItems();
+  const { data: getCartItems } = useGetAllCartItems(userId);
+  // console.log(getCartItems);
 
   //update item
   const { mutate: updateItem } = useUpdateItemOfCart();
@@ -41,7 +44,6 @@ export default function CardOfBook({ data }: { data: BooksEntity }) {
       : [];
 
     const duplicate = cartItems.find((card) => card.id === id);
-    console.log(duplicate);
     if (!duplicate) {
       addToCart({ id, name, price, imgURL, desc, author, quantity: 1 });
     } else {

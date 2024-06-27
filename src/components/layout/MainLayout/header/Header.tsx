@@ -71,9 +71,10 @@ export default function Header() {
   }
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
-  const { data: length } = useGetAllCartItems();
+  const userId = getCookie('access')!;
+  const { data: length } = useGetAllCartItems(userId);
   React.useEffect(() => {
-    setBadgeCounter(length?.data.length);
+    setBadgeCounter(length?.length);
   }, [length]);
 
   return (

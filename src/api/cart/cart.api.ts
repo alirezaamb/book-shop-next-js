@@ -1,22 +1,15 @@
-import axios from 'axios';
 import { BASE_URL } from '@/api/const';
-import { CartType } from './cart.type';
+import { UserType } from '@/types/types';
+import axios from 'axios';
 
-export const addToCart = async (data: CartType) => {
-  const res = await axios.post(`${BASE_URL}/cart`, data);
-  return res;
+export const getAllItemsOfCart = async (id: string) => {
+  const res = await axios.get(`${BASE_URL}/profiles/${id}`);
+  return res.data.cart;
 };
 
-export const getAllItemsOfCart = async () => {
-  const res = await axios.get(`${BASE_URL}/cart`);
-  return res;
-};
-
-export const deleteItemFromCart = async (id: string) => {
-  const res = await axios.delete(`${BASE_URL}/cart/${id}`);
-};
-
-export const EditCardOfCart = async (data: Partial<CartType>) => {
-  const res = await axios.patch(`${BASE_URL}/cart/${data.id}`, data);
+export const updateCart = async (data: Partial<UserType>) => {
+  const res = await axios.patch(`${BASE_URL}/profiles/${data.id}`, {
+    cart: data.cart,
+  });
   return res;
 };

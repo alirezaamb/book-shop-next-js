@@ -25,6 +25,7 @@ import {
   useUpdateItemOfCart,
 } from '@/api/cart/cart.queries';
 import BasicModal from '@/components/shared/modal/Modal';
+import { getCookie } from 'cookies-next';
 
 export const SingleCard = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -36,7 +37,8 @@ export const SingleCard = () => {
   });
   const { mutate: addToCart } = useAddToCart();
   //get all item in cart
-  const { data: getCartItems } = useGetAllCartItems();
+  const userId = getCookie('access')!;
+  const { data: getCartItems } = useGetAllCartItems(userId);
   //update item
   const { mutate: updateItem } = useUpdateItemOfCart();
 
