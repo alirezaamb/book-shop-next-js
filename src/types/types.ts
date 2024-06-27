@@ -69,6 +69,19 @@ export interface Inputs {
   imgURL: File | string;
   file: File | undefined;
 }
+
+export interface InputsCheckout {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: number;
+  address: string;
+  date: number;
+  postalCode: number;
+  city: string;
+  state: string;
+}
+
 export interface AddProductProps {
   editId?: string;
   setEditModal?: (modal: { isOpen: boolean; id: string }) => void;
