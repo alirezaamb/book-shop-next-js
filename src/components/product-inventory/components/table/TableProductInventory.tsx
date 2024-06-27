@@ -42,7 +42,6 @@ const TableProductInventory = () => {
   };
 
   const { mutate, isPending } = useEditBook();
-  console.log(isPending);
 
   const changeHandler = () => {
     editedBooks.forEach((item) => {

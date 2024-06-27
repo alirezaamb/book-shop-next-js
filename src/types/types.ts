@@ -4,7 +4,7 @@ export interface IBooks {
   books: BooksEntity[];
 }
 export interface BooksEntity {
-  id: number | string;
+  id: string;
   name: string;
   desc: string;
   price: number;
@@ -64,7 +64,7 @@ export interface Inputs {
   translator: string;
   desc: string;
   price: number;
-  imgURL: string;
+  imgURL: File | string;
   file: File | undefined;
 }
 
@@ -84,4 +84,14 @@ export interface AddProductProps {
   editId?: string;
   setEditModal?: (modal: { isOpen: boolean; id: string }) => void;
   setIsOpenForm?: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface BooksOfCartType {
+  author: string;
+  desc: string;
+  id: string;
+  imgURL: string;
+  price: number;
+  quantity: number;
+  name: string;
 }

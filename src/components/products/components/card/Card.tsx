@@ -6,20 +6,60 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { BooksEntity } from '@/types/types';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BasicModal from '@/components/shared/modal/Modal';
+import {
+  useAddToCart,
+  useGetAllCartItems,
+  useUpdateItemOfCart,
+} from '@/api/cart/cart.queries';
 
 export default function CardOfBook({ data }: { data: BooksEntity }) {
   const [modal, setModal] = useState({
     isOpen: false,
     message: 'محصول با موفقیت به سبد خرید افزوده شد',
   });
-  const { name, price, imgURL, desc, id } = data;
+  const { name, price, imgURL, desc, id, author } = data;
   const router = useRouter();
 
   const handleNavigate = () => {
     router.push(`/products/${id}`);
   };
+
+  //post new item
+  const { mutate: addToCart, isSuccess, isError } = useAddToCart();
+
+  //get all item in cart
+  const { data: getCartItems } = useGetAllCartItems();
+
+  //update item
+  const { mutate: updateItem } = useUpdateItemOfCart();
+
+  const addTocartHandler = () => {
+    const cartItems = Array.isArray(getCartItems?.data)
+      ? getCartItems.data
+      : [];
+
+    const duplicate = cartItems.find((card) => card.id === id);
+    console.log(duplicate);
+    if (!duplicate) {
+      addToCart({ id, name, price, imgURL, desc, author, quantity: 1 });
+    } else {
+      updateItem({ id, quantity: duplicate.quantity + 1 });
+    }
+  };
+  useEffect(() => {
+    isSuccess &&
+      setModal({
+        isOpen: true,
+        message: 'محصول با موفقیت به سبد خرید افزوده شد',
+      });
+    isError &&
+      setModal({
+        isOpen: true,
+        message: 'محصول در سبد خرید وجود دارد',
+      });
+  }, [isError, isSuccess]);
 
   return (
     <Card
@@ -50,7 +90,7 @@ export default function CardOfBook({ data }: { data: BooksEntity }) {
             color: 'white',
             fontSize: '16px',
           }}
-          onClick={() => setModal((prev) => ({ ...prev, isOpen: true }))}
+          onClick={addTocartHandler}
         >
           خرید
         </Button>
