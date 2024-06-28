@@ -481,7 +481,7 @@
           "quantity": 2
         }
       ],
-      "delivered": false,
+      "delivered": true,
       "id": "yxbUdEC"
     },
     {
@@ -524,7 +524,7 @@
           "quantity": 2
         }
       ],
-      "delivered": false,
+      "delivered": true,
       "id": "Wk_ko4w"
     },
     {
@@ -540,7 +540,7 @@
           "quantity": 2
         }
       ],
-      "delivered": false,
+      "delivered": true,
       "id": "NjcH08z"
     },
     {
@@ -566,7 +566,7 @@
           "quantity": 1
         }
       ],
-      "delivered": false,
+      "delivered": true,
       "id": "Ip0ZE0E"
     },
     {
@@ -582,7 +582,7 @@
           "quantity": 1
         }
       ],
-      "delivered": false,
+      "delivered": true,
       "id": "8bcKWhJ"
     }
   ]

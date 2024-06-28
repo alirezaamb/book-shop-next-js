@@ -72,14 +72,19 @@ export const pageLevelLocalization = {
     postalCode: "کدپستی",
     dateOfRegistration: " تاریخ ثبت ",
     textLabel: "اطلاعات شما ذخیره شود؟",
-    error:"باید پر شود"
+    error: "باید پر شود",
   },
   cart: {
-    submit: 'ثبت',
-    totalPrice: 'قیمت کل',
-    toman: 'تومان',
-    discount: 'تخفیف',
-    amountPayable: 'مبلغ قابل پرداخت',
-    finalThePurchase: 'نهایی کردن خرید',
+    submit: "ثبت",
+    totalPrice: "قیمت کل",
+    toman: "تومان",
+    discount: "تخفیف",
+    amountPayable: "مبلغ قابل پرداخت",
+    finalThePurchase: "نهایی کردن خرید",
+  },
+  delivered: {
+    id: "شناسه",
+    prdImg: "عکس محصولات",
+    statusDeliver: "وضعیت ارسال ",
   },
 };
