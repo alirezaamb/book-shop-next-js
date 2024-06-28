@@ -13,3 +13,10 @@ export const updateCart = async (data: Partial<UserType>) => {
   });
   return res;
 };
+
+export const clearCart = async (id: string) => {
+  const res = await axios.patch(`${BASE_URL}/profiles/${id}`, {
+    cart: [],
+  });
+  return res;
+};

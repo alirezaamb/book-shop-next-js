@@ -16,6 +16,8 @@ export interface BooksEntity {
   discount: number;
   salesAmount: number;
   inventory: number;
+  category?: string;
+  ages?: string;
 }
 
 export interface SingInType {

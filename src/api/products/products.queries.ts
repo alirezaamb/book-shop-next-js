@@ -1,16 +1,11 @@
 import {
-  UseMutationResult,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
-import {
   deleteRow,
-  editedProduct,
   getBookById,
   getBooks,
   newProduct,
+  patchAllProduct,
 } from '@/api/products/products.api';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export const useGetBooks = () => {
   return useQuery({
@@ -50,7 +45,7 @@ export const useEditBook = () => {
   const queryClient = useQueryClient();
 
   const editMutation = useMutation({
-    mutationFn: editedProduct,
+    mutationFn: patchAllProduct,
     mutationKey: ['editedBook'],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['allBooks'] });

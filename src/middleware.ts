@@ -12,7 +12,7 @@ export async function middleware(req: NextRequest) {
 
   if (pathname.startsWith('/auth')) {
     const accessCookie = req.cookies.get('access')?.value;
-    if (accessCookie === 'true') {
+    if (accessCookie) {
       return NextResponse.redirect(new URL('/', req.url));
     }
   }

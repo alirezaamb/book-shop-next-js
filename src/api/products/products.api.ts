@@ -20,9 +20,15 @@ export const newProduct = async (
 };
 
 export const editedProduct = async (
-  product: BooksEntity
+  product: Partial<BooksEntity>
 ): Promise<AxiosResponse<any>> => {
-  return await axios.put(`${BASE_URL}/books/${product.id}`, product);
+  return await axios.patch(`${BASE_URL}/books/${product.id}`, product);
+};
+
+export const patchAllProduct = async (array: Partial<BooksEntity>[]) => {
+  const PromiseArray = array.map((item) => editedProduct(item));
+  const res = await Promise.all(PromiseArray);
+  return res;
 };
 
 export const getBookById = async (id: string | string[] | undefined) => {
