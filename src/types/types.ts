@@ -99,3 +99,12 @@ export interface BooksOfCartType {
   quantity: number;
   name: string;
 }
+
+export interface newParamsType {
+  price_gte: string;
+  price_lte: string;
+  type?: string;
+  age?: string;
+  _sort?: string;
+  _order?: string;
+}
