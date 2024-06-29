@@ -12,11 +12,11 @@ import {
   newProduct,
 } from '@/api/products/products.api';
 
-export const useGetBooks = () => {
+export const useGetBooks = (params?: URLSearchParams) => {
   return useQuery({
     queryKey: ['allBooks'],
     queryFn: () => {
-      return getBooks();
+      return getBooks(params);
     },
   });
 };

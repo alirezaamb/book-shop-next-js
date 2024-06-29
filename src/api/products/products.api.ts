@@ -3,8 +3,8 @@ import { BASE_URL } from '@/api/const';
 import { NewProductType } from '@/api/products/products.type';
 import { BooksEntity } from '@/types/types';
 
-export const getBooks = async () => {
-  const response = await axios.get(`${BASE_URL}/books`);
+export const getBooks = async (params?: URLSearchParams) => {
+  const response = await axios.get(`${BASE_URL}/books`, { params });
   return response.data;
 };
 

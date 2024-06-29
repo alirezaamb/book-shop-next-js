@@ -118,7 +118,7 @@ export const SingleCard = () => {
             <ArrowForwardIosIcon />
           </IconButton>
           <Box sx={{ display: 'flex', overflow: 'hidden', width: '80%' }}>
-            {data.pictures.map((url: string, index: number) => (
+            {data?.pictures?.map((url: string, index: number) => (
               <Box
                 key={index}
                 component="img"
