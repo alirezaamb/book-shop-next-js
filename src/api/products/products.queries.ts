@@ -7,11 +7,11 @@ import {
 } from '@/api/products/products.api';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-export const useGetBooks = () => {
+export const useGetBooks = (params?: URLSearchParams) => {
   return useQuery({
     queryKey: ['allBooks'],
     queryFn: () => {
-      return getBooks();
+      return getBooks(params);
     },
   });
 };
