@@ -10,3 +10,4 @@ export const getAllUsers = async () => {
 export const newUser = async (data: UserType) => {
   return await axios.post(`${BASE_URL}/profiles`, data);
 };
+

@@ -1,3 +1,4 @@
+import { CartType } from '@/api/cart/cart.type';
 import { Dispatch, SetStateAction } from 'react';
 
 export interface IBooks {
@@ -15,6 +16,8 @@ export interface BooksEntity {
   discount: number;
   salesAmount: number;
   inventory: number;
+  category?: string;
+  ages?: string;
 }
 
 export interface SingInType {
@@ -30,6 +33,8 @@ export interface UserType {
   email: FormDataEntryValue | null;
   password: FormDataEntryValue | null;
   role: string;
+  id: string;
+  cart?: CartType[];
 }
 export interface BasicModaltype {
   modal: { isOpen: boolean; message: string };
@@ -66,6 +71,19 @@ export interface Inputs {
   imgURL: File | string;
   file: File | undefined;
 }
+
+export interface InputsCheckout {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: number;
+  address: string;
+  date: number;
+  postalCode: number;
+  city: string;
+  state: string;
+}
+
 export interface AddProductProps {
   editId?: string;
   setEditModal?: (modal: { isOpen: boolean; id: string }) => void;

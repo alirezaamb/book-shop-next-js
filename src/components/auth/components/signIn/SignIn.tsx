@@ -41,7 +41,7 @@ export default function SignIn({ setSearchParams }: SingInType) {
       );
 
       if (foundedUser) {
-        setCookie('access', true);
+        setCookie('access', foundedUser.id);
         setCookie('role', foundedUser.role);
         localStorageSetter('name', JSON.stringify(foundedUser.firstName));
         setIsLoadingButton(false);

@@ -1,50 +1,32 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import {
-  EditCardOfCart,
-  addToCart,
-  deleteItemFromCart,
-  getAllItemsOfCart,
-} from './cart.api';
+import { clearCart, getAllItemsOfCart, updateCart } from './cart.api';
 
-export const useAddToCart = () => {
-  const queryClient = useQueryClient();
-  const addMutation = useMutation({
-    mutationFn: addToCart,
-    mutationKey: ['addNewItemToCart'],
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['allCartItem'] });
-    },
-  });
-
-  return addMutation;
-};
-
-export const useGetAllCartItems = () => {
+export const useGetAllCartItems = (id: string) => {
   return useQuery({
-    queryFn: getAllItemsOfCart,
+    queryFn: () => getAllItemsOfCart(id),
     queryKey: ['allCartItem'],
   });
 };
 
-export const useDeleteItemFromCart = () => {
+export const useUpdateCart = () => {
   const queryClient = useQueryClient();
 
-  const deleteMutation = useMutation({
-    mutationFn: deleteItemFromCart,
-    mutationKey: ['deleteItemFromCart'],
+  const updateMutation = useMutation({
+    mutationFn: updateCart,
+    mutationKey: ['updateItemOfCart'],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['allCartItem'] });
     },
   });
-  return deleteMutation;
+  return updateMutation;
 };
 
-export const useUpdateItemOfCart = () => {
+export const useClearCart = () => {
   const queryClient = useQueryClient();
 
   const updateMutation = useMutation({
-    mutationFn: EditCardOfCart,
-    mutationKey: ['updateItemOfCart'],
+    mutationFn: (id: string) => clearCart(id),
+    mutationKey: ['clearCart'],
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['allCartItem'] });
     },

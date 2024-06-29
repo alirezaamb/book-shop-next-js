@@ -1,53 +1,54 @@
-import {
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  IconButton,
-  Typography,
-} from '@mui/material';
-import { useState } from 'react';
+import { Box, Card, CardMedia, IconButton, Typography } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { grey, red } from '@mui/material/colors';
-import { useDeleteItemFromCart } from '@/api/cart/cart.queries';
+import { useGetAllCartItems, useUpdateCart } from '@/api/cart/cart.queries';
 import { BooksOfCartType } from '@/types/types';
+import { getCookie } from 'cookies-next';
+import { CartType } from '@/api/cart/cart.type';
 
 const CardOfCart = ({
   book,
-  updateQuantity,
+  refetch,
 }: {
   book: BooksOfCartType;
-  updateQuantity: (id: string, newQuantity: number) => void;
+  refetch: () => void;
 }) => {
   const { name, price, imgURL, desc, author, quantity, id } = book;
 
-  const [quantityOfBook, setQuantityOfBook] = useState(quantity);
+  const userId = getCookie('access')!;
 
-  const { mutate: deleteItem } = useDeleteItemFromCart();
+  const { data: cart } = useGetAllCartItems(userId);
 
-  const addHandler = () => {
-    const newQuantity = quantityOfBook + 1;
-    setQuantityOfBook(newQuantity);
-    updateQuantity(id, newQuantity);
-  };
-
-  const removeHandler = () => {
-    const newQuantity = quantityOfBook - 1;
-
-    if (quantityOfBook > 1) {
-      setQuantityOfBook(newQuantity);
-      updateQuantity(id, newQuantity);
-    }
-  };
+  const { mutate } = useUpdateCart();
 
   const deleteHandler = () => {
-    deleteItem(id);
+    const result = cart.filter((book: CartType) => book.id !== id);
+    mutate({ cart: result, id: userId });
+    refetch();
   };
 
-  const totalPrice = price * quantityOfBook;
+  const handleAddQuantity = () => {
+    const index = cart.findIndex((book: CartType) => book.id === id);
+    const newCart = [...cart];
+    newCart[index].quantity++;
+
+    mutate({ cart: newCart, id: userId });
+    refetch();
+  };
+
+  const handleReduceQuantity = () => {
+    const index = cart.findIndex((book: CartType) => book.id === id);
+    const newCart = [...cart];
+    if (newCart[index].quantity > 1) {
+      newCart[index].quantity--;
+    }
+
+    mutate({ cart: newCart, id: userId });
+    refetch();
+  };
+
   return (
     <Card
       sx={{ display: 'flex', maxWidth: 400, maxHeight: 300, gap: 2, p: 2 }}
@@ -69,7 +70,7 @@ const CardOfCart = ({
             قیمت:
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {totalPrice.toLocaleString('fa')}
+            {(quantity * price).toLocaleString('fa')}
           </Typography>
         </Box>
         <Typography
@@ -133,12 +134,12 @@ const CardOfCart = ({
             justifyContent="space-between"
           >
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <IconButton onClick={addHandler}>
+              <IconButton onClick={handleAddQuantity}>
                 <AddIcon sx={{ fontSize: '20px' }} />
               </IconButton>
-              <Typography>{quantityOfBook}</Typography>
+              <Typography>{quantity}</Typography>
 
-              <IconButton onClick={removeHandler}>
+              <IconButton onClick={handleReduceQuantity}>
                 <RemoveIcon sx={{ fontSize: '20px' }} />
               </IconButton>
             </Box>
