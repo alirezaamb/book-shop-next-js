@@ -57,7 +57,7 @@ export default function Payment() {
     });
     updateBooks(getUpdatedBooksInventory());
     clearCart(userId);
-    router.push('/');
+    window.location.href = '/';
   };
 
   return (

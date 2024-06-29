@@ -1,16 +1,19 @@
 {
   "books": [
     {
-      "name": "قدرت شروع ناقص  ",
+      "name": "قدرت شروع ناقص 3",
       "author": "جیمز کلییر",
       "translator": "سید ایوب کوکبی، فرزانه حاج خلیلی",
       "desc": "نشر میلکان",
       "price": 180000,
       "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
       "id": "1",
-      "inventory": "15",
+      "inventory": 19,
       "ages": "children",
-      "category": "roman"
+      "category": "roman",
+      "pictures": [],
+      "discount": 0,
+      "salesAmount": 1
     },
     {
       "id": "2",
@@ -96,7 +99,7 @@
         "https://milkan.ir/wp-content/uploads/2024/03/Anatomy-of-a-Breakthrough-C2.jpg"
       ],
       "salesAmount": 5,
-      "inventory": 6,
+      "inventory": "12",
       "ages": "children",
       "category": "story"
     },
@@ -132,7 +135,7 @@
         "https://www.iranketab.ir/Files/AttachFiles/f912f772994f4eda8972479b8d59630b.jpg"
       ],
       "salesAmount": 4,
-      "inventory": 6,
+      "inventory": "35",
       "ages": "teenager",
       "category": "story"
     },
@@ -149,8 +152,8 @@
         "https://www.aamout.com/images/books/foreign/1401-08.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/c10a64962a2b46a89041b5777c502ccf.jpg"
       ],
-      "salesAmount": 4,
-      "inventory": 6,
+      "salesAmount": 5,
+      "inventory": 23,
       "ages": "teenager",
       "category": "story"
     },
@@ -168,7 +171,7 @@
         "https://www.iranketab.ir/Files/AttachFiles/1fc4d21525cf46afbd8b0c3be9e54148.jpg?width=170"
       ],
       "salesAmount": 0,
-      "inventory": 6,
+      "inventory": "25",
       "ages": "teenager",
       "category": "story"
     },
@@ -222,7 +225,7 @@
         "https://www.iranketab.ir/Files/AttachFiles/e5bd59d1b80f49a98d5d8c4bedefb06e.jpg?width=170"
       ],
       "salesAmount": 8,
-      "inventory": 6,
+      "inventory": "41",
       "ages": "adult",
       "category": "diary"
     },
@@ -240,7 +243,7 @@
         "https://www.iranketab.ir/Files/AttachFiles/ce5284d565064ab2bd462f1ce2f7d55f.jpg?width=170"
       ],
       "salesAmount": 4,
-      "inventory": 6,
+      "inventory": "40",
       "ages": "adult",
       "category": "diary"
     },
@@ -294,7 +297,7 @@
         "https://www.iranketab.ir/Files/AttachFiles/a2b7d6980b0346749b055178cdd32b2b.jpg?width=170"
       ],
       "salesAmount": 1,
-      "inventory": 6,
+      "inventory": "35",
       "ages": "adult",
       "category": "diary"
     },
@@ -524,7 +527,7 @@
           "quantity": 2
         }
       ],
-      "delivered": true,
+      "delivered": false,
       "id": "Wk_ko4w"
     },
     {
@@ -566,7 +569,7 @@
           "quantity": 1
         }
       ],
-      "delivered": true,
+      "delivered": false,
       "id": "Ip0ZE0E"
     },
     {
@@ -582,8 +585,50 @@
           "quantity": 1
         }
       ],
-      "delivered": true,
+      "delivered": false,
       "id": "8bcKWhJ"
+    },
+    {
+      "userId": "1",
+      "books": [
+        {
+          "name": "قدرت شروع ناقص 3",
+          "price": 180000,
+          "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
+          "desc": "نشر میلکان",
+          "id": "1",
+          "author": "جیمز کلییر",
+          "quantity": 1
+        }
+      ],
+      "delivered": false,
+      "id": "GS6q-uQ"
+    },
+    {
+      "userId": "1",
+      "books": [
+        {
+          "id": "9",
+          "name": "به یاد او",
+          "author": "کالین هوور",
+          "translator": "عباس زارعی",
+          "desc": "نشر آموت",
+          "price": 275000,
+          "discount": 12,
+          "imgURL": "https://www.aamout.com/images/books/foreign/1401-08.jpg",
+          "pictures": [
+            "https://www.aamout.com/images/books/foreign/1401-08.jpg",
+            "https://www.iranketab.ir/Files/AttachFiles/c10a64962a2b46a89041b5777c502ccf.jpg"
+          ],
+          "salesAmount": 4,
+          "inventory": "24",
+          "ages": "teenager",
+          "category": "story",
+          "quantity": 1
+        }
+      ],
+      "delivered": true,
+      "id": "ucKTOlH"
     }
   ]
 }

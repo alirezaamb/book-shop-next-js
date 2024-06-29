@@ -120,6 +120,16 @@ export default function HeaderAdmin() {
                   </Typography>
                 </MenuItem>
               </Link>
+              <Link href={'/admin-dashboard/delivery-orders'}>
+                <MenuItem
+                  sx={{ display: 'flex', justifyContent: 'flex-end' }}
+                  onClick={handleCloseUserMenu}
+                >
+                  <Typography>
+                    {pageLevelLocalization.adminHeader.delivery}
+                  </Typography>
+                </MenuItem>
+              </Link>
             </Menu>
           </Box>
         </Box>

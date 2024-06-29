@@ -1,5 +1,6 @@
 import {
   deleteRow,
+  editedProduct,
   getBookById,
   getBooks,
   newProduct,
@@ -67,4 +68,18 @@ export const useDeleteBook = () => {
   });
 
   return deleteMutation;
+};
+
+export const useEditBookInAdminDashboard = () => {
+  const queryClient = useQueryClient();
+
+  const editMutation = useMutation({
+    mutationFn: editedProduct,
+    mutationKey: ['editedBook'],
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['allBooks'] });
+    },
+  });
+
+  return editMutation;
 };

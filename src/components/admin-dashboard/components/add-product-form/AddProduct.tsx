@@ -1,4 +1,10 @@
-import { useEffect, useState } from 'react';
+import {
+  useAddBook,
+  useEditBookInAdminDashboard,
+  useGetBookById,
+} from '@/api/products/products.queries';
+import { pageLevelLocalization } from '@/constants/localization';
+import { AddProductProps, Inputs } from '@/types/types';
 import {
   Box,
   Button,
@@ -8,15 +14,9 @@ import {
   InputLabel,
   TextField,
 } from '@mui/material';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import UploadFileButton from './upload-file-button/UploadFileButton';
-import { pageLevelLocalization } from '@/constants/localization';
-import { AddProductProps, Inputs } from '@/types/types';
-import {
-  useAddBook,
-  useEditBook,
-  useGetBookById,
-} from '@/api/products/products.queries';
 
 export default function AddProduct({
   editId,
@@ -34,7 +34,7 @@ export default function AddProduct({
   const { mutate: addBook } = useAddBook();
 
   // Mutate the edit data
-  const { mutate: editBook } = useEditBook(editId!);
+  const { mutate: editBook } = useEditBookInAdminDashboard();
 
   // Get data for edit if editId is provided
   const { data } = useGetBookById(editId);
@@ -58,6 +58,7 @@ export default function AddProduct({
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const price = Number(data.price);
     if (editId) {
+      console.log(editId);
       editBook({
         ...data,
         imgURL: img,
@@ -69,6 +70,7 @@ export default function AddProduct({
         inventory: 0,
       });
     } else {
+      console.log('second');
       addBook({
         ...data,
         imgURL: img,

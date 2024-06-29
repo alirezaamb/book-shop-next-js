@@ -1,8 +1,9 @@
 import {
   useGetAllOrders,
   useUpdateDelivered,
-} from "@/api/orders/order.queries";
-import { Button } from "@/components/ui/button";
+} from '@/api/orders/order.queries';
+import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 import {
   Table,
   TableBody,
@@ -10,11 +11,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { pageLevelLocalization } from "@/constants/localization";
-import { Box, CircularProgress } from "@mui/material";
-import Image from "next/image";
-import { Switch } from "@/components/ui/switch";
+} from '@/components/ui/table';
+import { pageLevelLocalization } from '@/constants/localization';
+import { Box } from '@mui/material';
+import Image from 'next/image';
 
 const DeliveryOrdersIndex = () => {
   const { data } = useGetAllOrders();
@@ -23,11 +23,6 @@ const DeliveryOrdersIndex = () => {
 
   return (
     <Box sx={{ p: 2 }}>
-      <Button
-        variant={"default"}
-        color="primary"
-        className="absolute top-20"
-      ></Button>
       <Box sx={{ mt: 6 }}>
         <Table dir="rtl">
           <TableHeader>
