@@ -8,12 +8,12 @@
       "price": 180000,
       "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
       "id": "1",
-      "inventory": 19,
+      "inventory": 18,
       "ages": "children",
       "category": "roman",
       "pictures": [],
       "discount": 0,
-      "salesAmount": 1
+      "salesAmount": 2
     },
     {
       "id": "2",
@@ -278,8 +278,8 @@
         "https://www.aamout.com/images/books/persian/photo_2018-04-23_10-58-51.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/ef3e1d4b6fb844ec9401349b72a71496.jpg?width=170"
       ],
-      "salesAmount": 1,
-      "inventory": 62,
+      "salesAmount": 2,
+      "inventory": 61,
       "ages": "adult",
       "category": "diary"
     },
@@ -296,8 +296,8 @@
         "https://www.aamout.com/images/books/persian/photo_2018-05-29_10-59-56.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/a2b7d6980b0346749b055178cdd32b2b.jpg?width=170"
       ],
-      "salesAmount": 1,
-      "inventory": "35",
+      "salesAmount": 2,
+      "inventory": 34,
       "ages": "adult",
       "category": "diary"
     },
@@ -314,8 +314,8 @@
         "https://www.aamout.com/images/books/foreign/1403-04.jpg",
         "https://www.iranketab.ir/Files/AttachFiles/a2b7d6980b0346749b055178cdd32b2b.jpg?width=170"
       ],
-      "salesAmount": 1,
-      "inventory": 62,
+      "salesAmount": 3,
+      "inventory": 60,
       "ages": "adult",
       "category": "diary"
     },
@@ -629,6 +629,49 @@
       ],
       "delivered": true,
       "id": "ucKTOlH"
+    },
+    {
+      "userId": "1",
+      "books": [
+        {
+          "name": "قدرت شروع ناقص 3",
+          "price": 180000,
+          "imgURL": "https://milkan.ir/wp-content/uploads/2022/02/The-Power-of-Imperfect-Start-K1.jpg",
+          "desc": "نشر میلکان",
+          "id": "1",
+          "author": "جیمز کلییر",
+          "quantity": 1
+        },
+        {
+          "name": "لی لا",
+          "price": 275000,
+          "imgURL": "https://www.aamout.com/images/books/foreign/1403-04.jpg",
+          "desc": "نشر آموت",
+          "id": "18",
+          "author": "مریلین رابینسون",
+          "quantity": 2
+        },
+        {
+          "name": "پرتقال خونی",
+          "price": 155000,
+          "imgURL": "https://www.aamout.com/images/books/persian/photo_2018-05-29_10-59-56.jpg",
+          "desc": "نشر آموت",
+          "id": "17",
+          "author": "پروانه سراوانی",
+          "quantity": 1
+        },
+        {
+          "name": "خاما",
+          "price": 250000,
+          "imgURL": "https://www.aamout.com/images/books/persian/photo_2018-04-23_10-58-51.jpg",
+          "desc": "نشر آموت",
+          "id": "16",
+          "author": "یوسف علیخانی",
+          "quantity": 1
+        }
+      ],
+      "delivered": true,
+      "id": "dz8h0hK"
     }
   ]
 }

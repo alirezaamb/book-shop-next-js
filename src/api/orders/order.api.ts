@@ -1,7 +1,6 @@
-import { UserType } from "@/types/types";
-import axios from "axios";
-import { BASE_URL } from "../const";
-import { OrderType } from "./order.type";
+import axios from 'axios';
+import { BASE_URL } from '../const';
+import { OrderType } from './order.type';
 
 export const newOrder = async (data: OrderType) => {
   const res = await axios.post(`${BASE_URL}/order`, data);
@@ -21,7 +20,7 @@ export const updateDelivery = async ({
   delivered: boolean;
 }) => {
   const res = await axios.patch(`${BASE_URL}/order/${id}`, {
-    delivered
+    delivered,
   });
   return res;
 };

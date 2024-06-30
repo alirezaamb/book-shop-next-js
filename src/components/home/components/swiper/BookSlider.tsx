@@ -1,23 +1,21 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  A11y,
-  Navigation,
-  Pagination,
-  Scrollbar,
-  Autoplay,
-} from 'swiper/modules';
+import { useGetBooks } from '@/api/products/products.queries';
+import LoadingPage from '@/components/shared/loading/Loading';
+import { localization } from '@/constants/localization';
+import { BooksEntity } from '@/types/types';
+import { Box, Divider, Typography } from '@mui/material';
+import Link from 'next/link';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import LoadingPage from '@/components/shared/loading/Loading';
-import { Box, Divider, Typography } from '@mui/material';
-import { useGetBooks } from '@/api/products/products.queries';
-import { BooksEntity } from '@/types/types';
-import Link from 'next/link';
-import { localization } from '@/constants/localization';
-import Image from 'next/image';
+import {
+  A11y,
+  Autoplay,
+  Navigation,
+  Pagination,
+  Scrollbar,
+} from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 export const BookSlider = () => {
   const { data: books } = useGetBooks();
@@ -66,7 +64,7 @@ export const BookSlider = () => {
                   <Box
                     sx={{
                       display: 'flex',
-                      gap: 4,
+                      gap: 2,
                       py: 2,
                       flexDirection: 'row-reverse',
                     }}
@@ -76,7 +74,7 @@ export const BookSlider = () => {
                         alignSelf: 'flex-end',
                       }}
                     >
-                      {book?.price.toLocaleString()}
+                      {book?.price.toLocaleString('fa')}
                     </Typography>
                     <Typography>{localization.toman}</Typography>
                   </Box>

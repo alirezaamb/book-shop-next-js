@@ -39,7 +39,7 @@ export const DiscountSlider = () => {
             <SwiperSlide key={book.id}>
               <Badge
                 color="primary"
-                badgeContent={`${book.discount}%`}
+                badgeContent={`${book.discount.toLocaleString('fa')}%`}
                 anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                 overlap="circular"
               >
@@ -70,12 +70,13 @@ export const DiscountSlider = () => {
 
                     <Box sx={{ display: 'flex', gap: 4, py: 2 }}>
                       <Typography
+                        color="secondary"
                         sx={{
                           alignSelf: 'flex-end',
                           textDecoration: 'line-through',
                         }}
                       >
-                        {book?.price.toLocaleString()}
+                        {book?.price.toLocaleString('fa')}
                       </Typography>
                       <Box
                         sx={{
@@ -88,7 +89,7 @@ export const DiscountSlider = () => {
                           {(
                             book?.price -
                             (book?.price * book?.discount) / 100
-                          ).toLocaleString()}
+                          ).toLocaleString('fa')}
                         </Typography>
                         <Typography>{localization.toman}</Typography>
                       </Box>
