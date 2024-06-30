@@ -1,5 +1,5 @@
 export interface NewProductType {
-  imgURL: File | undefined;
+  imgURL: File | undefined | string;
   id: string;
   price: number;
   name: string;

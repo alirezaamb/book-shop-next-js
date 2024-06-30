@@ -1,9 +1,8 @@
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import { EditModalType } from '@/types/types';
-import { grey } from '@mui/material/colors';
 import AddProduct from '@/components/admin-dashboard/components/add-product-form/AddProduct';
+import { EditModalType } from '@/types/types';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import { grey } from '@mui/material/colors';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -34,12 +33,9 @@ export default function EditFormModal({
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Typography
-          id="modal-modal-description"
-          sx={{ mt: 2, direction: 'rtl' }}
-        >
+        <Box id="modal-modal-description" sx={{ mt: 2, direction: 'rtl' }}>
           <AddProduct editId={editModal.id} setEditModal={setEditModal} />
-        </Typography>
+        </Box>
       </Box>
     </Modal>
   );

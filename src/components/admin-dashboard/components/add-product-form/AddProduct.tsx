@@ -115,7 +115,7 @@ export default function AddProduct({
             <Grid item xs={12}>
               <InputLabel
                 sx={{ fontSize: '16px', fontWeight: '600' }}
-                htmlFor={pageLevelLocalization.addProduct.name}
+                htmlFor={'name'}
               >
                 {pageLevelLocalization.addProduct.name}
               </InputLabel>
@@ -136,7 +136,7 @@ export default function AddProduct({
             <Grid item xs={12}>
               <InputLabel
                 sx={{ fontSize: '16px', fontWeight: '600' }}
-                htmlFor={pageLevelLocalization.addProduct.author}
+                htmlFor="author"
               >
                 {pageLevelLocalization.addProduct.author}
               </InputLabel>
@@ -157,7 +157,7 @@ export default function AddProduct({
             <Grid item xs={12}>
               <InputLabel
                 sx={{ fontSize: '16px', fontWeight: '600' }}
-                htmlFor={pageLevelLocalization.addProduct.desc}
+                htmlFor="desc"
               >
                 {pageLevelLocalization.addProduct.desc}
               </InputLabel>
@@ -178,7 +178,7 @@ export default function AddProduct({
             <Grid item xs={12}>
               <InputLabel
                 sx={{ fontSize: '16px', fontWeight: '600' }}
-                htmlFor={pageLevelLocalization.addProduct.translator}
+                htmlFor="translator"
               >
                 {pageLevelLocalization.addProduct.translator}
               </InputLabel>
@@ -199,7 +199,7 @@ export default function AddProduct({
             <Grid item xs={12}>
               <InputLabel
                 sx={{ fontSize: '16px', fontWeight: '600' }}
-                htmlFor={pageLevelLocalization.addProduct.price}
+                htmlFor="price"
               >
                 {pageLevelLocalization.addProduct.price}
               </InputLabel>
